@@ -1,0 +1,109 @@
+<!-------------------------------------navigator bar--------------------------->
+
+<nav class="navbar navbar-expand-lg navbar-light nav2">
+  <div class="container-fluid margin-nav">
+    <img src="/assets/img/ENTRONICA_LOGO.png" width="230" height="65">
+       <div class="pull-right">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <i class="fa fa-user-circle-o fa-2x margin-bar" [matMenuTriggerFor]="menu" aria-hidden="true"></i>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item *ngIf="roleAccount" [routerLink]="['/list-account']" >จัดการบัญชีผู้ใช้</button>
+                <button mat-menu-item [routerLink]="['/editpassword']">เปลี่ยนรหัสผ่าน</button>
+              </mat-menu>
+          <i class="fa fa-sign-out fa-2x"[matMenuTriggerFor]="animals" aria-hidden="true"></i>
+            <mat-menu #animals="matMenu">
+              <button class="mat-menu-panel" mat-menu-item (click)="logout()">ออกจากระบบ</button>
+            </mat-menu>
+       </ul>
+       </div>
+   </div>
+ </nav>
+<!-----------------------------------------Grid-------------------------------  -->
+
+              <div id="grid" >
+                <div id="areaA">
+                  <div class="center">
+                    <div class="sidebar-container">
+                       <ul class="sidebar-navigation ">
+                           <li class="nav-item area-nav"><a  type="submit" (click)="onclickEmployee()">ข้อมูลพนักงาน</a></li>
+                           <li class="nav-item area-nav"><a  type="submit" (click)="onclickAsset()">ข้อมูลทรัพย์สิน</a></li>
+                           <li *ngIf="roleAccount" class="nav-item area-nav"><a  type="submit" (click)="onclickManagement()">การจัดการข้อมูล</a></li>
+                      </ul>
+                    </div>
+                 </div>
+               </div>
+               <div id="areaB">
+                 <br>
+                <div class="spase"><b>เปลี่ยนรหัสผ่าน</b></div>
+                   <br>
+                    <div class="mar">
+
+                      <form [formGroup]="oldpassword">
+                      <div class="row g-3 align-items-center">
+                        <div class="col-2">
+                          <label for="inputPassword6" class="col-form-label">Old Password</label>
+                        </div>
+                        <div class="col-sm-5">
+                          <input type="password" formControlName="password" id="oldpassword" class="form-control" aria-describedby="passwordHelpInline">
+                        </div>
+                        <div class="col-auto ">
+                          <span id="passwordHelpInline" class="form-text">
+                            <mat-icon class="color" *ngIf="oldpassword.valid">check</mat-icon>&nbsp;
+                            Must be 6-20 characters long.
+                          </span>
+                        </div>
+                      </div>
+                    <br><br>
+                  </form>
+
+                  <form [formGroup]="newpassword">
+                    <div class="row g-3 align-items-center">
+                      <div class="col-2">
+                        <label for="inputPassword6"  class="col-form-label">New Password</label>
+                      </div>
+                      <div class="col-sm-5">
+                        <input type="password" formControlName="password"  id="newpassword" class="form-control" aria-describedby="passwordHelpInline">
+                      </div>
+                      <div class="col-auto ">
+                        <span id="passwordHelpInline" class="form-text">
+                          <mat-icon class="color" *ngIf="newpassword.valid">check</mat-icon>&nbsp;
+                          Must be 6-20 characters long
+                          <!-- <mat-icon class="color" *ngIf="newpassword.invalid"> clear</mat-icon> -->
+                        </span>
+                      </div>
+                    </div>
+                    <br><br>
+                  </form>
+
+                  <form [formGroup]="confirmpassword">
+                    <div class="row g-3 align-items-center">
+                      <div class="col-2">
+                        <label for="inputPassword6" class="col-form-label">Confirm New Password</label>
+                      </div>
+                      <div class="col-sm-5">
+                        <input type="password" formControlName="password"  id="confirmpassword" class="form-control" aria-describedby="passwordHelpInline">
+                      </div>
+                      <div class="col-auto ">
+                        <span id="passwordHelpInline" class="form-text">
+                          <mat-icon class="color" *ngIf="confirmpassword.valid">check</mat-icon>&nbsp;
+                          Must be 6-20 characters long.
+                        </span>
+                      </div>
+                    </div>
+                    <br><br>
+                  </form>
+
+
+                </div>
+                      <div class="arearight">
+                      <button mat-button (click)="onclickeditPassword()"class="btn btn-lg btn-add save" type="submit" >
+                        <i class="fa fa-check fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;บันทึกข้อมูล</button> &nbsp; &nbsp;
+                      </div>
+                 </div>
+
+
+
+
+                <div id="areac">
+                </div>
+                </div>

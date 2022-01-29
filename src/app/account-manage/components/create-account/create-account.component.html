@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="rightLogo" >
+    <img src ="assets/img/Logo.png" width="230px" height="210px" >
+  </div>
+  <div class="center">
+      <div class="card card-signin">
+        <div class="card-body">
+          <form [formGroup]="account" autocomplete="on"class="form-signin">
+            <br>
+            <div class="form-label-group">
+            </div><h3 class="font-head" style="color: #42403c;"><b>CREATE NEW USER</b></h3>
+            <br>
+
+          <div class="row">
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <input type="text" class="form-control" placeholder="Prefix *" id="prefix" formControlName="prefix">
+            </div></div>
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <input type="text" class="form-control" placeholder="NickName *" id="nickname" formControlName="nickname">
+            </div>
+            </div>
+          </div>
+
+          <br><div class="row">
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <input type="text" class="form-control" placeholder="FirstName *" id="firstname" formControlName="firstname">
+            </div></div>
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <input type="text" class="form-control" placeholder="LastName *" id="lastName" formControlName="lastname">
+            </div>
+            </div>
+          </div>
+
+          <br><div class="row">
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <input type="number" class="form-control" placeholder="Age *" id="age" formControlName="age">
+            </div></div>
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <input type="text" class="form-control" placeholder="Gender *" id="gender" formControlName="gender">
+            </div>
+            </div>
+          </div>
+
+          <br><div class="row">
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <input type="email" class="form-control" placeholder="E-mail *" id="email" formControlName="username">
+            </div></div>
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <input type="password" class="form-control" placeholder="Password *" id="password" formControlName="password">
+            </div>
+            </div>
+          </div>
+
+          <br><div class="row">
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <input type="number" class="form-control" placeholder="Height *" id="height" formControlName="height">
+            </div></div>
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <input type="number" class="form-control" placeholder="Weight *" id="weight" formControlName="weight">
+            </div>
+            </div>
+          </div>
+
+          <br><div class="row">
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <input type="text" class="form-control" placeholder="Province *" id="province" formControlName="province">
+            </div></div>
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <input type="text" class="form-control" placeholder="Home / Office *" id="home" formControlName="office">
+            </div>
+            </div>
+          </div>
+
+          <br>
+            <div class="form-group">
+              <input type="text" class="form-control description" placeholder="Description *" id="description" formControlName="description">
+          </div>
+            <div class="validation-error" *ngIf="submitted == false" >อีเมลนี้มีผู้ใช้แล้ว</div>
+            <div class="validation-error" *ngIf="invalid == false">ข้อมูลไม่ถูกต้อง</div>
+          <br>
+            <button class="btn btn-createac"
+                    type="submit"(click)="onclickCraeate()" >สร้างบัญชี</button>
+
+             <button class="btn btn-cancel"
+                    type="submit"(click)="onclickCancel()">ยกเลิก</button>
+        </form>
+    </div>
+</div>

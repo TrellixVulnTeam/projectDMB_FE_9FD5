@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="rightLogo" >
+    <img src ="assets/img/Logo.png" width="230px" height="210px" >
+  </div>
+  <div class="center">
+      <div class="card card-signin">
+        <div class="card-body">
+
+          <form [formGroup]="account2" autocomplete="on"class="form-signin">
+
+            <div class="form-label-group"></div>
+            <h3 class="font-head" style="color: #42403c; margin: 2.5cm;">pic</h3>
+            <br>
+
+          <h1>-----------------------------------------------------------------------------------------------</h1>
+            <br><div class="col-md">
+                  <div class="form-label-group" style="margin-top: -0.3cm;">
+                    <label type="type" class="form-label" placeholder="ประเภท"> เลือกประเภทความสนใจ </label>
+                      <select class="form-select" id="type" formControlName="type" >
+                        <option class="optionStatus" > หาเพื่อน </option>
+                        <option class="optionStatus" > หาคนเดท </option>
+                        <option class="optionStatus" > หาคนไปทานข้าวด้วย </option>
+                      </select>
+                  </div>
+                </div><br>
+
+          <div class="row">
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <input type="text" class="form-control" placeholder="Facebook " id="facebook" formControlName="facebook">
+            </div></div>
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <input type="text" class="form-control" placeholder="Line" id="line" formControlName="line">
+            </div>
+            </div>
+          </div>
+
+          <br><div class="row">
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <input type="text" class="form-control" placeholder="Instagram " id="instagram" formControlName="instagram">
+            </div></div>
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <input type="text" class="form-control" placeholder="Phone " id="phone" formControlName="phone">
+            </div>
+            </div>
+          </div>
+
+           <br><br>
+            <!-- <button class="btn btn-createac" type="submit" (click)="onSubmit()" > Submit </button>
+            <button class="btn btn-cancel" type="cancel" (click)="onCancel()" > Cancel </button> -->
+
+        </form>
+    </div>
+
+
+</div>
+
+<div style="width: 50%; height: 50%;"  [froalaEditor]="froalaOptions" >hhhhhhhhhhhhhh</div>

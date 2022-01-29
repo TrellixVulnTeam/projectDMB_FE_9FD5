@@ -1,0 +1,29 @@
+
+label{
+  font-size: 85%;
+  color: rgb(100, 100, 100);
+}
+.magin-text{
+  margin-bottom: 2cm;
+}
+.textend{
+  float: right;
+  margin-top: 1cm;
+}
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+div.form-label-group{
+  margin-bottom: 0.6cm;
+}
+input{
+  color: rgb(100, 100, 100);
+}
+
+.marginrole{
+  margin-top: 0.4cm;
+}
+
+
+
+

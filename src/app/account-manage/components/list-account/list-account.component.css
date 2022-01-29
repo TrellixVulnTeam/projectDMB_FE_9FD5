@@ -1,0 +1,116 @@
+
+.nav-link1{
+  padding: 0%;
+}
+.font-head{
+  padding-top: 30px;
+  color: #303030;
+  font-size: 0.5cm;
+}
+
+.input-group1{
+  float: right;
+  width: 8cm;
+  margin-right: 0.25cm;
+}
+.input-group2{
+  float: right;
+  margin-right: 1cm;
+}
+.font-search{
+  font-size: 0.35cm;
+  color: #888888;
+}
+.btn-group{
+  width: 100%;
+  margin-left: 0.3cm;
+}
+.btn-add{
+  color: rgb(255, 255, 255);
+  background-color:#961818;
+  width: 4cm;
+  height: 1.1cm;
+  font-size: 68%;
+  border-radius: 1rem;
+  letter-spacing: .01rem;
+  padding: 0.4rem;
+  transition: all 0.2s;
+}
+.btn-Ex{
+  color: rgb(255, 255, 255);
+  background-color:#961818;
+  width: 4cm;
+  height: 1.1cm;
+  font-size: 70%;
+  border-radius: 1rem;
+  letter-spacing: .01rem;
+  padding: 0.4rem;
+  transition: all 0.2s;
+}
+.btn-add:hover{
+ background-color: #881515;
+ color: black;
+}
+.btn-Ex:hover{
+  background-color: #881515;
+ color: black;
+}
+.right{
+  text-align: right;
+}
+.mat-menu-item{
+  width: 150px;
+  height: auto;
+  text-align: center;
+  font-size: 90%;
+  padding: 0;
+  letter-spacing: .01rem;
+  background-color:rgb(255, 255, 255);
+  transition: all 0.2s;
+}
+.mat-menu-item:hover{
+  background-color:rgb(236, 234, 234);
+ color: black;
+}
+::ng-deep .mat-menu-content{
+  padding:0px !important;
+}
+::ng-deep .mat-menu-panel{
+  padding:0px !important;
+  border-radius: 0.8rem;
+}
+.mat-table{
+  -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+mat-row:nth-child(odd) {
+  background: #eee;
+}
+mat-row.mat-row.ng-star-inserted {
+border: 0;
+}
+.example-container.mat-elevation-z8 {
+  box-shadow: none;
+}
+.searchacc{
+  margin-top: -10px;
+  padding-right: 0.5cm;
+  width: 7.3cm;
+}
+.reset{
+  color: rgb(255, 255, 255);
+  background-color:#961818;
+  width: 2cm;
+  height: 1cm;
+  font-size: 70%;
+  border-radius: 1rem;
+  letter-spacing: .01rem;
+ 
+
+}
+.reset:hover{
+  background-color: #881515;
+  color: black;
+}
+

@@ -1,0 +1,36 @@
+
+<i class="fa fa-pencil-square-o fa-lg"aria-hidden="true"></i>&nbsp;&nbsp;<b>แก้ไขบัญชีผู้ใช้</b>
+<br><br><br>
+<form [formGroup]="editaccout" autocomplete="on"class="form-signin">
+<div class="row justify-content-between magin-text" >
+            <div class="form-label-group">
+              <input type="text" class="form-control" placeholder="First Name" id="email" formControlName="firstname">
+            </div><br>
+            <div class="form-label-group">
+              <input type="text" class="form-control" placeholder="Last Name" id="lastname" formControlName="lastname">
+            </div><br>
+          <div class="form-label-group">
+            <input type="email" class="form-control" placeholder="Email" id="username" formControlName="username">
+          </div><br>
+          <div class="validation-error" *ngIf="submitted == false" >ข้อมูลไม่ถูกต้อง</div>
+          <!-- <div class="validation-error" *ngIf="emailDup == false">อีเมลนี้มีผู้ใช้แล้ว</div> -->
+          <br>
+              <span class="marginrole"><u><b class="textsign" >สิทธิ์การใช้งาน</b></u> &nbsp;
+                <mat-radio-group aria-label="Select an option" formControlName="role">
+                  <mat-radio-button class = "tp-radio-button"
+                  *ngFor = "let season of seasons" [value] = "season">
+                  {{season}}
+               </mat-radio-button>
+              </mat-radio-group></span>
+          </div>
+
+        <div class="textend">
+          <button (click)="submit()" cdkFocusInitial class="btn btn-lg btn-add save"  type="submit">
+            <i class="fa fa-check fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;บันทึกข้อมูล</button> &nbsp; &nbsp;
+          <button  (click)="onCancel()" class="btn btn-outline-secondary false">
+            <i class="fa fa-times fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;ยกเลิก</button>
+      </div>
+</form>
+
+
+

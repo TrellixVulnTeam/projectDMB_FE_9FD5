@@ -1,0 +1,38 @@
+<!-------------------------------------navigator bar--------------------------->
+
+<div class="container-fluid flex-wrap flex-md-nowrap margin-nav">
+  <img src ="assets/img/Logo.png" width="210px" height="190px">
+     <div class="pull-right">
+      <span class="material-icons-outlined">
+        logout
+        </span>
+       <mat-icon aria-hidden="false" aria-label="Example home icon">logout</mat-icon>
+        <ul style="margin-top: 1.5cm;">
+          <i class="fa fa-search  fa-2x margin-bar" [matMenuTriggerFor]="animals" aria-hidden="true" style="margin-right: 0.5cm;"></i>
+            <mat-menu #animals="matMenu">
+              <button class="mat-menu-panel" mat-menu-item (click)="logout()">ออกจากระบบ</button>
+            </mat-menu>
+          <i class="fa fa-user-circle-o fa-2x margin-bar" [matMenuTriggerFor]="menu" aria-hidden="true"></i>
+              <mat-menu style="padding-bottom: 0px;" #menu="matMenu">
+                <button mat-menu-item *ngIf="roleAccount" [routerLink]="['/list-account']" >จัดการบัญชีผู้ใช้</button>
+                <button mat-menu-item  [routerLink]="['/editpassword']">เปลี่ยนรหัสผ่าน</button>
+              </mat-menu>
+          <i class="fa fa-sign-out fa-2x"[matMenuTriggerFor]="animals" aria-hidden="true"></i>
+            <mat-menu #animals="matMenu">
+            ?
+            </mat-menu>
+       </ul> 
+     </div>
+ </div>
+ 
+    <!-- ---------------------------------------Grid------------------------------- -->
+    <div id="grid">
+      <div id="areaA">
+        
+      </div>
+
+      <div id="areaB">
+        <div class="margintopic"><b>Search</b></div>
+        
+      </div>
+    </div>

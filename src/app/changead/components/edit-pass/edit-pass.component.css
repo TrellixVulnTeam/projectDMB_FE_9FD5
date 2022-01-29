@@ -1,0 +1,54 @@
+.mar{
+  margin-left: 4cm;
+  margin-top: 1cm;
+}
+.arearight{
+  float: right;
+  margin-right: 2cm;
+  margin-top: 3cm;
+}
+mat-cell:first-of-type{
+  padding-left: 24px;
+  margin-right: -30px;
+}
+.validation-error{
+  width: 100%;
+  font-size: 100%;
+  color: red;
+}
+mat-icon{
+  color: #686868;
+  margin-top: 0.3cm;
+  margin-bottom: -1cm;
+}
+mat-icon.color{
+  color: #17c200;
+}
+mat-icon.color:hover{
+  color: #17c200;
+}
+mat-icon:hover{
+  color: #000000;
+}
+.mat-menu-item{
+  width: 150px;
+  height: auto;
+  text-align: center;
+  font-size: 90%;
+  letter-spacing: .01rem;
+  background-color:rgb(255, 255, 255);
+  transition: all 0.2s;
+}
+.mat-menu-item:hover{
+  background-color:rgb(236, 234, 234);
+ color: black;
+}
+::ng-deep .mat-menu-content{
+  padding:0px !important;
+}
+
+::ng-deep .mat-menu-panel{
+  padding:0px !important;
+  min-height: 0px !important;
+  border-radius: 0.8rem;
+}

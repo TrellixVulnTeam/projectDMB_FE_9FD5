@@ -1,0 +1,11 @@
+{
+    "apps": [
+        {
+            "exec_mode": "fork",
+            "instances": 1,
+            "script": "server.js",
+            "interpreter": "node",
+            "name": "web-assets-frontend"
+        }
+    ]
+}

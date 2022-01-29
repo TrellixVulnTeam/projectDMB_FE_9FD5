@@ -1,0 +1,11 @@
+{
+  "/services/webasset/**": {
+      "target": "http://localhost:4443",
+      "pathRewrite": {
+          "^/services/webasset": ""
+      },
+      "changeOrigin": true,
+      "secure": false,
+      "logLevel": "debug"
+  }
+}
