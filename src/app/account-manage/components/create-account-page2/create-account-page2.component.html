@@ -6,23 +6,56 @@
       <div class="card card-signin">
         <div class="card-body">
 
-          <form [formGroup]="account2" autocomplete="on"class="form-signin">
 
-            <div class="form-label-group"></div>
+          <!-- <div style="width: 20%; height: 20%;"  [froalaEditor]="froalaOptions" >hhhhhhhhhhhhhh</div> -->
+          <form [formGroup]="account2" autocomplete="on"class="form-signin">
+               <!-- todo UPLOAD IMAGE -->
+               <div class="p-col">
+                <label class="hoverable" for="fileInput">
+                  <!-- <img class="imagesProfile" class="circle profile-pic" [src]="imagesProfile2" /> -->
+                    <img class="circle"
+                        [src]="imagesProfile ? imagesProfile : 'https://i.pinimg.com/originals/04/7d/fc/047dfc2552d91ae45f5c5362e71f4e43.gif'">
+                    <div *ngIf="!!imagesProfile" class="hover-text show">Click to choose file</div>
+                    <div *ngIf="!!imagesProfile" class="background show"></div>
+                    <div class="hover-text">Click to choose file</div>
+                    <div class="background"></div>
+                </label>
+                <br />
+                <input #myInputImg id="fileInput" type="file"
+                    keyup="changeListenerFileImages($event)"
+                    (change)="changeListenerFileImages($event)">
+              </div>
+
+            <!-- <div class="form-label-group"></div>
             <h3 class="font-head" style="color: #42403c; margin: 2.5cm;">pic</h3>
-            <br>
+            <br> -->
 
           <h1>-----------------------------------------------------------------------------------------------</h1>
-            <br><div class="col-md">
-                  <div class="form-label-group" style="margin-top: -0.3cm;">
-                    <label type="type" class="form-label" placeholder="ประเภท"> เลือกประเภทความสนใจ </label>
-                      <select class="form-select" id="type" formControlName="type" >
-                        <option class="optionStatus" > หาเพื่อน </option>
-                        <option class="optionStatus" > หาคนเดท </option>
-                        <option class="optionStatus" > หาคนไปทานข้าวด้วย </option>
-                      </select>
-                  </div>
-                </div><br>
+          <br><div class="row g-3 align-items-cente">
+            <div class="col-auto" style="margin-top: -0.3cm;">
+              <label type="gender" class="form-label findtype" placeholder="ประเภท"> Type</label>
+            </div>
+            <div class="col-auto" >
+              <mat-form-field appearance="outline" style="width: 6.8cm;">
+                <mat-select disableRipple style="height: 0.2cm;"  formControlName="type" >
+                  <mat-option value="1"> หาเพื่อน </mat-option>
+                  <mat-option value="2"> หาคนเดท </mat-option>
+                  <mat-option value="3"> หาคนไปทานข้าวด้วย </mat-option>
+                </mat-select>
+              </mat-form-field>
+              </div>
+
+              <div class="col-auto" style="margin-top: -0.3cm;">
+                <label type="province" class="form-label findprovince"  placeholder="จังหวัด"> Province </label>
+              </div>
+              <mat-form-field appearance="outline" style="width: 6.8cm;">
+                <mat-select disableRipple style="height: 0.2cm "  formControlName="province" >
+                  <mat-option *ngFor="let state of states" [value]="state.value">{{state.viewValue}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              </div>
+              <br>
 
           <div class="row">
             <br><div class="col-md-6">
@@ -39,23 +72,15 @@
           <br><div class="row">
             <br><div class="col-md-6">
             <div class="form-label-group">
-              <input type="text" class="form-control" placeholder="Instagram " id="instagram" formControlName="instagram">
+              <input type="text" class="form-control" placeholder="ig " id="ig" formControlName="ig">
             </div></div>
             <br><div class="col-md-6">
             <div class="form-label-group">
-              <input type="text" class="form-control" placeholder="Phone " id="phone" formControlName="phone">
+              <input type="number" class="form-control" placeholder="Phone " id="phone" formControlName="phone">
             </div>
             </div>
           </div>
 
            <br><br>
-            <!-- <button class="btn btn-createac" type="submit" (click)="onSubmit()" > Submit </button>
-            <button class="btn btn-cancel" type="cancel" (click)="onCancel()" > Cancel </button> -->
-
-        </form>
-    </div>
-
-
-</div>
-
-<div style="width: 50%; height: 50%;"  [froalaEditor]="froalaOptions" >hhhhhhhhhhhhhh</div>
+            <button class="btn btn-createac" type="submit" (click)="onSubmit()" > Submit </button>
+            <button class="btn btn-cancel" type="cancel" (click)="onCancel()" > Cancel </button>

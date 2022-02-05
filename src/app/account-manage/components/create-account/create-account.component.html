@@ -74,11 +74,11 @@
           <br><div class="row">
             <br><div class="col-md-6">
             <div class="form-label-group">
-              <input type="text" class="form-control" placeholder="Province *" id="province" formControlName="province">
+              <input type="text" class="form-control" placeholder="Home / Office *" id="home" formControlName="office">
             </div></div>
             <br><div class="col-md-6">
             <div class="form-label-group">
-              <input type="text" class="form-control" placeholder="Home / Office *" id="home" formControlName="office">
+              <!-- <input type="text" class="form-control" placeholder="Home / Office *" id="home" formControlName="office"> -->
             </div>
             </div>
           </div>
@@ -91,10 +91,9 @@
             <div class="validation-error" *ngIf="invalid == false">ข้อมูลไม่ถูกต้อง</div>
           <br>
             <button class="btn btn-createac"
-                    type="submit"(click)="onclickCraeate()" >สร้างบัญชี</button>
-
+                    type="submit"(click)="onclickCraeate()">Next</button>
              <button class="btn btn-cancel"
-                    type="submit"(click)="onclickCancel()">ยกเลิก</button>
+                    type="submit"(click)="onclickCancel()">Cancal</button>
         </form>
     </div>
 </div>

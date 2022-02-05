@@ -111,6 +111,12 @@ export class UserAccountService {
     return this.http.post(API.CHECKCREATEUSER, data);
   }
 
-
+  createAccountImg(data: any) {
+    const httpParams = new HttpParams();
+    const requestOptions = {
+      params: httpParams
+    };
+    return this.http.post(API.CREATEACCOUNTIMG, data);
+  }
 
 }

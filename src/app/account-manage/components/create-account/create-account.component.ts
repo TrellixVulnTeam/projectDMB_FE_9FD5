@@ -31,34 +31,67 @@ export class CreateAccountComponent implements OnInit {
   imageFile: {};
   imagesProfile: any;
   msg:any;
+  data:any;
   uploadFileImages: any = [];
+  data_page1:any;
   constructor(
     private formBuilder:FormBuilder,
     public userAccountService: UserAccountService,
     private router: Router,
     private httpService: HttpServices,
+    private route:ActivatedRoute,
   ) {
   }
+
   ngOnInit() {
+    this.route.params.subscribe(prams=>{
+      this.data_page1 = JSON.parse(prams.data);
+      console.log( this.data_page1 )
+    })
     this.account = this.formBuilder.group({
-      firstname: new FormControl({ value: 'uu', disabled: false }, [Validators.required]),
-      lastname: new FormControl({ value: 'uu', disabled: false }, [Validators.required]),
-      username: new FormControl({ value: 'thanyarat.chai@ku.th', disabled: false }, [Validators.required,Validators.email]),
-      role: new FormControl({ value: 'Admin', disabled: false }, [Validators.required]),
-      password: new FormControl({ value: '1234', disabled: false }, [Validators.required]),
+      firstname: new FormControl({ value: '', disabled: false }, [Validators.required]),
+      lastname: new FormControl({ value: '', disabled: false }, [Validators.required]),
+      username: new FormControl({ value: '', disabled: false }, [Validators.required,Validators.email]),
+      role: new FormControl({ value: 'USER', disabled: false }, [Validators.required]),
+      password: new FormControl({ value: '', disabled: false }, [Validators.required]),
       status: new FormControl({ value: '', disabled: false }, [Validators.required]),
-      nickname: new FormControl({ value: 'nun', disabled: false }, [Validators.required]),
-      prefix: new FormControl({ value: 'miss', disabled: false }, [Validators.required]),
-      school: new FormControl({ value: 'Ku', disabled: false }, [Validators.required]),
-      weight: new FormControl({ value: '12', disabled: false }, [Validators.required]),
-      age: new FormControl({ value: '10', disabled: false }, [Validators.required]),
-      height: new FormControl({ value: '123', disabled: false }, [Validators.required]),
-      picture: new FormControl({ value: 'kijlii', disabled: false }, [Validators.required]),
-      gender: new FormControl({ value: '15', disabled: false }, [Validators.required]),
-      description: new FormControl({ value: 'ijuhuj', disabled: false }, [Validators.required]),
-      office: new FormControl({ value: 'kjkkkkk', disabled: false }, [Validators.required]),
-      province: new FormControl({ value: 'hhhhhh', disabled: false }, [Validators.required]),
+      nickname: new FormControl({ value: '', disabled: false }, [Validators.required]),
+      prefix: new FormControl({ value: '', disabled: false }, [Validators.required]),
+      school: new FormControl({ value: '', disabled: false }, [Validators.required]),
+      weight: new FormControl({ value: '', disabled: false }, [Validators.required]),
+      age: new FormControl({ value: '', disabled: false }, [Validators.required]),
+      height: new FormControl({ value: '', disabled: false }, [Validators.required]),
+      gender: new FormControl({ value: '', disabled: false }, [Validators.required]),
+      description: new FormControl({ value: '', disabled: false }, [Validators.required]),
+      office: new FormControl({ value: '', disabled: false }, [Validators.required]),
+      // province: new FormControl({ value: '', disabled: false }, [Validators.required]),
     });
+    console.log(this.data_page1);
+
+    if(this.data_page1 != null){
+      debugger
+      this.account.patchValue({
+        firstname:this.data_page1.firstname,
+        lastname:this.data_page1.lastname,
+        role:this.data_page1.role,
+        username:this.data_page1.username,
+        password:this.data_page1.password,
+        status:this.data_page1.status,
+        nickname:this.data_page1.nickname,
+        prefix:this.data_page1.prefix,
+        school:this.data_page1.school,
+        weight:this.data_page1.weight,
+        age:this.data_page1.age,
+        height:this.data_page1.height,
+        office:this.data_page1.office,
+        gender:this.data_page1.gender,
+        description:this.data_page1.description,
+      })
+    }
+    // this.userAccountService.getUserAccount().then(result => {
+    //  console.log(result);
+    // });
+
     this.email = this.formBuilder.group({
       username: new FormControl({ value: '', disabled: false }, [Validators.required,]),
     });
@@ -71,12 +104,21 @@ export class CreateAccountComponent implements OnInit {
   }
   async onclickCraeate(){
     debugger
+    this.router.navigate(['create-account-page2', {data :JSON.stringify( this.account.value) }])
+    // this.router.navigate(['create-account-page2',{data: this.account}]);
+    // debugger
     // await this.httpService.post('/api/createAccount',this.account.value).then(result => {
     //   console.log(result);
     //   debugger
     // })
-this.userAccountService.createAccount(this.account.value).then(result => {
-    })
+
+// this.userAccountService.createAccount(this.account.value).then(result => {
+//   debugger
+//     this.alertSucc()
+//     this.router.navigate(['create-account-page2',{id: result.responseData.data._id}]);
+
+//     })
+
 
     //  this.checkuser.patchValue({
     //       username: this.account.value.username
@@ -173,6 +215,16 @@ this.userAccountService.createAccount(this.account.value).then(result => {
         }
       },
     };
+    alertSucc(){
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'success',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
+
 
     }
 

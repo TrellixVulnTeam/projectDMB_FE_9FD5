@@ -44,6 +44,7 @@ import { EditAccountComponent } from './account-manage/components/edit-account/e
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/component/main/main.component';
 
+
 // import { NgxTextEditorModule } from 'ngx-text-editor';
 // import { AngularEditorModule } from '@kolkov/angular-editor';
 // import { EditorModule } from 'primeng/editor'
@@ -51,6 +52,9 @@ import { MainComponent } from './main/component/main/main.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import 'froala-editor/js/plugins.pkgd.min.js';
 import { CreateAccountPage2Component } from './account-manage/components/create-account-page2/create-account-page2.component';
+import { SearchComponent } from './main/component/search/search.component';
+import { ChatComponent } from './main/component/chat/chat.component';
+import { LikeComponent } from './main/component/like/like.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +68,9 @@ import { CreateAccountPage2Component } from './account-manage/components/create-
     EditPassComponent,
     MainComponent,
     CreateAccountPage2Component,
+    SearchComponent,
+    ChatComponent,
+    LikeComponent,
   ],
 
   imports: [
@@ -101,7 +108,7 @@ import { CreateAccountPage2Component } from './account-manage/components/create-
     MatMenuModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot()
-    
+
     // AngularEditorModule
     // EditorModule
 
@@ -113,7 +120,7 @@ import { CreateAccountPage2Component } from './account-manage/components/create-
     MatSliderModule,
     MatTableModule,
     MatSortModule,
-    MatMenuModule 
+    MatMenuModule
     // EditorModule
     ],
     entryComponents: [
