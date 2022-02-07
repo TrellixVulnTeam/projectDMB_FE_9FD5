@@ -1,0 +1,4 @@
+{
+  "mySelectRule": "{myVar, select, val1 {Value 1} val2 {Value 2} other {Other Value}}",
+  "myPluralRule": "{myCount, plural, =0 {no results} one {1 result} other {# results}}"
+}

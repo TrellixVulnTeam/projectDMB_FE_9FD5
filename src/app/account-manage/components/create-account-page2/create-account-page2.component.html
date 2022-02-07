@@ -6,7 +6,6 @@
       <div class="card card-signin">
         <div class="card-body">
 
-
           <!-- <div style="width: 20%; height: 20%;"  [froalaEditor]="froalaOptions" >hhhhhhhhhhhhhh</div> -->
           <form [formGroup]="account2" autocomplete="on"class="form-signin">
                <!-- todo UPLOAD IMAGE -->
@@ -80,7 +79,12 @@
             </div>
             </div>
           </div>
-
+          <br><br>
+          <!-- <div class="validation-error" *ngIf="submitted == false" >อีเมลนี้มีผู้ใช้แล้ว</div> -->
+          <div class="validation-error" *ngIf="invalid == false">ข้อมูลไม่ถูกต้องหรืออีเมลนี้มีผู้ใช้แล้ว</div>
            <br><br>
+
             <button class="btn btn-createac" type="submit" (click)="onSubmit()" > Submit </button>
             <button class="btn btn-cancel" type="cancel" (click)="onCancel()" > Cancel </button>
+
+    

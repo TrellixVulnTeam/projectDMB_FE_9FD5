@@ -1,162 +1,93 @@
-.nav-link1{
-  padding: 0%;
+.card:hover img {
+  transform: scale(1.2, 1.2);
+  transition-duration: 500ms;
+  transition-timing-function: ease-out;
+  opacity:0.7;
+
 }
-.font-head{
-  padding-top: 30px;
-  color: #303030;
+
+.card img {
+  transform: scale(1.0, 1.0);
+  transition-duration: 500ms;
+  transition-timing-function: ease-out;
+
+}
+
+.card-img-wrapper{
+  overflow:hidden;
+  position:relative;
+  width: 200px;
+  height: 200px;
+}
+
+.member-icons {
+  position:absolute;
+  bottom: -30%;
+  left:0;
+  right: 0;
+  margin-right: auto;
+  margin-left:auto;
+  opacity: 0;
+}
+
+.card-img-wrapper:hover .member-icons {
+  bottom: 0;
+  opacity: 1;
+}
+
+.animate {
+  transition: all 0.3s ease-in-out;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  width: 200px;
+}
+.iconchat{
+  float: right;
+  margin-top: -0.2cm;
+}
+.margintopic{
+  margin-top: -2.6cm;
+  margin-bottom: 2.3cm;
+  margin-left: 2cm;
   font-size: 0.5cm;
 }
-.reset{
-  color: rgb(255, 255, 255);
-  background-color:#961818;
-  width: 2cm;
-  margin-top: 0.3cm;
-  height: 1cm;
-  font-size: 70%;
-  border-radius: 1rem;
-  letter-spacing: .01rem;
-  padding: 0.1rem;
-  transition: all 0.2s;
-}
-.reset:hover{
-  background-color: #7a1313;
-  color: black;
-}
-.input-group{
-  margin-left: 0.25cm;
-  margin-right: 0.25cm;
-}
-.input-group2{
-  margin-right: 1.5cm;
-  margin-top: 0.3cm;
-}
-.input-group3{
-  margin-right: 0.25cm;
-  margin-left: 0.5cm;
-  margin-top: 0.3cm;
-}
-.font-search{
-  font-size: 0.35cm;
-  color: #888888;
-}
-.btn-group{
-  width: 100%;
-  margin-left: 0.3cm;
-}
-.btn-add{
-  color: rgb(255, 255, 255);
-  background-color:#961818;
-  width: 4cm;
-  height: 1.1cm;
-  font-size: 68%;
-  border-radius: 1rem;
-  letter-spacing: .01rem;
-  padding: 0.4rem;
-  transition: all 0.2s;
-}
-.btn-Ex{
-  color: rgb(255, 255, 255);
-  background-color:#961818;
-  width: 4cm;
-  height: 1.1cm;
-  font-size: 70%;
-  border-radius: 1rem;
-  letter-spacing: .01rem;
-  padding: 0.4rem;
-  transition: all 0.2s;
-}
-.btn-add:hover{
- background-color: #881515;
- color: black;
-}
-.btn-Ex:hover{
-  background-color: #881515;
- color: black;
-}
-.right{
-  text-align: right;
-}
-.mat-menu-item{
-  width: 150px;
-  height: auto;
-  text-align: center;
-  font-size: 90%;
-  padding: 0;
-  letter-spacing: .01rem;
-  background-color:rgb(255, 255, 255);
-  transition: all 0.2s;
-}
-.mat-menu-item:hover{
-  background-color:rgb(236, 234, 234);
- color: black;
-}
-::ng-deep .mat-menu-content{
-  padding:0px !important;
-}
-::ng-deep .mat-menu-panel{
-  padding:0px !important;
-  min-height: 0px !important;
-  border-radius: 0.8rem;
-}
-
-.ccen{
-  padding-top: 30px;
-}
-
-.mat-table{
-  -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-mat-row:nth-child(odd) {
-  background: #eee;
-}
-mat-row.mat-row.ng-star-inserted {
-border: 0;
-}
-.example-container.mat-elevation-z8 {
-  box-shadow: none;
-}
-i:hover{
-  color: #333333;
-}
-mat-form-field.mat-form-field {
-  font-size:95%;
-  width: 7cm;
-  border-radius: 15rem;
-  color: #686868;
-  margin-left: 0.2cm;
-  margin-bottom: -0.4cm;
-}
-mat-icon{
-  color: #686868;
-  margin-top: 0.3cm;
-  margin-bottom: -1cm;
-}
-mat-icon:hover{
-  color: #000000;
-}
-.colDate{
-  font-size: 80%;
-  text-align: left;
-  flex: 1;
+.mat-dialog-container {
   display: block;
-  min-height: fit-content;
-}
-.styleemcode{
-  margin-left: -30px;
-}
-.stylesite{
-  margin-left: 0.4cm;
-}
-mat-cell:first-of-type{
-  padding-left: 24px;
-  margin-right: -30px;
-}
-.styleac{
-  text-align: center;
+  padding: 24px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: 0;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  max-height: inherit;
 }
 
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
 
+.overlay {
+  position: absolute;
+  z-index: 1002;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  height: 100%;
+}
 
-
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}

@@ -6,6 +6,7 @@ import { HttpServices } from 'src/app/service/http.service';
 import { UserAccountService } from 'src/app/service/userAccount.service';
 import { v4 as uuid } from 'uuid';
 import Swal from 'sweetalert2';
+import { interval, Subscription } from 'rxjs';
 interface state {
   value: string;
   viewValue: string;
@@ -16,11 +17,12 @@ interface state {
   styleUrls: ['./create-account-page2.component.css']
 })
 export class CreateAccountPage2Component implements OnInit {
+  
   account2: FormGroup;
   img: FormGroup;
   msg: any;
   filesImages: any;
-  loading: boolean
+  loading: boolean = true;
   uploadFileMultiple: any = []
   files: any;
   cols: any = []
@@ -30,6 +32,12 @@ export class CreateAccountPage2Component implements OnInit {
   uploadFileImages: any = [];
   data_page1:any;
   test:any;
+  checkuser: FormGroup;
+  user:any;
+  submitted :boolean;
+  invalid:boolean;
+  value = 0;
+  // loading = true;
 
   constructor(
     private router: Router,
@@ -121,10 +129,14 @@ export class CreateAccountPage2Component implements OnInit {
   ];
 
   ngOnInit(): void {
+
     this.route.params.subscribe(prams=>{
       this.data_page1 = JSON.parse(prams.data);
       console.log( this.data_page1 )
       })
+      this.checkuser = this.formBuilder.group({
+        username: new FormControl({ value: '', disabled: false }, [Validators.required]),
+      });
     this.account2 = this.formBuilder.group({
       type: new FormControl({ value: '', disabled: false }),
       facebook: new FormControl({ value: '', disabled: false }),
@@ -195,22 +207,50 @@ export class CreateAccountPage2Component implements OnInit {
     //   })
     // });
   }
-  onSubmit(){
 
-     this.userAccountService.createAccount(this.account2.value).then(result => {
-        this.alertSucc()
-        this.router.navigate(['login', {}])
-      })
-  }
-  alertSucc(){
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'success',
-      showConfirmButton: false,
-      timer: 1500
+  onSubmit(){
+    debugger
+    this.checkuser.patchValue({
+      username: this.account2.value.username
     })
+    this.userAccountService.checkCreateUser(this.checkuser.value).then(result => {
+      debugger
+      this.user = result
+        console.log(this.user);
+        if(this.user.length==0 ){
+          this.submitted =true
+          this.userAccountService.createAccount(this.account2.value).then(result => {
+            const Toast = Swal.mixin({
+               toast: true,
+               position: 'top',
+               showConfirmButton: false,
+               timer: 1500,
+               timerProgressBar: true,
+               didOpen: (toast) => {
+                 toast.addEventListener('mouseenter', Swal.stopTimer)
+                 toast.addEventListener('mouseleave', Swal.resumeTimer)
+               }
+             })
+             Toast.fire({
+               icon: 'success',
+               title: 'บันทึกข้อมูลสำเร็จ'
+             })
+             this.router.navigate(['login', {}])
+           })
+
+          }
+        else{
+          this.invalid =true
+          this.submitted =false
+          }
+        })
+
+
+
+
+
   }
+
   onCancel(){
     this.router.navigate(['create-account', {data :JSON.stringify(this.data_page1) }])
   }

@@ -44,17 +44,19 @@ import { EditAccountComponent } from './account-manage/components/edit-account/e
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/component/main/main.component';
 
-
+// import { TranslateModule} from '@ngx-translate/core';
 // import { NgxTextEditorModule } from 'ngx-text-editor';
 // import { AngularEditorModule } from '@kolkov/angular-editor';
 // import { EditorModule } from 'primeng/editor'
 // import { ConfirmationService } from 'primeng-lts/api';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
-import 'froala-editor/js/plugins.pkgd.min.js';
+
+// import 'froala-editor/js/plugins.pkgd.min.js';
 import { CreateAccountPage2Component } from './account-manage/components/create-account-page2/create-account-page2.component';
 import { SearchComponent } from './main/component/search/search.component';
 import { ChatComponent } from './main/component/chat/chat.component';
 import { LikeComponent } from './main/component/like/like.component';
+import { TranslocoRootModule } from './transloco-root.module';
+import { MatProgressButtonsModule } from 'mat-progress-buttons';
 
 @NgModule({
   declarations: [
@@ -75,6 +77,7 @@ import { LikeComponent } from './main/component/like/like.component';
 
   imports: [
     BrowserModule,
+
     // ConfirmationService,
     CommonModule,
     ReactiveFormsModule,
@@ -106,12 +109,8 @@ import { LikeComponent } from './main/component/like/like.component';
     MatToolbarModule,
     MatRadioModule,
     MatMenuModule,
-    FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot()
-
-    // AngularEditorModule
-    // EditorModule
-
+    TranslocoRootModule,
+    MatProgressButtonsModule,
 
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -120,7 +119,8 @@ import { LikeComponent } from './main/component/like/like.component';
     MatSliderModule,
     MatTableModule,
     MatSortModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressButtonsModule,
     // EditorModule
     ],
     entryComponents: [
