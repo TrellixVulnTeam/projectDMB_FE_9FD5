@@ -1,1 +1,103 @@
-<p>search works!</p>
+
+
+    <!-- ---------------------------------------Grid------------------------------- -->
+
+    <div id="areaB">
+      <div class="margintopic">
+        <b class="topicsearch">Search</b>
+      </div><br>
+      <div class="center">
+          <div class="card card-search">
+            <div class="card-body">
+              <form [formGroup]="findpeople" autocomplete="on" class="form-search">
+                <div class="left"><h2> Select your type </h2></div>
+
+                  <!-- -------------------------- select people----------------------------  -->
+
+                  <br><div class="row g-3 align-items-center">
+                    <div class="col-auto" style="margin-top: -0.3cm;">
+                      <label type="gender" class="form-label findtype" placeholder="ประเภท"> Type</label>
+                    </div>
+                    <div class="col-auto" style="margin-left: 0.4cm;">
+                      <mat-form-field appearance="outline" style="width: 7.2cm;">
+                        <mat-select disableRipple style="height: 0.2cm;">
+                          <mat-option value="Man"> หาเพื่อน </mat-option>
+                          <mat-option value="Woman"> หาคนเดท </mat-option>
+                          <mat-option value="Bisexual"> หาคนไปทานข้าวด้วย </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      </div>
+                      </div>
+
+                  <br><div class="row g-3 align-items-center">
+                    <div class="col-auto" style="margin-top: -0.3cm;">
+                      <label type="gender" class="form-label findgender" placeholder="ประเภท"> Gender </label>
+                    </div>
+                    <div class="col-auto">
+                      <mat-form-field appearance="outline" style="width: 7.2cm;">
+                        <mat-select disableRipple style="height: 0.2cm;">
+                          <mat-option value="Man"> Man </mat-option>
+                          <mat-option value="Woman"> Woman </mat-option>
+                          <mat-option value="Bisexual"> Bisexual </mat-option>
+                          <mat-option value="Transgender"> Transgender </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      </div>
+
+                      <div class="col-auto" style="margin-top: -0.3cm;">
+                        <label type="province" class="form-label findprovince" placeholder="จังหวัด"> Province </label>
+                      </div>
+                      <div class="col-auto">
+                        <mat-form-field appearance="outline" style="width: 7.2cm;">
+                          <mat-select style="height: 0.2cm;">
+                            <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        </div>
+                  </div>
+
+                  <div class="row g-3 align-items-center" >
+                    <div class="col-auto">
+                      <label for="age" class="col-form-label findage">Age</label>
+                    </div>
+                    <div class="col-auto" style="margin-left: 0.5cm;">
+                      <br><mat-slider
+                        thumbLabel
+                        [displayWith]="slideage"
+                        tickInterval="100"
+                        step="1"
+                        min="0"
+                        max="100"
+                        aria-label="units">
+                      </mat-slider>
+                    </div>
+                    <div class="col-auto">
+                      <label for="age" class="col-form-label findheight">Height</label>
+                    </div>
+                    <div class="col-auto">
+                      <br><mat-slider
+                        thumbLabel
+                        [displayWith]="slideheight"
+                        tickInterval="200"
+                        step="1"
+                        min="0"
+                        max="200"
+                        aria-label="units">
+                      </mat-slider>
+                    </div>
+                  </div>
+
+
+             <br><br>
+              <button class="btn btn-createac" type="submit" (click)="onSubmit()" > Submit </button>
+              <button class="btn btn-cancel" type="cancel" (click)="onCancel()" > Cancel </button>
+            </form>
+        </div>
+    </div>
+
+
+  </div>
+
+
+
+

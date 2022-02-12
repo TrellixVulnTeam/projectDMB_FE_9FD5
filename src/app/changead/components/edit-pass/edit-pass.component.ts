@@ -65,7 +65,7 @@ export class EditPassComponent implements OnInit {
           })
           Toast.fire({
             icon: 'success',
-            text: 'บันทึกรหัสผ่านสำเร็จโปรด Login เข้าสู่ระบบใหม่'
+            text: 'Password saved successfully, please Login Login again.'
           }).then((result) => {
             localStorage.removeItem('Authorization');
             this.router.navigate(['login', {}])
@@ -77,7 +77,7 @@ export class EditPassComponent implements OnInit {
       }).catch(error => {
         Swal.fire({
           icon: 'error',
-          text: 'รหัสผ่านไม่ถูกต้อง กรุณากรอกอีกครั้ง!',
+          text: 'Incorrect password Please enter again!',
         })
       });
 }

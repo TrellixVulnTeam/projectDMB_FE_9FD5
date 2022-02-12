@@ -32,6 +32,8 @@ export class HttpServices {
       });
   }
 
+
+
   post(url, data): Promise<any> {
     // const token = localStorage.getItem('Authorization');
       const httpOptions = {
@@ -48,6 +50,42 @@ export class HttpServices {
         throw err;
     });
   }
+  postData(url, data): Promise<any> {
+    const token = localStorage.getItem('Authorization');
+      const httpOptions = {
+          headers: new HttpHeaders({
+              'Content-Type': 'application/json',
+              Authorization: token
+          })
+      };
+      return this.http.post(url,data,httpOptions).toPromise().then(response => {
+        return response;
+
+
+    }).catch((err) => {
+        throw err;
+    });
+  }
+  getData(url: string, params?: any): Promise<any> {
+    const token = localStorage.getItem('Authorization');
+    const httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            Authorization: token,
+        }),
+        // params: params || {}
+    };
+    return this.http.get(url, httpOptions).toPromise().then(response => {
+        return response;
+      },error =>{
+        if(error.error.resultCode =='40102'){
+          this.checkSessionExpired()
+        }
+    }).catch((err) => {
+        throw err;
+    });
+}
+
   postLogin(url, data): Promise<any> {
 
     // const token = localStorage.getItem('Authorization');

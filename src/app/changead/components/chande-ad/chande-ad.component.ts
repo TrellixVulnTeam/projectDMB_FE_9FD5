@@ -63,7 +63,7 @@ export class ChangeadComponent implements OnInit {
         })
         Toast.fire({
           icon: 'success',
-          title: 'บันทึกรหัสผ่านสำเร็จ'
+          title: 'Password saved successfully'
         })
          this.router.navigate(['login', {}])
       }

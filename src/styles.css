@@ -292,19 +292,19 @@ margin-right: 0.2cm;
   margin-right: 0.5cm;
 }
 .btn-add{
-  color: rgb(255, 255, 255);
-  background-color:#2d6e2d;
+  color: rgb(0, 0, 0);
+  background-color: #FFBFC5;
   width: 3cm;
   height: 1cm;
   font-size: 80%;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   letter-spacing: 0.01rem;
   padding: 0.4rem;
   transition: all 0.2s;
-  border: 1px solid rgb(0, 0, 0);
+  border: 2px solid rgb(0, 0, 0);
 }
 .btn-add:hover{
-  background-color:#2d6e2d;
+  background-color:#f06d81;
   color: black;
   font-weight: bold;
  }
@@ -321,7 +321,7 @@ margin-right: 0.2cm;
   width: 3cm;
   height: 1cm;
   font-size: 80%;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   letter-spacing: .01rem;
   padding: 0.4rem;
   transition: all 0.2s;

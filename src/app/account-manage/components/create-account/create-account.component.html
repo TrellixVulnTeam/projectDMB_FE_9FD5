@@ -1,24 +1,60 @@
 <div class="container">
-  <div class="rightLogo" >
-    <img src ="assets/img/Logo.png" width="230px" height="210px" >
+  <div align="right">
+    <img src ="assets/img/Logo.png" width="300px" height="300px" >
   </div>
   <div class="center">
+
       <div class="card card-signin">
         <div class="card-body">
           <form [formGroup]="account" autocomplete="on"class="form-signin">
-            <br>
+
             <div class="form-label-group">
             </div><h3 class="font-head" style="color: #42403c;"><b>CREATE NEW USER</b></h3>
-            <br>
+
 
           <div class="row">
             <br><div class="col-md-6">
             <div class="form-label-group">
-              <input type="text" class="form-control" placeholder="Prefix *" id="prefix" formControlName="prefix">
+                <mat-form-field appearance="legacy">
+                  <!-- <mat-label>Legacy form field</mat-label> -->
+                  <input matInput placeholder="Prefix*" formControlName="prefix" >
+                  <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                </mat-form-field>
+              <!-- <input type="text" class="form-control" placeholder="Prefix *" id="prefix" formControlName="prefix"> -->
+            </div></div>
+
+            <div class="col-md-6">
+            <div class="form-label-group">
+                <mat-form-field appearance="legacy">
+                  <!-- <mat-label>Legacy form field</mat-label> -->
+                  <input matInput placeholder="Nickname*" formControlName="nickname" >
+                  <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                </mat-form-field>
+              <!-- <input type="text" class="form-control" placeholder="NickName *" id="nickname" formControlName="nickname"> -->
+            </div>
+            </div>
+          </div>
+
+          <br><div class="row">
+            <div class="col-md-6">
+            <div class="form-label-group">
+
+                <mat-form-field appearance="legacy">
+                  <!-- <mat-label>Legacy form field</mat-label> -->
+                  <input matInput placeholder="Firstname*" formControlName="firstname" >
+                  <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                </mat-form-field>
+
+              <!-- <input type="text" class="form-control" placeholder="FirstName *" id="firstname" formControlName="firstname"> -->
             </div></div>
             <br><div class="col-md-6">
             <div class="form-label-group">
-              <input type="text" class="form-control" placeholder="NickName *" id="nickname" formControlName="nickname">
+              <mat-form-field appearance="legacy">
+                <!-- <mat-label>Legacy form field</mat-label> -->
+                <input matInput placeholder="Lastname*" formControlName="lastname" >
+                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+              </mat-form-field>
+              <!-- <input type="text" class="form-control" placeholder="LastName *" id="lastName" formControlName="lastname"> -->
             </div>
             </div>
           </div>
@@ -26,11 +62,24 @@
           <br><div class="row">
             <br><div class="col-md-6">
             <div class="form-label-group">
-              <input type="text" class="form-control" placeholder="FirstName *" id="firstname" formControlName="firstname">
+              <mat-form-field appearance="legacy">
+                <!-- <mat-label>Legacy form field</mat-label> -->
+                <input matInput  type="number" placeholder="Age*" formControlName="age" >
+                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+              </mat-form-field>
+              <!-- <input type="number" class="form-control" placeholder="Age *" id="age" formControlName="age"> -->
             </div></div>
             <br><div class="col-md-6">
             <div class="form-label-group">
-              <input type="text" class="form-control" placeholder="LastName *" id="lastName" formControlName="lastname">
+              <mat-form-field appearance="outline">
+                <mat-label>Select gender*</mat-label>
+                <mat-select disableRipple  formControlName="gender">
+                  <mat-option value="female">female</mat-option>
+                  <mat-option value="male">male</mat-option>
+                  <mat-option value="transgender">transgender</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <!-- <input type="text" class="form-control" placeholder="Gender *" id="gender" formControlName="gender"> -->
             </div>
             </div>
           </div>
@@ -38,11 +87,21 @@
           <br><div class="row">
             <br><div class="col-md-6">
             <div class="form-label-group">
-              <input type="number" class="form-control" placeholder="Age *" id="age" formControlName="age">
+              <mat-form-field appearance="legacy">
+                <!-- <mat-label>Legacy form field</mat-label> -->
+                <input matInput  type="email" placeholder="Username*" formControlName="username" >
+                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+              </mat-form-field>
+              <!-- <input type="email" class="form-control" placeholder="E-mail *" id="email" formControlName="username"> -->
             </div></div>
             <br><div class="col-md-6">
             <div class="form-label-group">
-              <input type="text" class="form-control" placeholder="Gender *" id="gender" formControlName="gender">
+              <mat-form-field appearance="legacy">
+                <!-- <mat-label>Legacy form field</mat-label> -->
+                <input matInput  type="password" placeholder="Password*" formControlName="password" >
+                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+              </mat-form-field>
+              <!-- <input type="password" class="form-control" placeholder="Password *" id="password" formControlName="Password"> -->
             </div>
             </div>
           </div>
@@ -50,11 +109,21 @@
           <br><div class="row">
             <br><div class="col-md-6">
             <div class="form-label-group">
-              <input type="email" class="form-control" placeholder="E-mail *" id="email" formControlName="username">
+              <mat-form-field appearance="legacy">
+                <!-- <mat-label>Legacy form field</mat-label> -->
+                <input matInput  type="number" placeholder="Height*" formControlName="height" >
+                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+              </mat-form-field>
+              <!-- <input type="number" class="form-control" placeholder="Height *" id="height" formControlName="height"> -->
             </div></div>
             <br><div class="col-md-6">
             <div class="form-label-group">
-              <input type="password" class="form-control" placeholder="Password *" id="password" formControlName="password">
+                <mat-form-field appearance="legacy">
+                <!-- <mat-label>Legacy form field</mat-label> -->
+                <input matInput  type="number" placeholder="Weight*" formControlName="weight" >
+                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+              </mat-form-field>
+              <!-- <input type="number" class="form-control" placeholder="Weight *" id="weight" formControlName="weight"> -->
             </div>
             </div>
           </div>
@@ -62,38 +131,32 @@
           <br><div class="row">
             <br><div class="col-md-6">
             <div class="form-label-group">
-              <input type="number" class="form-control" placeholder="Height *" id="height" formControlName="height">
+              <mat-form-field appearance="legacy">
+                <!-- <mat-label>Legacy form field</mat-label> -->
+                <input matInput  type="text" placeholder="School / Office*" formControlName="office" >
+                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+              </mat-form-field>
+              <!-- <input type="text" class="form-control" placeholder="Home / Office *" id="home" formControlName="office"> -->
             </div></div>
             <br><div class="col-md-6">
             <div class="form-label-group">
-              <input type="number" class="form-control" placeholder="Weight *" id="weight" formControlName="weight">
-            </div>
-            </div>
-          </div>
-
-          <br><div class="row">
-            <br><div class="col-md-6">
-            <div class="form-label-group">
-              <input type="text" class="form-control" placeholder="Home / Office *" id="home" formControlName="office">
-            </div></div>
-            <br><div class="col-md-6">
-            <div class="form-label-group">
+              <mat-form-field appearance="outline">
+                <!-- <mat-label>Legacy form field</mat-label> -->
+                <input matInput  type="text" placeholder="Description" formControlName="description" >
+                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+              </mat-form-field>
               <!-- <input type="text" class="form-control" placeholder="Home / Office *" id="home" formControlName="office"> -->
             </div>
             </div>
           </div>
 
+
+            <div class="validation-error" *ngIf="checkNext == false" >This account already has a user.</div>
+
           <br>
-            <div class="form-group">
-              <input type="text" class="form-control description" placeholder="Description *" id="description" formControlName="description">
-          </div>
-            <div class="validation-error" *ngIf="submitted == false" >อีเมลนี้มีผู้ใช้แล้ว</div>
-            <div class="validation-error" *ngIf="invalid == false">ข้อมูลไม่ถูกต้อง</div>
-          <br>
-            <button class="btn btn-createac"
-                    type="submit"(click)="onclickCraeate()">Next</button>
-             <button class="btn btn-cancel"
-                    type="submit"(click)="onclickCancel()">Cancal</button>
+          <button class="false"type="submit"(click)="onclickCancel()">Cancal</button> &nbsp;&nbsp;
+          <button class="btn-add"type="submit"(click)="onclickNext()">Next</button>
+
         </form>
     </div>
 </div>

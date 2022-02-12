@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+// import { SpinnerCircularModule } from 'spinners-angular/spinner-circular';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +15,124 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  public findpeople : FormGroup;
+  states: string[] = [
+    'Nakhon Ratchasima',
+    'Chiang Mai',
+    'Kanchanaburi',
+    'Tak',
+    'Ubon Ratchathani',
+    'Surat Thani',
+    'Chaiyaphum',
+    'Mae Hong Son',
+    'Phetchabun',
+    'Lampang',
+    'Udon Thani',
+    'Chiang Rai',
+    'Nan',
+    'Loei',
+    'Khon Kaen',
+    'Phitsanulok',
+    'Buri Ram',
+    'Nakhon Si Thammarat',
+    'Sakon Nakhon',
+    'Nakhon Sawan',
+    'Sisaket',
+    'Kamphaeng Phet',
+    'Roi Et',
+    'Surin',
+    'Uttaradit',
+    'Songkhla',
+    'Sa Kaeo',
+    'Kalasin',
+    'Uthai Thani',
+    'Phrae',
+    'Prachuap Khiri Khan',
+    'Chanthaburi',
+    'Phayao',
+    'Phetchaburi',
+    'Lop Buri',
+    'Chumphon',
+    'Nakhon Phanom',
+    'Suphan Buri',
+    'Chachoengsao',
+    'Maha Sarakham',
+    'Ratchaburi',
+    'Trang',
+    'Prachinburi',
+    'Krabi',
+    'Phichit',
+    'Yala',
+    'Lamphun',
+    'Chon Buri',
+    'Narathiwat',
+    'Mukdahan',
+    'Bueng Kan',
+    'Phang Nga',
+    'Yasothon',
+    'Nong Bua Lamphu',
+    'Saraburi',
+    'Rayong',
+    'Phatthalung',
+    'Ranong',
+    'Amnat Charoen',
+    'Nong Khai',
+    'Trat',
+    'Ayutthaya',
+    'Satun',
+    'Chainat',
+    'Nakhon Pathom',
+    'Nakhon Nayok',
+    'Pattani',
+    'Bangkok',
+    'Pathum Thani',
+    'Samut Prakan',
+    'Ang Thong',
+    'Samut Sakhon',
+    'Sing Buri',
+    'Nonthaburi',
+    'Phuket',
+    'Samut Songkhram',
+    'Sukhothai',
+  ];
 
-  ngOnInit(): void {
+  slideage(value: number) {
+    if (value >= 1) {
+      return Math.round(value /1 ) + 'ปี';
+    }
+
+    return value;
   }
 
+  slideheight(value: number) {
+    if (value >= 1) {
+      return Math.round(value /1 );
+    }
+
+    return value;
+  }
+
+  constructor(
+    private router: Router,
+    public dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<SearchComponent>,
+  ) {}
+
+  ngOnInit(): void {
+
+  }
+
+  onSubmit(){
+
+  }
+
+  onCancel(){
+    this.dialogRef.close();
+  }
+
+  logout(){
+    localStorage.removeItem('Authorization');
+    this.router.navigate(['login', {}])
+  }
 }

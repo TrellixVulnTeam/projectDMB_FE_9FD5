@@ -1,1 +1,52 @@
-<p>like works!</p>
+<div id="areaB">
+  <div class="margintopic">
+    <b>Liked</b></div>
+
+    <mat-tab-group mat-align-tabs="center">
+      <mat-tab label="Match">
+          <div class="card mb-4">
+            <div class="card-img-wrapper">
+              <img src="assets/img/user.png" class="card-img-top">
+              <ul class="list-inline member-icons animate text-center">
+                <li class="list-inline-item"><button class="btn btn-danger"><i class="fa fa-comments"></i></button></li>
+                <li class="list-inline-item"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></li>
+               </ul>
+            </div>
+            <div class="card-body p-1">
+              <h6 class="card-title text-center mb-1"><i class="fa fa-user"></i>
+               name , age
+              </h6>
+              <p class="card-text text-muted text-center">province</p>
+            </div>
+          </div>
+      </mat-tab>
+
+      <mat-tab label="See Who Like You">
+        <div *ngFor="let item of listlike ; let index = index">
+          <div class="card mb-4">
+            <div class="card-img-wrapper">
+              <div *ngIf="item.picture !=null">
+                 <img src="{{(item.picture)}}" class="card-img-top">
+              </div>
+              <div *ngIf="item.picture ==null || item.picture ==''">
+                <img src="assets/img/user.png" class="card-img-top">
+              </div>
+              <ul class="list-inline member-icons animate text-center">
+                <li class="list-inline-item"><button class="btn btn-danger" (click)="like(item,item._id,index)" ><i class="fa fa-heart"></i></button></li>
+                <li class="list-inline-item"><button class="btn btn-danger" (click)="unlike(item,index)" ><i class="fa fa-times"></i></button></li>
+              </ul>
+            </div>
+              <div class="card-body p-1">
+                <h6 text="text" class="card-title text-center mb-1"><i class="fa fa-user">Name</i>{{item.nickname}}</h6>
+                <p class="card-text text-muted text-center"><b>Province :  </b>{{item.province}} </p>
+                <p class="card-text text-muted text-center"><b>Age : </b>{{item.age}} </p>
+                <!-- <span class="material-icons">female</span>
+                <span class="material-icons">male</span>
+                <span class="material-icons">transgender</span> -->
+              </div>
+            </div>
+          </div>
+      </mat-tab>
+    </mat-tab-group>
+    <br><br>
+</div>

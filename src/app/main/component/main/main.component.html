@@ -30,31 +30,92 @@
       <div id="areaB">
         <div class="margintopic">
           <b>Main</b></div>
-          <button id="translatebtn" (click)=send()>send</button>
-          <!-- <sa-spinner-diamond [size]="86" [thickness]="100" [speed]="100" color="#dd0031" secondaryColor="rgba(0, 0, 0, 0.44)" ></sa-spinner-diamond> -->
-        <!-- --------------------------------- ppl 1 ----------------------------------- -->
-
+          <div *ngFor="let item of dataProfile; let index = index">
           <div class="card mb-4">
             <div class="card-img-wrapper">
-              <img src="assets/img/user.png" class="card-img-top">
+              <div *ngIf="item.picture !=null">
+                 <img src="{{(item.picture)}}" class="card-img-top">
+              </div>
+              <div *ngIf="item.picture ==null || item.picture ==''">
+                <img src="assets/img/user.png" class="card-img-top">
+              </div>
               <ul class="list-inline member-icons animate text-center">
                 <li class="list-inline-item"><button class="btn btn-danger"><i class="fa fa-user"></i></button></li>
-                <li class="list-inline-item"><button class="btn btn-danger"><i class="fa fa-heart"></i></button></li>
-                <li class="list-inline-item"><button class="btn btn-danger"><i class="fa fa-times"></i></button></li>
+                <li class="list-inline-item"><button class="btn btn-danger" (click)="like(item,item._id,index)" ><i class="fa fa-heart"></i></button></li>
+                <li class="list-inline-item"><button class="btn btn-danger" (click)="unlike(item,index)" ><i class="fa fa-times"></i></button></li>
               </ul>
             </div>
-
-            <div class="card-body p-1">
-              <h6 text="text" class="card-title text-center mb-1"><i class="fa fa-user" formControlName="firstname">name</i></h6>
-              <p class="card-text text-muted text-center" formControlName="province">province</p>
+              <div class="card-body p-1">
+                <h6 text="text" class="card-title text-center mb-1"><i class="fa fa-user">Name</i>{{item.nickname}}</h6>
+                <p class="card-text text-muted text-center"><b>Province :  </b>{{item.province}} </p>
+                <p class="card-text text-muted text-center"><b>Age : </b>{{item.age}} </p>
+              </div>
             </div>
           </div>
+
           <br><br>
           <div class="iconchat">
             <li class="list-inline-item"><button class="btn btn-outline-danger" (click)="openDialogchat()"><i class="fa fa-comments fa-2x"></i></button></li>
             <br><br>
             <li class="list-inline-item"><button class=" btn btn-outline-danger" (click)="openDialoglike()"><i class="fa fa-thumbs-up fa-2x"></i></button></li>
             </div>
-
       </div>
+
+
+
+<!--
+      <div id="areaB">
+        <div class="margintopic">
+          <b>Main</b></div>
+          <div *ngFor="let item of dataProfile; let index = index">
+          <div class="container">
+          <div class="row ">
+
+              <div class="cardmain mb-4">
+                <div class="card-img-wrapper">
+                  <div *ngIf="item.picture !=null">
+                    <img src="{{(item.picture)}}" class="card-img-top">
+                 </div>
+                 <div *ngIf="item.picture ==null || item.picture ==''">
+                   <img src="assets/img/user.png" class="card-img-top">
+                 </div>
+                  <ul class="list-inline member-icons animate text-center">
+                    <li class="list-inline-item"><button class="btn btn-danger"><i class="fa fa-user"></i></button></li>
+                    <li class="list-inline-item"><button class="btn btn-danger" (click)="like(item,item._id,index)" ><i class="fa fa-heart"></i></button></li>
+                    <li class="list-inline-item"><button class="btn btn-danger" (click)="unlike(item,index)" ><i class="fa fa-times"></i></button></li>
+                  </ul>
+                </div>
+              <div class="card-body p-1">
+              <h6  class="card-title text-center mb-1"><i class="fa fa-user" formControlName="firstname">name</i></h6>
+              <p class="card-text text-muted text-center" formControlName="province">province</p>
+            </div>
+          </div>
+
+
+          <div class="cardmain mb-4">
+            <div class="card-img-wrapper">
+              <img src="assets/img/user.png" class="card-img-top">
+              <ul class="list-inline member-icons animate text-center">
+                <li class="list-inline-item"><button class="btn btn-danger" ><i class="fa fa-user" ></i></button></li>
+                <li class="list-inline-item"><button class="btn btn-danger"><i class="fa fa-heart"></i></button></li>
+                <li class="list-inline-item"><button class="btn btn-danger"><i class="fa fa-times"></i></button></li>
+              </ul>
+            </div>
+            <div class="card-body p-1">
+              <h6 text="text" class="card-title text-center mb-1"><i class="fa fa-user">Name</i>{{item.nickname}}</h6>
+              <p class="card-text text-muted text-center"><b>Province :  </b>{{item.province}} </p>
+              <p class="card-text text-muted text-center"><b>Age : </b>{{item.age}} {{item.picture}} </p>
+            </div>
+          </div>
+          </div>
+        </div>
+        </div>
+          <br><br>
+          <div class="iconchat">
+            <li class="list-inline-item"><button class="btn btn-outline-danger" (click)="openDialogchat()"><i class="fa fa-comments fa-2x"></i></button></li>
+            <br><br>
+            <li class="list-inline-item"><button class=" btn btn-outline-danger" (click)="openDialoglike()"><i class="fa fa-thumbs-up fa-2x"></i></button></li>
+            </div>
+      </div> -->
+
 

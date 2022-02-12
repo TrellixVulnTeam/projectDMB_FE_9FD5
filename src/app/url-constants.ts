@@ -93,8 +93,10 @@ export const API = {
      DELETESALE:PREFIX + 'api/deletesale/:_id',
      DELETEACCOUNT:PREFIX + 'api/deleteAccount/:_id',
 
-//----------img------------------//
+//----------project------------------//
   CREATEACCOUNTIMG:PREFIX + 'api/createFileImg',
+  CREATELIKEUSER:PREFIX + 'api/createLikeUser',
+  LISTLIKEUSER:PREFIX + 'api/listLikeUser',
 
 }
 

@@ -28,15 +28,14 @@ export class LoginComponent implements OnInit {
       username: new FormControl('', Validators.compose([Validators.required,
         Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-z0-9.-\s]+\\.[a-z]{2,4}$')
         ])),
-      password: new FormControl({ value: '', disabled: false }, [Validators.required]),
-      picture: new FormControl({ value: '', disabled: false }, [Validators.required])
+      password: new FormControl({ value: '', disabled: false }, [Validators.required])
     });
 
-    this.userAccountService.getUserAccount().then(result => {
-      this.formLogin.patchValue({
-        picture:result.responseData.data[0].picture
-      })
-    });
+    // this.userAccountService.getUserAccount().then(result => {
+    //   this.formLogin.patchValue({
+    //     picture:result.responseData.data[0].picture
+    //   })
+    // });
 //     this.userAccountService.getUserAccount().then(result => {
 // debugger
 //       console.log(result);
@@ -44,9 +43,6 @@ export class LoginComponent implements OnInit {
   }
 
   onclickLogin() {
-    debugger
-    console.log(this.formLogin.value.picture);
-
   this.formLogin.value.username
   try {
     this.submit = true;
