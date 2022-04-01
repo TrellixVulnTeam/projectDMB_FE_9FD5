@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ChatComponent } from 'src/app/main/component/chat/chat.component';
 import { UserAccountService } from 'src/app/service/userAccount.service';
+import { UiService } from 'src/app/ui.service';
 import Swal from 'sweetalert2';
-
 @Component({
   selector: 'app-edit-pass',
   templateUrl: './edit-pass.component.html',
@@ -17,13 +19,23 @@ export class EditPassComponent implements OnInit {
   public roleAccount:boolean;
   checkp:boolean
   msgErr: any;
+  color = 'primary';
+  mode = 'indeterminate';
+  value = 50;
+  displayProgressSpinner = false;
+  spinnerWithoutBackdrop = false;
   constructor(
+    public dialog: MatDialog,
+    private ui: UiService,
     private router: Router,
     private formBuilder: FormBuilder,
     private userAccountService: UserAccountService,
   ) { }
 
   ngOnInit(){
+    //  setTimeout(
+    //   () => this.ui.show(),2000
+    // )
     const profile = localStorage.getItem('Profile')
     this.newProfile = JSON.parse(profile)
     if(this.newProfile.role == 'ADMIN'){
@@ -39,10 +51,36 @@ export class EditPassComponent implements OnInit {
     this.confirmpassword = this.formBuilder.group({
       password: new FormControl({ value: '', disabled: false }, [Validators.required,Validators.minLength(6),Validators.maxLength(20)]),
     });
+    // setTimeout(
+    //   () => this.ui.show(), 2000
+    // )
+    // setTimeout(
+    //   () => this.ui.show(), 2500
+    // )
+
+
+    // setTimeout(
+    //   () => this.ui.hide(), 3500
+    // )
+
+    // setTimeout(
+    //   () => {this.ui.show();}, 4000
+    // )
+
+    // setTimeout(
+    //   () => this.ui.reset(), 5000
+    // )
 
   }
 
   onclickeditPassword(){
+    console.log(this.oldpassword);
+    console.log( this.newpassword);
+    console.log( this.confirmpassword);
+    setTimeout(
+      () => this.ui.show()
+    )
+
       this.userAccountService.checkpassword(this.oldpassword.value).then(result => {
       if(this.oldpassword.invalid || this.newpassword.invalid || this.confirmpassword.invalid ){
         throw new Error("");
@@ -52,6 +90,9 @@ export class EditPassComponent implements OnInit {
             password:this.newpassword.value.password
           })
           this.userAccountService.editpassword(this.newpassword.value)
+          setTimeout(
+            () => this.ui.hide()
+          )
           const Toast = Swal.mixin({
             toast: true,
             position: 'top',
@@ -104,21 +145,6 @@ export class EditPassComponent implements OnInit {
   onclickManagement() {
     this.router.navigate(['management', {}])
   }
-  onclickSite() {
-    this.router.navigate(['site', {}])
-  }
-  onclickBrand() {
-    this.router.navigate(['brand', {}])
-  }
-  onclickModel() {
-    this.router.navigate(['model', {}])
-  }
-  onclickType() {
-    this.router.navigate(['type', {}])
-  }
-  clickSearch() {
-    this.router.navigate(['changead', {}])
-  }
   onclickaccount() {
     this.router.navigate(['list-account', {}])
   }
@@ -130,8 +156,21 @@ export class EditPassComponent implements OnInit {
   }
   onclickeditpassword() {
     this.router.navigate(['editpassword', {}])
-  }
-  onCancel() {
-    this.router.navigate(['list-account', {}])
-  }
+
+}
+openDialogchat(): void {
+  const dialogRef = this.dialog.open(ChatComponent, {
+    height: '90%',
+    width: '90%',
+    panelClass: 'custom-dialog'
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+  });
+}
+
+openDialoglike(): void {
+  this.ui.show()
+  this.router.navigate(['like', {}]);
+}
 }

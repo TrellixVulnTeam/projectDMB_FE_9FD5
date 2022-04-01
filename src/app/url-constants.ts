@@ -97,6 +97,8 @@ export const API = {
   CREATEACCOUNTIMG:PREFIX + 'api/createFileImg',
   CREATELIKEUSER:PREFIX + 'api/createLikeUser',
   LISTLIKEUSER:PREFIX + 'api/listLikeUser',
+  PUTSTATUSLIKE:PREFIX + 'api/updateLike/:id_likeuser',
+  CREATEUSERACCOUNTADMIN:PREFIX + 'api/createAccountAdmin',
 
 }
 

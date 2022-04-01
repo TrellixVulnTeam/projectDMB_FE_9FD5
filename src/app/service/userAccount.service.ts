@@ -37,12 +37,19 @@ export class UserAccountService {
     };
     return this.http.post(API.CREATEUSERACCOUNT, data);
   }
+  createAccountAdmin(data: any) {
+    const httpParams = new HttpParams();
+    const requestOptions = {
+      params: httpParams
+    };
+    return this.http.post(API.CREATEUSERACCOUNTADMIN, data);
+  }
   sentEmail(data: any) {
     const httpParams = new HttpParams();
     const requestOptions = {
       params: httpParams
     };
-    return this.http.post(API.SENTEMAIL, data);
+    return this.http.postData(API.SENTEMAIL, data);
   }
   editeAccount(data: any) {
     const httpParams = new HttpParams();
@@ -92,7 +99,7 @@ export class UserAccountService {
     const requestOptions = {
       params: httpParams
     };
-    return this.http.post(API.CHECKPASSWORD, data);
+    return this.http.postData(API.CHECKPASSWORD, data);
   }
 
    editpassword(data: any) {

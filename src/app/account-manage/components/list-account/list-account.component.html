@@ -1,59 +1,146 @@
-
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
 <!-------------------------------------navigator bar--------------------------->
-<nav class="navbar navbar-expand-lg navbar-light nav2">
-  <div class="container-fluid margin-nav">
-    <img src="/assets/img/ENTRONICA_LOGO.png" width="230" height="65">
-       <div class="pull-right">
-         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <i class="fa fa-user-circle-o fa-2x margin-bar" [matMenuTriggerFor]="menu" aria-hidden="true"></i>
-          <mat-menu #menu="matMenu" >
-            <button mat-menu-item [routerLink]="['/list-account']" >จัดการบัญชีผู้ใช้</button>
-            <button mat-menu-item [routerLink]="['/editpassword']">เปลี่ยนรหัสผ่าน</button>
-          </mat-menu>
-      <i class="fa fa-sign-out fa-2x"[matMenuTriggerFor]="animals" aria-hidden="true"></i>
-        <mat-menu #animals="matMenu">
-          <button class="mat-menu-panel" mat-menu-item (click)="logout()">ออกจากระบบ</button>
-        </mat-menu>
-         </ul>
-       </div>
-   </div>
- </nav>
- <!-----------------------------------------Grid-------------------------------  -->
- <div id="grid">
-   <div id="areaA">
-     <div class="center">
-       <div class="sidebar-container">
-          <ul class="sidebar-navigation ">
-            <li class="nav-item area-nav"><a  type="submit" (click)="onclickEmployee()">ข้อมูลพนักงาน</a></li>
-            <li class="nav-item area-nav"><a  type="submit" (click)="onclickAsset()">ข้อมูลทรัพย์สิน</a></li>
-            <li class="nav-item area-nav"><a  type="submit" (click)="onclickListManage()">การจัดการข้อมูล</a></li>
-         </ul>
-       </div>
-    </div>
-  </div>
 
-  <div id="areaB">
+<div class="container-fluid flex-wrap flex-md-nowrap margin-nav">
+  <img src ="assets/img/Logo.png" width="210px" height="190px" >
+     <div class="pull-right">
+        <ul style="margin-top: 1.5cm;">
+          <section>
+            <div class="example-button-row">
+
+              <div class="example-flex-container">
+                <div class="example-button-container">
+                  <button mat-fab class="color1"   (click)="openDialoglike()" aria-label="Example icon button with a delete icon">
+                    <mat-icon>thumb_up </mat-icon>
+                  </button>
+                </div>
+                <div class="example-button-container">
+                  <button mat-fab class="color2" (click)="openDialogchat()" aria-label="Example icon button with a delete icon">
+                    <mat-icon>question_answer </mat-icon>
+                  </button>
+                </div>
+                <div class="example-button-container">
+                  <button mat-fab class="color1"   [routerLink]="['/main']" aria-label="Example icon button with a delete icon">
+                    <mat-icon>home </mat-icon>
+                  </button>
+                </div>
+                <div class="example-button-container">
+                  <button mat-fab  class="color4"  [matMenuTriggerFor]="menu" aria-hidden="true" aria-label="Example icon button with a bookmark icon">
+                    <mat-icon>person</mat-icon>
+                    <mat-menu style="padding-bottom: 0px;" #menu="matMenu">
+                      <button mat-menu-item  [routerLink]="['/profile']">
+                        <mat-icon><span class="material-icons-outlined">manage_accounts</span></mat-icon> Profile
+                      </button>
+                      <button mat-menu-item  [routerLink]="['/editpassword']">
+                        <mat-icon><span class="material-icons-outlined">lock_open
+                        </span></mat-icon>Change password
+                      </button>
+                      <button mat-menu-item >
+                        <mat-icon> <span class="material-icons-outlined">
+                          person_remove
+                          </span></mat-icon>Delete account
+                      </button>
+                      <button mat-menu-item *ngIf="roleAccount" [routerLink]="['/list-account']">
+                        <mat-icon> <span class="material-icons-outlined">
+                          people_outline
+                          </span></mat-icon>Manage user accounts
+                      </button>
+                      <button mat-menu-item  (click)="logout()">
+                        <mat-icon> <span class="material-icons-outlined">
+                          logout
+                          </span></mat-icon>Logout
+                      </button>
+                    </mat-menu>
+                  </button>
+                </div>
+                <!-- <div class="example-button-container">
+                  <button mat-fab class="color3" [matMenuTriggerFor]="animals" aria-label="Example icon button with a home icon">
+                    <mat-icon>logout</mat-icon>
+                    <mat-menu #animals="matMenu">
+                      <button mat-menu-item (click)="logout()">
+                        Log out</button>
+                    </mat-menu>
+                  </button>
+                </div> -->
+              </div>
+            </div>
+          </section>
+
+       </ul>
+       <div class="btn-group" role="group" >
+        <form [formGroup]="search" autocomplete="on">
+            <mat-form-field appearance="outline" class="searchacc">
+                <mat-label>Search</mat-label>
+                <input  formControlName="searchText" (keyup)="doFilter($event.target.value)" matInput>
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>&nbsp;&nbsp;
+        </form>
+
+          <div>
+            <button class="btn-add" (click)="clearFilters()" type="reset">
+            <b> &nbsp; Reset filter</b></button>
+          </div>
+
+          &nbsp;&nbsp; <div class="input-group2" >
+          <button mat-button (click)="onclickcreateaccount()" class="btn-add" type="submit">
+            <i class="fa fa-plus fa-lg" aria-hidden="true" ></i><b>&nbsp;Add admin</b></button>
+        </div>
+     </div>
+      </div>
+ </div>
+
+
+    <!-- ---------------------------------------Grid------------------------------- -->
+    <div id="grid">
+      <div id="areaA">
+        <!-- <div class="btn-group" role="group" style="margin-top:2cm;">
+          <form [formGroup]="search" autocomplete="on">
+              <mat-form-field appearance="outline" class="searchacc">
+                  <mat-label>Search</mat-label>
+                  <input  formControlName="searchText" (keyup)="doFilter($event.target.value)" matInput>
+                  <mat-icon matSuffix>search</mat-icon>
+              </mat-form-field>&nbsp;&nbsp;
+          </form>
+
+            <div>
+              <button class="btn-add" (click)="clearFilters()" type="reset">
+              <b> &nbsp; Reset filter</b></button>
+            </div>
+          <div class="input-group"></div>
+          <div class="input-group2">
+            <button mat-button (click)="onclickcreateaccount()" class="btn-add" type="submit">
+              <i class="fa fa-plus fa-lg" aria-hidden="true" ></i><b>&nbsp;Add admin</b></button>
+          </div>
+       </div> -->
+        <div class="center">
+        </div>
+      </div>
+      <div id="areaB">
     <div class="margin-TableAsEm">
-    <b>จัดการบัญชีผู้ใช้</b></div><br>
-    <div class="btn-group" role="group">
+      <p class="font-top1">
+
+        Manage user accounts</p></div><br>
+
+    <!-- <div class="btn-group" role="group">
       <form [formGroup]="search" autocomplete="on">
           <mat-form-field appearance="outline" class="searchacc">
-              <mat-label>ค้นหา</mat-label>
+              <mat-label>Search</mat-label>
               <input  formControlName="searchText" (keyup)="doFilter($event.target.value)" matInput>
               <mat-icon matSuffix>search</mat-icon>
           </mat-form-field>
       </form>
 
         <div>
-          <button class="reset" (click)="clearFilters()" type="reset">
+          <button class="btn-add" (click)="clearFilters()" type="reset">
           <b> &nbsp; Reset filter</b></button>
         </div>
       <div class="input-group"></div>
       <div class="input-group2">
-        <button mat-button (click)="onclickcreateaccount()" class="btn btn-lg btn-add btn-block" type="submit">
-          <i class="fa fa-plus fa-lg" aria-hidden="true" ></i><b>&nbsp;เพิ่มบัญชีผู้ใช้</b></button>
+        <button mat-button (click)="onclickcreateaccount()" class="btn-add" type="submit">
+          <i class="fa fa-plus fa-lg" aria-hidden="true" ></i><b>&nbsp;Add admin</b></button>
       </div>
-   </div>
+   </div> -->
 
    <div class="mat-elevation">
     <div class="area">
@@ -88,10 +175,14 @@
   </ng-container>
 
  <!-- updateBy Column -->
- <ng-container matColumnDef="updateBy">
-   <mat-header-cell *matHeaderCellDef mat-sort-header> updateBy </mat-header-cell>
-   <mat-cell *matCellDef="let row"> {{row.updateBy}} </mat-cell>
- </ng-container>
+ <ng-container matColumnDef="status">
+  <!-- (item.sheet_time == 9 ? "9 hour " :(item.sheet_time == 9.5 ? "9 hour 30 minutes" :"") -->
+   <mat-header-cell *matHeaderCellDef mat-sort-header> status </mat-header-cell>
+   <mat-cell *matCellDef="let row" [ngClass]="{'green': row.status, 'gray' : !row.status}">
+    <!-- <mat-icon><span class="material-icons-outlined curMove" style="color: rgb(92, 92, 92);">edit</span></mat-icon>&nbsp;&nbsp; -->
+    {{row.status==true ? "Active" : 'Inactive'}}
+   </mat-cell>
+  </ng-container>
 
  <ng-container matColumnDef="updateDt">
   <mat-header-cell *matHeaderCellDef mat-sort-header> updateDt </mat-header-cell>
@@ -103,8 +194,15 @@
    <mat-header-cell *matHeaderCellDef mat-sort-header> action </mat-header-cell>
    <mat-cell *matCellDef="let row">
      <div class="curMove">
-       <i mat-button (click)="openDialogEdit(row)" class="fa fa-pencil-square-o fa-2x margin-nav" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;
-        <span><i (click)="clickdelete(row)" class="fa fa-trash-o fa-2x margin-nav" aria-hidden="true"></i></span>
+      <mat-icon (click)="openDialogView(row)"><span class="material-icons-outlined curMove" >person_search
+      </span></mat-icon>
+       <!-- <i mat-button (click)="openDialogEdit(row)" class="fa fa-pencil-square-o fa-2x margin-nav" aria-hidden="true"></i> -->
+       &nbsp;&nbsp;&nbsp;
+        <span class="curMove">
+          <!-- <i (click)="clickdelete(row)" class="fa fa-trash-o fa-2x margin-nav" aria-hidden="true"> -->
+          <mat-icon  (click)="clickdelete(row)" style="color: rgb(218, 40, 40); cursor:Pointer;">block</mat-icon>
+        <!-- </i> -->
+      </span>
      </div>
    </mat-cell>
  </ng-container>

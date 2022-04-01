@@ -4,6 +4,7 @@ import { UserAccountService } from '../service/userAccount.service'
 import Swal from 'sweetalert2';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import  jwt_decode from 'jwt-decode';
+import { UiService } from '../ui.service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   formLogin: FormGroup;
   test:any
   constructor(
+    private ui: UiService,
     private router: Router,
     private formBuilder: FormBuilder,
     private userAccountService: UserAccountService
@@ -43,6 +45,7 @@ export class LoginComponent implements OnInit {
   }
 
   onclickLogin() {
+  this.ui.show()
   this.formLogin.value.username
   try {
     this.submit = true;
@@ -67,26 +70,30 @@ export class LoginComponent implements OnInit {
             .then(result=>{
               const data = result.responseData.token;
               const roleAccount = jwt_decode(data);
-              this.alertSucc()
+              // this.alertSucc()
             localStorage.setItem('Profile', JSON.stringify(roleAccount))
+            // this.ui.hide()
             localStorage.setItem('Authorization', result.responseData.token),this.router.navigate(['main',{}])
+
           },error =>{
             console.log(error)
+            this.ui.hide()
             this.msgErr = 'username or password incorrect';
           }
         )
       } catch (error) {
+        this.ui.hide()
         this.submit = false;
         this.msgErr = error;
       }
   }
-  alertSucc(){
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'success',
-      showConfirmButton: false,
-      timer: 1500
-    })
-  }
+  // alertSucc(){
+  //   Swal.fire({
+  //     position: 'center',
+  //     icon: 'success',
+  //     title: 'success',
+  //     showConfirmButton: false,
+  //     timer: 1500
+  //   })
+  // }
 }

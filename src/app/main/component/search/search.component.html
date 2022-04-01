@@ -1,29 +1,32 @@
-
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
     <!-- ---------------------------------------Grid------------------------------- -->
 
     <div id="areaB">
-      <div class="margintopic">
-        <b class="topicsearch">Search</b>
-      </div><br>
+      <!-- <div class="margintopic">
+        <b class="topicsearch" >Search</b>
+      </div><br> -->
       <div class="center">
           <div class="card card-search">
-            <div class="card-body">
+            <div class="card-body font" style="background-color: #FFF5ED;">
               <form [formGroup]="findpeople" autocomplete="on" class="form-search">
-                <div class="left"><h2> Select your type </h2></div>
+                <div class="left"><h2 class="font"> Select your type </h2></div><mat-icon><span class="material-icons-outlined">
+                  <span class="material-icons-outlined">volunteer_activism</span>
+                  </span></mat-icon>
 
                   <!-- -------------------------- select people----------------------------  -->
 
-                  <br><div class="row g-3 align-items-center">
+                  <br><br><div class="row g-3 align-items-center">
                     <div class="col-auto" style="margin-top: -0.3cm;">
                       <label type="gender" class="form-label findtype" placeholder="ประเภท"> Type</label>
                     </div>
                     <div class="col-auto" style="margin-left: 0.4cm;">
                       <mat-form-field appearance="outline" style="width: 7.2cm;">
-                        <mat-select disableRipple style="height: 0.2cm;">
-                          <mat-option value="Man"> หาเพื่อน </mat-option>
-                          <mat-option value="Woman"> หาคนเดท </mat-option>
-                          <mat-option value="Bisexual"> หาคนไปทานข้าวด้วย </mat-option>
+                        <mat-select disableRipple style="height: 0.2cm;" formControlName="type">
+                          <mat-option value="Friend"> Friend </mat-option>
+                          <mat-option value="Go on the date">Go on the date </mat-option>
+                          <mat-option value="Hangout"> Hangout </mat-option>
                         </mat-select>
                       </mat-form-field>
                       </div>
@@ -35,21 +38,20 @@
                     </div>
                     <div class="col-auto">
                       <mat-form-field appearance="outline" style="width: 7.2cm;">
-                        <mat-select disableRipple style="height: 0.2cm;">
-                          <mat-option value="Man"> Man </mat-option>
-                          <mat-option value="Woman"> Woman </mat-option>
-                          <mat-option value="Bisexual"> Bisexual </mat-option>
-                          <mat-option value="Transgender"> Transgender </mat-option>
+                        <mat-select disableRipple style="height: 0.2cm;" formControlName="gender" >
+                          <mat-option value="female">female</mat-option>
+                          <mat-option value="male">male</mat-option>
+                          <mat-option value="transgender">transgender</mat-option>
                         </mat-select>
                       </mat-form-field>
                       </div>
-
                       <div class="col-auto" style="margin-top: -0.3cm;">
                         <label type="province" class="form-label findprovince" placeholder="จังหวัด"> Province </label>
                       </div>
+
                       <div class="col-auto">
                         <mat-form-field appearance="outline" style="width: 7.2cm;">
-                          <mat-select style="height: 0.2cm;">
+                          <mat-select style="height: 0.2cm;" formControlName="province" >
                             <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
                           </mat-select>
                         </mat-form-field>
@@ -61,7 +63,7 @@
                       <label for="age" class="col-form-label findage">Age</label>
                     </div>
                     <div class="col-auto" style="margin-left: 0.5cm;">
-                      <br><mat-slider
+                      <br><mat-slider formControlName="age"
                         thumbLabel
                         [displayWith]="slideage"
                         tickInterval="100"
@@ -75,7 +77,7 @@
                       <label for="age" class="col-form-label findheight">Height</label>
                     </div>
                     <div class="col-auto">
-                      <br><mat-slider
+                      <br><mat-slider  formControlName="height"
                         thumbLabel
                         [displayWith]="slideheight"
                         tickInterval="200"
@@ -87,10 +89,11 @@
                     </div>
                   </div>
 
-
              <br><br>
-              <button class="btn btn-createac" type="submit" (click)="onSubmit()" > Submit </button>
-              <button class="btn btn-cancel" type="cancel" (click)="onCancel()" > Cancel </button>
+
+              <!-- <button class="btn-add size" type="submit" (click)="search()" > Submit </button> -->
+              <button class="false size" type="cancel" (click)="onCancel()" > Cancel </button>&nbsp;&nbsp;
+              <button class="btn-add size" type="submit" (click)="search()" > Submit </button>
             </form>
         </div>
     </div>

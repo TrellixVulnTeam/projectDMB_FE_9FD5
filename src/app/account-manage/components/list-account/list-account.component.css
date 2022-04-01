@@ -10,32 +10,26 @@
 
 .input-group1{
   float: right;
-  width: 8cm;
-  margin-right: 0.25cm;
+   width: 8cm;
+  /* margin-right: 0.25cm; */
 }
 .input-group2{
   float: right;
-  margin-right: 1cm;
+  /* margin-right: 1cm; */
 }
 .font-search{
   font-size: 0.35cm;
   color: #888888;
 }
 .btn-group{
-  width: 100%;
-  margin-left: 0.3cm;
+  width: 5px;
+  /* margin-left: 10cm; */
+  margin-top: 4cm;
+  margin-bottom: -1cm;
+  margin-right: 9cm;
+  /* margin-left: 50cm; */
 }
-.btn-add{
-  color: rgb(255, 255, 255);
-  background-color:#961818;
-  width: 4cm;
-  height: 1.1cm;
-  font-size: 68%;
-  border-radius: 1rem;
-  letter-spacing: .01rem;
-  padding: 0.4rem;
-  transition: all 0.2s;
-}
+
 .btn-Ex{
   color: rgb(255, 255, 255);
   background-color:#961818;
@@ -47,10 +41,7 @@
   padding: 0.4rem;
   transition: all 0.2s;
 }
-.btn-add:hover{
- background-color: #881515;
- color: black;
-}
+
 .btn-Ex:hover{
   background-color: #881515;
  color: black;
@@ -58,35 +49,23 @@
 .right{
   text-align: right;
 }
-.mat-menu-item{
-  width: 150px;
-  height: auto;
-  text-align: center;
-  font-size: 90%;
-  padding: 0;
-  letter-spacing: .01rem;
-  background-color:rgb(255, 255, 255);
-  transition: all 0.2s;
-}
-.mat-menu-item:hover{
-  background-color:rgb(236, 234, 234);
- color: black;
-}
-::ng-deep .mat-menu-content{
-  padding:0px !important;
-}
-::ng-deep .mat-menu-panel{
-  padding:0px !important;
-  border-radius: 0.8rem;
+.font-top1{
+  font-size: 0.7cm;
+   font-family: 'Roboto Condensed', sans-serif;
+
 }
 .mat-table{
   -webkit-box-shadow: none;
     -moz-box-shadow: none;
-    box-shadow: none;
+    box-shadow:none;
+    /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
 }
-mat-row:nth-child(odd) {
-  background: #eee;
+/* mat-row:nth-child(odd) {
+  background: #FEE5E0;
 }
+mat-row:nth-child(even) {
+  background:#FEE5E0;
+} */
 mat-row.mat-row.ng-star-inserted {
 border: 0;
 }
@@ -106,11 +85,125 @@ border: 0;
   font-size: 70%;
   border-radius: 1rem;
   letter-spacing: .01rem;
- 
+
 
 }
 .reset:hover{
   background-color: #881515;
   color: black;
+}
+::ng-deep .custom-dialog > mat-dialog-container {
+  background-color: var(--background);
+  opacity: 1;
+  box-shadow: 0px 0px 0px 0px  rgba(255, 255, 255, 0.12);
+}
+
+
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  /* margin-left: 8px; */
+  min-width: 10px;
+}
+ul {
+  margin-top: 0;
+  float: right;
+
+}
+section {
+  display: table;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 200px;
+}
+
+.example-button-row .mat-button-base {
+  margin: 6px 6px 6px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  /* justify-content: space-between; */
+  /* flex-wrap: wrap; */
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  /* width: 120px; */
+}
+.mat-icon{
+  font-size: 28px;
+  text-align: center;
+}
+.color1{
+  background-color: #E0BBE4;
+}
+.color2{
+  background-color: #ca9dbb;
+}
+.color3{
+  background-color: #957DAD;
+}
+.color4{
+  background-color: #7b678f;
+}
+.cdk-overlay-dark-backdrop {
+  background: rgb(0 0 0 / 92%);
+}
+
+.mat-icon:hover
+{
+  color: rgb(99, 69, 110);
+}
+.cdk-overlay-dark-backdrop {
+  background: rgb(0 0 0 / 92%);
+}
+.mat-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button {
+  box-sizing: border-box;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-block;
+  white-space: nowrap;
+  text-decoration: none;
+  vertical-align: baseline;
+  text-align: center;
+  margin: 0;
+  min-width: 64px;
+  line-height: 36px;
+  padding: 0 16px;
+  border-radius: 4px;
+  overflow: visible;
+  border-radius: 1rem;
+  border: 2px solid rgb(0, 0, 0);
+}
+.gray {
+  color: #f12323;
+  font-weight: bold;
+  /* background-color:#3cb371;
+} */
+
+}
+.green{
+  color: #008000;
+  font-weight: bold;
+  /* background-color:#3cb371; */
 }
 

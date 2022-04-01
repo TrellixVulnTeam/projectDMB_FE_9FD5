@@ -6,19 +6,19 @@
         <div class="form-group">
           <div class="Forgot-password">change password </div><br>
           <form  [formGroup]="changepass">
-            <input type="password" id="inputEmail" formControlName="password"  name="password" placeholder="รหัสผ่านใหม่"  class="form-control label-in">
+            <input type="password" id="inputEmail" formControlName="password"  name="password" placeholder="New password"  class="form-control label-in">
             <!-- <mat-icon class="color" *ngIf="changepass.valid">check</mat-icon>&nbsp; -->
 
           </form>
         </div><br>
         <form [formGroup]="confirmpass">
-          <input type="password" id="confirmpass"   formControlName="confirmpass" name="confirmpass" placeholder="ยืนยันรหัสผ่านใหม่"  class="form-control label-in">
+          <input type="password" id="confirmpass"   formControlName="confirmpass" name="confirmpass" placeholder="Confirm new password"  class="form-control label-in">
           <!-- <mat-icon class="color" *ngIf="confirmpass.valid">check</mat-icon>&nbsp; -->
         </form><br>
         <!-- <div class="validation-error"  *ngIf="changepass.invalid && confirmpass.invalid">รหัสผ่านจำเป็นต้องมี 6- 20 ตัวอักษร</div> -->
-          <!-- <mat-icon class="color" *ngIf="changepass.valid">check</mat-icon>&nbsp; --><div class="validation">รหัสผ่านจำเป็นต้องมี 6- 20 ตัวอักษร</div><br><br>
-        <div class="validation-error" *ngIf="submitted == false">รหัสผ่านไม่ถูกต้อง</div>
-            <button class="btn btn-lg  btn-in btn-block btn-in"  (click)="changepassword()" type="submit">ยืนยัน</button>
+          <!-- <mat-icon class="color" *ngIf="changepass.valid">check</mat-icon>&nbsp; --><div class="validation">Password must be 6-20 characters.</div><br><br>
+        <div class="validation-error" *ngIf="submitted == false">Incorrect password</div>
+            <button class="btn btn-lg  btn-in btn-block btn-in"  (click)="changepassword()" type="submit">Submit</button>
             <p class="Forgot-password">cancel?
               <a [routerLink]="['/forgot']" class="f-w-400">Click</a>
           </p>

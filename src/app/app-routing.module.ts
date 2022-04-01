@@ -8,6 +8,9 @@ import { ListAccountComponent } from './account-manage/components/list-account/l
 import { EditPassComponent } from './changead/components/edit-pass/edit-pass.component';
 import { MainComponent } from './main/component/main/main.component';
 import { CreateAccountPage2Component } from './account-manage/components/create-account-page2/create-account-page2.component';
+import { ProfileComponent } from './main/component/profile/profile.component';
+import { LikeComponent } from './main/component/like/like.component';
+import { CreateAdminComponent } from './account-manage/components/create-admin/create-admin.component';
 export const AppRoutingModule: Routes = [
   {
     path: '',
@@ -22,6 +25,10 @@ export const AppRoutingModule: Routes = [
   { path: 'editpassword', component: EditPassComponent},
   { path: 'main',  component: MainComponent},
   { path: 'create-account-page2',  component: CreateAccountPage2Component},
+  { path: 'profile',  component: ProfileComponent},
+  { path: 'like',  component: LikeComponent},
+  { path: 'create-admin',  component: CreateAdminComponent},
+
 
 ];
 

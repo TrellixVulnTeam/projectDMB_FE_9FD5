@@ -1,36 +1,204 @@
-
-<i class="fa fa-pencil-square-o fa-lg"aria-hidden="true"></i>&nbsp;&nbsp;<b>แก้ไขบัญชีผู้ใช้</b>
-<br><br><br>
-<form [formGroup]="editaccout" autocomplete="on"class="form-signin">
-<div class="row justify-content-between magin-text" >
-            <div class="form-label-group">
-              <input type="text" class="form-control" placeholder="First Name" id="email" formControlName="firstname">
-            </div><br>
-            <div class="form-label-group">
-              <input type="text" class="form-control" placeholder="Last Name" id="lastname" formControlName="lastname">
-            </div><br>
-          <div class="form-label-group">
-            <input type="email" class="form-control" placeholder="Email" id="username" formControlName="username">
-          </div><br>
-          <div class="validation-error" *ngIf="submitted == false" >ข้อมูลไม่ถูกต้อง</div>
-          <!-- <div class="validation-error" *ngIf="emailDup == false">อีเมลนี้มีผู้ใช้แล้ว</div> -->
-          <br>
-              <span class="marginrole"><u><b class="textsign" >สิทธิ์การใช้งาน</b></u> &nbsp;
-                <mat-radio-group aria-label="Select an option" formControlName="role">
-                  <mat-radio-button class = "tp-radio-button"
-                  *ngFor = "let season of seasons" [value] = "season">
-                  {{season}}
-               </mat-radio-button>
-              </mat-radio-group></span>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+<!-------------------------------------navigator bar--------------------------->
+<div id="areaB">
+  <form [formGroup]="profile" autocomplete="on"class="form-signin">
+    <div class="card card-signin">
+      <div class="card-body">
+        <p class="font-top">Profile</p>
+          <div class="p-col">
+            <label class="hoverable" for="fileInput">
+                <img class="circle"
+                    [src]="imagesProfile ? imagesProfile : 'https://i.pinimg.com/originals/04/7d/fc/047dfc2552d91ae45f5c5362e71f4e43.gif'">
+                <div *ngIf="!!imagesProfile" class="background show"></div>
+                <div class="background"></div>
+            </label>
+            <br />
           </div>
+          <br><br><br>
 
-        <div class="textend">
-          <button (click)="submit()" cdkFocusInitial class="btn btn-lg btn-add save"  type="submit">
-            <i class="fa fa-check fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;บันทึกข้อมูล</button> &nbsp; &nbsp;
-          <button  (click)="onCancel()" class="btn btn-outline-secondary false">
-            <i class="fa fa-times fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;ยกเลิก</button>
+        <div class="row">
+          <br><div class="col-md-6">
+          <div class="form-label-group">
+              <mat-form-field appearance="legacy">
+                <input matInput placeholder="Prefix*" formControlName="prefix" >
+              </mat-form-field>
+          </div></div>
+
+          <div class="col-md-6">
+          <div class="form-label-group">
+              <mat-form-field appearance="legacy">
+                <input matInput placeholder="Nickname*" formControlName="nickname" >
+              </mat-form-field>
+          </div>
+          </div>
+        </div>
+
+        <br><div class="row">
+          <div class="col-md-6">
+          <div class="form-label-group">
+              <mat-form-field appearance="legacy">
+                <input matInput placeholder="Firstname*" formControlName="firstname" >
+              </mat-form-field>
+          </div></div>
+
+          <br><div class="col-md-6">
+          <div class="form-label-group">
+            <mat-form-field appearance="legacy">
+              <input matInput placeholder="Lastname*" formControlName="lastname" >
+            </mat-form-field>
+          </div>
+          </div>
+        </div>
+
+        <br><div class="row">
+          <br><div class="col-md-6">
+          <div class="form-label-group">
+            <mat-form-field appearance="legacy">
+              <input matInput  type="number" placeholder="Age*" formControlName="age" >
+            </mat-form-field>
+          </div></div>
+          <br><div class="col-md-6">
+            <div class="form-label-group">
+              <mat-form-field appearance="legacy">
+                <input matInput  type="email" placeholder="Username*" formControlName="username" >
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <br><div class="row">
+          <br><div class="col-md-6" *ngIf="admin==false" >
+            <div class="form-label-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Select gender*</mat-label>
+                <mat-select disableRipple  formControlName="gender">
+                  <mat-option value="female">female</mat-option>
+                  <mat-option value="male">male</mat-option>
+                  <mat-option value="transgender">transgender</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            </div>
+          <br><div class="col-md-6" *ngIf="admin==false">
+            <div class="form-label-group">
+              <mat-form-field appearance="legacy">
+                <input matInput  type="text" placeholder="School / Office*" formControlName="office" >
+              </mat-form-field>
+            </div>
+          <!-- <div class="form-label-group">
+            <mat-form-field appearance="legacy">
+              <input matInput  type="password" placeholder="Password*" formControlName="password" >
+            </mat-form-field>
+          </div> -->
+          </div>
+        </div>
+
+        <br><div class="row" *ngIf="admin==false">
+          <br><div class="col-md-6">
+          <div class="form-label-group">
+            <mat-form-field appearance="legacy">
+              <input matInput  type="number" placeholder="Height*" formControlName="height" >
+            </mat-form-field>
+          </div></div>
+          <br><div class="col-md-6">
+          <div class="form-label-group">
+              <mat-form-field appearance="legacy">
+              <input matInput  type="number" placeholder="Weight*" formControlName="weight" >
+            </mat-form-field>
+          </div>
+          </div>
+        </div>
+
+        <br><div class="row" *ngIf="admin==false" >
+          <br><div class="col-md-6">
+            <div class="form-label-group">
+              <mat-form-field appearance="outline">
+                <input matInput  type="text" placeholder="Description" formControlName="description" >
+              </mat-form-field>
+            </div>
+          <!-- <div class="form-label-group">
+            <mat-form-field appearance="legacy">
+              <input matInput  type="text" placeholder="School / Office*" formControlName="office" >
+            </mat-form-field>
+          </div> -->
+        </div>
+          <br><div class="col-md-6">
+          <!-- <div class="form-label-group">
+            <mat-form-field appearance="outline">
+              <input matInput  type="text" placeholder="Description" formControlName="description" >
+            </mat-form-field>
+          </div> -->
+          </div>
+        </div>
+
+        <!-- <div class="validation-error" *ngIf="checkNext == false" >This account already has a user.</div> <br> -->
+  </div>
+  </div><br><br>
+
+
+<div class="card card-signin"  *ngIf="admin==false"  >
+  <div class="card-body">
+         <!-- todo UPLOAD IMAGE -->
+
+        <br><br><br><br>
+
+        <div class="row" >
+          <br><div class="col-md-6">
+          <div class="form-label-group">
+              <mat-form-field appearance="legacy">
+                <input matInput  type="text" placeholder="type" formControlName="type" >
+              </mat-form-field>
+            </div></div>
+
+          <div class="col-md-6">
+            <div class="form-label-group">
+              <mat-form-field appearance="legacy">
+                <input matInput  type="text" placeholder="province" formControlName="province" >
+              </mat-form-field>
+            </div>
+          </div>
+        </div><br>
+
+    <div class="row" >
+      <br><div class="col-md-6">
+      <div class="form-label-group">
+        <mat-form-field appearance="legacy">
+        <input matInput  type="text" placeholder="Facebook" formControlName="facebook" >
+        </mat-form-field>
+      </div></div>
+      <br><div class="col-md-6">
+      <div class="form-label-group">
+        <mat-form-field appearance="legacy">
+          <input matInput  type="text" placeholder="Line" formControlName="line" >
+        </mat-form-field>
       </div>
+      </div>
+    </div>
+
+   <br><div class="row" >
+      <br><div class="col-md-6">
+      <div class="form-label-group">
+        <mat-form-field appearance="legacy">
+          <input matInput  type="text" placeholder="Instagram" formControlName="ig" >
+        </mat-form-field>
+      </div></div>
+      <br><div class="col-md-6">
+      <div class="form-label-group">
+        <mat-form-field appearance="legacy">
+          <input matInput  type="number" placeholder="Phone" formControlName="phone" >
+        </mat-form-field>
+      </div>
+      </div>
+    </div>
+    <br><br>
+
+    <div class="validation-error" *ngIf="submitted == false">This account already has a user.</div>
+     <br><br>
+
+
+
+  </div>
+</div>
 </form>
-
-
-
+</div>

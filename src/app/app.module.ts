@@ -34,6 +34,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { AppRoutingModule } from  './app-routing.module';
 import { EditPassComponent } from './changead/components/edit-pass/edit-pass.component';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 //------Component-----//
@@ -43,6 +44,7 @@ import { ListAccountComponent } from './account-manage/components/list-account/l
 import { EditAccountComponent } from './account-manage/components/edit-account/edit-account.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/component/main/main.component';
+
 
 // import { TranslateModule} from '@ngx-translate/core';
 // import { NgxTextEditorModule } from 'ngx-text-editor';
@@ -57,6 +59,15 @@ import { ChatComponent } from './main/component/chat/chat.component';
 import { LikeComponent } from './main/component/like/like.component';
 import { TranslocoRootModule } from './transloco-root.module';
 import { MatProgressButtonsModule } from 'mat-progress-buttons';
+import { ComponentSentComponent } from './main/component/component-sent/component-sent.component';
+import { ProfileComponent } from './main/component/profile/profile.component';
+import { ViewComponent } from './main/component/view/view.component';
+import { AngularEmojisModule } from 'angular-emojis';
+import { CreateAdminComponent } from './account-manage/components/create-admin/create-admin.component';
+// import { ProgressSpinnerDemoComponent } from './progress-spinner-demo/progress-spinner-demo.component';
+// import { AppOverlayModule } from './overlay/overlay.module';
+// import { ProgressSpinnerModule,ProgressSpinnerComponent } from './progress-spinner/progress-spinner.module';
+
 
 @NgModule({
   declarations: [
@@ -73,6 +84,11 @@ import { MatProgressButtonsModule } from 'mat-progress-buttons';
     SearchComponent,
     ChatComponent,
     LikeComponent,
+    ComponentSentComponent,
+    ProfileComponent,
+    ViewComponent,
+    CreateAdminComponent
+
   ],
 
   imports: [
@@ -111,6 +127,8 @@ import { MatProgressButtonsModule } from 'mat-progress-buttons';
     MatMenuModule,
     TranslocoRootModule,
     MatProgressButtonsModule,
+    MatButtonModule,
+    AngularEmojisModule
 
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

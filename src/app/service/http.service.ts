@@ -121,22 +121,18 @@ export class HttpServices {
 
   put(url, data): Promise<any> {
     const token = localStorage.getItem('Authorization');
-      const httpOptions = {
-          headers: new HttpHeaders({
-              'Content-Type': 'application/json',
-              Authorization: token
-          })
-      };
-      return this.http.put(url, data, httpOptions).toPromise().then(response => {
-          return response;
-      },error =>{
-        if(error.error.resultCode =='40102'){
-          this.checkSessionExpired()
-        }
-      }).catch((err) => {
-          throw err;
-      });
-  }
+    const httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            Authorization: token || ''
+        })
+    };
+    return this.http.put(url, data, httpOptions).toPromise().then(response => {
+        return response;
+    }).catch((err) => {
+        throw err;
+    });
+}
 
   patch(url, data): Promise<any> {
     const token = localStorage.getItem('Authorization');

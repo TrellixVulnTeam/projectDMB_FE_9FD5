@@ -6,6 +6,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpServices } from 'src/app/service/http.service';
+import { UiService } from 'src/app/ui.service';
 // import { SpinnerCircularModule } from 'spinners-angular/spinner-circular';
 
 @Component({
@@ -14,7 +16,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-
+  // searchUser: FormGroup;
   public findpeople : FormGroup;
   states: string[] = [
     'Nakhon Ratchasima',
@@ -113,6 +115,8 @@ export class SearchComponent implements OnInit {
   }
 
   constructor(
+    private ui: UiService,
+    public http: HttpServices,
     private router: Router,
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
@@ -120,7 +124,13 @@ export class SearchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
+    this.findpeople  = this.formBuilder.group({
+      type: new FormControl({ value: null, disabled: false }),
+      gender: new FormControl({ value: null, disabled: false }),
+      province: new FormControl({ value: null, disabled: false }),
+      age: new FormControl({ value: null, disabled: false }),
+      height: new FormControl({ value: null, disabled: false }),
+    });
   }
 
   onSubmit(){
@@ -134,5 +144,22 @@ export class SearchComponent implements OnInit {
   logout(){
     localStorage.removeItem('Authorization');
     this.router.navigate(['login', {}])
+  }
+  search(){
+    this.ui.show()
+    this.findpeople.value
+    this.http.postData('/services/webasset/api/search',{
+      type: this.findpeople.value.type,
+      gender:this.findpeople.value.gender,
+      province:this.findpeople.value.province,
+      age:this.findpeople.value.age,
+      height:this.findpeople.value.height,
+    }).then(result =>{
+     this.ui.hide()
+      this.dialogRef.close(result);
+      // this.listlike = result
+    });
+
+
   }
 }

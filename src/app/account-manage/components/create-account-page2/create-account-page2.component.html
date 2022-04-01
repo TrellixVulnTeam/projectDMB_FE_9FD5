@@ -11,7 +11,6 @@
                <!-- todo UPLOAD IMAGE -->
                <div class="p-col">
                 <label class="hoverable" for="fileInput">
-                  <!-- <img class="imagesProfile" class="circle profile-pic" [src]="imagesProfile2" /> -->
                     <img class="circle"
                         [src]="imagesProfile ? imagesProfile : 'https://i.pinimg.com/originals/04/7d/fc/047dfc2552d91ae45f5c5362e71f4e43.gif'">
                     <div *ngIf="!!imagesProfile" class="hover-text show">Click to choose file</div>
@@ -25,9 +24,7 @@
                     (change)="changeListenerFileImages($event)">
               </div>
 
-            <!-- <div class="form-label-group"></div>
-            <h3 class="font-head" style="color: #42403c; margin: 2.5cm;">pic</h3>
-            <br> -->
+         
 
           <!-- <h1>-----------------------------------------------------------------------------------------------</h1> -->
           <br><div class="row g-3 align-items-cente">

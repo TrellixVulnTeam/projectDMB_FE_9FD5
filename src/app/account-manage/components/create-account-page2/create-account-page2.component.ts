@@ -7,6 +7,7 @@ import { UserAccountService } from 'src/app/service/userAccount.service';
 import { v4 as uuid } from 'uuid';
 import Swal from 'sweetalert2';
 import { interval, Subscription } from 'rxjs';
+import { UiService } from 'src/app/ui.service';
 interface state {
   value: string;
   viewValue: string;
@@ -40,6 +41,7 @@ export class CreateAccountPage2Component implements OnInit {
   // loading = true;
 
   constructor(
+    private ui: UiService,
     private router: Router,
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -135,7 +137,7 @@ export class CreateAccountPage2Component implements OnInit {
       line: new FormControl({ value: '', disabled: false }),
       ig: new FormControl({ value: '', disabled: false }),
       phone: new FormControl({ value: null, disabled: false }),
-      picture: new FormControl({ value: '', disabled: false }),
+      picture: new FormControl({ value: '', disabled: false },[Validators.required]),
       province: new FormControl({ value: '', disabled: false }, [Validators.required]),
       firstname: new FormControl({ value: '', disabled: false }, [Validators.required]),
       lastname: new FormControl({ value: '', disabled: false }, [Validators.required]),
@@ -201,7 +203,7 @@ export class CreateAccountPage2Component implements OnInit {
   }
 
   onSubmit(){
-    debugger
+    this.ui.show()
     this.checkuser.patchValue({
       username: this.account2.value.username
     })
@@ -210,6 +212,7 @@ export class CreateAccountPage2Component implements OnInit {
         if(this.user.length==0 ){
           this.submitted =true
           this.userAccountService.createAccount(this.account2.value).then(result => {
+            this.ui.hide()
             const Toast = Swal.mixin({
                toast: true,
                position: 'top',
@@ -230,6 +233,7 @@ export class CreateAccountPage2Component implements OnInit {
 
           }
         else{
+          this.ui.hide()
           this.invalid =true
           this.submitted =false
           }

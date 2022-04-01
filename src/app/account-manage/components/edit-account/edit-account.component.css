@@ -1,29 +1,214 @@
+.container {
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center
+}
+.card-signin {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 #cecece;
+}
+.center{
+  margin-left: 3cm;
+  text-align: center;
+  background-position: center center;
+  padding-top: 13px;
+}
+.card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+.card-signin .card-body {
+  padding: 2rem;
+  text-align: center;
+}
+.form-signin {
+  width: 100%;
+}
+.form-signin .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+.form-label-group input {
+  height:40px;
+  border-radius: 0.5rem;
+  background-color: rgb(255, 255, 255);
+  width: 8cm;
+  font-size: 100%;
+  color: #777;
+  }
+.btn-cancel{
+  color: rgb(0, 0, 0);
+  background-color:#c4c4c4;
+  width: 5cm;
+  height: 0.4cm;
 
-label{
-  font-size: 85%;
-  color: rgb(100, 100, 100);
 }
-.magin-text{
-  margin-bottom: 2cm;
+.btn-createac{
+  color: rgb(255, 255, 255);
+  background-color:#800000;
+  width: 5cm;
+  height: 0.4cm;
+
+
 }
-.textend{
+.left{
+  text-align: left;
+}
+.picleft{
+  float : left;
+}
+.righttextdata{
   float: right;
-  margin-top: 1cm;
+}
+
+.rightLogo{
+  margin-right: 2cm;
+  margin-top: -10cm;
+  margin-left: -10cm;
+
+}
+.textsign{
+  text-align:left;
+  font-size: 0.35cm;
+
+}
+.btn-cancel:hover{
+  background-color:#8d8d8d;
+}
+.btn-createac:hover{
+  background-color:#460000;
+}
+.font-head{
+  color: #777;
+}
+::placeholder{
+  color: #e9152a;
+  font-size: 90%;
+}
+
+.description{
+  border-radius: 0.5rem;
+  height: 2.5cm;
+  text-align: top;
+}
+.btn-createac{
+  width: 5cm;
+  height: 1cm;
+}
+/* Fallback for IE
+-------------------------------------------------- */
+
+@media all and (-ms-high-contrast: none),
+(-ms-high-contrast: active) {
+  .form-label-group>label {
+    display: none;
+  }
+  .form-label-group input:-ms-input-placeholder {
+    color: #777;
+  }
+
 }
 .mat-radio-button ~ .mat-radio-button {
   margin-left: 16px;
 }
-div.form-label-group{
-  margin-bottom: 0.6cm;
+.row{
+  font-size: 90%;
 }
-input{
-  color: rgb(100, 100, 100);
+.font-top{
+  font-size: 1cm;
+   font-family: 'Roboto Condensed', sans-serif;
+
+}
+.profile-pic {
+  max-width: 250px;
+  max-height: 250px;
+  display: block;
 }
 
-.marginrole{
-  margin-top: 0.4cm;
+.circle {
+  border-radius: 1000px !important;
+  overflow: hidden;
+  width: 500px;
+  height: 170px;
+  border: 2px solid #8f8f8f;
+  margin-left: 8.5cm;
+  margin-top: 1cm;
+  /* margin: 13cm 0% 0% 100%; */
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  align-items: center;
+}
 
+.hoverable {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  height: 170px;
+  width: 170px;
+  border-radius: 50%;
+}
 
+.hoverable .hover-text {
+  position: absolute;
+  display: none;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  z-index: 2;
+  margin: -94px 0px 0px 164px;
+}
 
+.show {
+  display: block !important;
+}
+
+.hoverable .background {
+  position: absolute;
+  display: none;
+  top: 7%;
+  left: 13cm;
+  bottom: -7%;
+  right: 100%;
+  background-color: rgba(0, 0, 0, 0.137);
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 1;
+}
+.hoverable:hover .hover-text {
+  display: block;
+}
+.hoverable:hover .background {
+  display: block;
+  background-color: rgba(255, 255, 255, 0.295);
+}
+
+#fileInput {
+  display: none;
+}
+
+.file-upload {
+  display: none;
+}
+::ng-deep .mat-menu-content{
+  padding:0px !important;
+}
+
+::ng-deep .mat-menu-panel{
+  padding:0px !important;
+  min-height: 0px !important;
+  border-radius: 0.8rem;
+}

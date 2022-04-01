@@ -49,6 +49,14 @@ export class LikeUserService {
     };
     return this.http.post(API.EMPDETAIL, data);
   }
+
+  putStatusLike(data: any) {
+    const httpParams = new HttpParams();
+    const requestOptions = {
+      params: httpParams
+    };
+    return this.http.put(API.PUTSTATUSLIKE.replace(':id_likeuser', data.id_likeuser), data);
+  }
 }
 
 

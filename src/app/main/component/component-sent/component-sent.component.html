@@ -1,0 +1,27 @@
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+<!-------------------------------------navigator bar--------------------------->
+
+<p style="text-align: center; font-family: 'Roboto Condensed', sans-serif;font-weight: bold;">
+  Send message to {{this.profileName}}
+  <!-- <mat-icon>&nbsp;&nbsp;
+    <span class="material-icons-outlined">
+      drafts
+      </span>
+  </mat-icon> &nbsp; -->
+</p>
+<form [formGroup]="message"><br><br>
+  <p class="input-group" align="center">
+    <input  formControlName="message" placeholder="Send message">
+    <button class="btn-add"type="submit" (click)="Send()"  *ngIf="loading==false"  >Send
+    </button>
+    <button mat-raised-button class="btn-add"type="submit" *ngIf="loading"  [class.spinner]="loading" [disabled]="loading"></button>
+  </p>
+</form>
+
+<!-- <div style="text-align:center">
+  <button mat-raised-button color="primary" [class.spinner]="loading" [disabled]="loading" (click)="save()">Save</button>
+</div> -->
+
+
+

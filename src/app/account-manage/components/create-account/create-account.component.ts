@@ -10,6 +10,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { UserAccountService } from 'src/app/service/userAccount.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HttpServices } from 'src/app/service/http.service';
+import { UiService } from 'src/app/ui.service';
 
 @Component({
   selector: 'app-create-account',
@@ -38,6 +39,7 @@ export class CreateAccountComponent implements OnInit {
   public otherPrefix: boolean;
   checkNext:boolean = true;
   constructor(
+    private ui: UiService,
     private formBuilder:FormBuilder,
     public userAccountService: UserAccountService,
     private router: Router,
@@ -47,6 +49,9 @@ export class CreateAccountComponent implements OnInit {
   }
 
   ngOnInit() {
+    // setTimeout(
+    //   () => this.ui.show()
+    // )
     this.route.params.subscribe(prams=>{
       this.data_page1 = JSON.parse(prams.data);
       console.log( this.data_page1 )

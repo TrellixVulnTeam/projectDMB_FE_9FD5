@@ -1,19 +1,62 @@
 <!-------------------------------------navigator bar--------------------------->
 
 <div class="container-fluid flex-wrap flex-md-nowrap margin-nav">
-  <img src ="assets/img/Logo.png" width="210px" height="190px">
+  <img src ="assets/img/Logo.png" width="210px" height="190px" >
      <div class="pull-right">
         <ul style="margin-top: 1.5cm;">
-          <i class="fa fa-search fa-2x margin-bar" (click)="openDialogsearch()" style="margin-right: 0.5cm;"></i>
-          <i class="fa fa-user-circle-o fa-2x margin-bar" [matMenuTriggerFor]="menu" aria-hidden="true"></i>
-              <mat-menu style="padding-bottom: 0px;" #menu="matMenu">
-                <button mat-menu-item *ngIf="roleAccount" [routerLink]="['/list-account']" >จัดการบัญชีผู้ใช้</button>
-                <button mat-menu-item  [routerLink]="['/editpassword']">เปลี่ยนรหัสผ่าน</button>
-              </mat-menu>
-          <i class="fa fa-sign-out fa-2x"[matMenuTriggerFor]="animals" aria-hidden="true"></i>
-            <mat-menu #animals="matMenu">
+          <section>
+            <!-- <div>hover over me</div> -->
+              <div class="example-button-row">
+              <div class="example-flex-container">
+                <div class="example-button-container">
+                  <button mat-fab class="color1"   (click)="openDialoglike()" aria-label="Example icon button with a delete icon">
+                    <mat-icon>thumb_up </mat-icon>
+                  </button>
+                </div>
+                <div class="example-button-container">
+                  <button mat-fab class="color2" (click)="openDialogchat()" aria-label="Example icon button with a delete icon">
+                    <mat-icon>question_answer </mat-icon>
+                  </button>
+                </div>
 
-            </mat-menu>
+                <div class="example-button-container">
+                  <button mat-fab class="color3"  (click)="openDialogsearch()" aria-label="Example icon button with a delete icon">
+                    <mat-icon>search </mat-icon>
+                  </button>
+                </div>
+                <div class="example-button-container">
+                  <button mat-fab  class="color4"  [matMenuTriggerFor]="menu" aria-hidden="true" aria-label="Example icon button with a bookmark icon">
+                    <mat-icon>person</mat-icon>
+                    <mat-menu style="padding-bottom: 0px;" #menu="matMenu">
+                      <button mat-menu-item  [routerLink]="['/profile']">
+                        <mat-icon><span class="material-icons-outlined">manage_accounts</span></mat-icon> Profile
+                      </button>
+                      <button mat-menu-item  [routerLink]="['/editpassword']">
+                        <mat-icon><span class="material-icons-outlined">lock_open
+                        </span></mat-icon>Change password
+                      </button>
+                      <button mat-menu-item >
+                        <mat-icon> <span class="material-icons-outlined">
+                          person_remove
+                          </span></mat-icon>Delete account
+                      </button>
+                      <button mat-menu-item *ngIf="roleAccount"[routerLink]="['/list-account']">
+                        <mat-icon> <span class="material-icons-outlined">
+                          people_outline
+                          </span></mat-icon>Manage user accounts
+                      </button>
+                      <button mat-menu-item  (click)="logout()">
+                        <mat-icon> <span class="material-icons-outlined">
+                          logout
+                          </span></mat-icon>Logout
+                      </button>
+                    </mat-menu>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </section>
        </ul>
      </div>
  </div>
@@ -29,8 +72,12 @@
 
       <div id="areaB">
         <div class="margintopic">
-          <b>Main</b></div>
-          <div *ngFor="let item of dataProfile; let index = index">
+          <button  class="btn-add" (click)="resetfilter()" aria-label="Example icon button with a delete icon">
+            Reset Search
+          </button>
+        </div>
+        <div class="row row-cols-lg-4">
+ <div *ngFor="let item of dataProfile; let index = index">
           <div class="card mb-4">
             <div class="card-img-wrapper">
               <div *ngIf="item.picture !=null">
@@ -40,7 +87,7 @@
                 <img src="assets/img/user.png" class="card-img-top">
               </div>
               <ul class="list-inline member-icons animate text-center">
-                <li class="list-inline-item"><button class="btn btn-danger"><i class="fa fa-user"></i></button></li>
+                <li class="list-inline-item"><button class="btn btn-danger" (click)="openDialogView(item)" ><i class="fa fa-user"></i></button></li>
                 <li class="list-inline-item"><button class="btn btn-danger" (click)="like(item,item._id,index)" ><i class="fa fa-heart"></i></button></li>
                 <li class="list-inline-item"><button class="btn btn-danger" (click)="unlike(item,index)" ><i class="fa fa-times"></i></button></li>
               </ul>
@@ -51,71 +98,22 @@
                 <p class="card-text text-muted text-center"><b>Age : </b>{{item.age}} </p>
               </div>
             </div>
-          </div>
 
-          <br><br>
-          <div class="iconchat">
-            <li class="list-inline-item"><button class="btn btn-outline-danger" (click)="openDialogchat()"><i class="fa fa-comments fa-2x"></i></button></li>
-            <br><br>
-            <li class="list-inline-item"><button class=" btn btn-outline-danger" (click)="openDialoglike()"><i class="fa fa-thumbs-up fa-2x"></i></button></li>
-            </div>
-      </div>
-
-
-
-<!--
-      <div id="areaB">
-        <div class="margintopic">
-          <b>Main</b></div>
-          <div *ngFor="let item of dataProfile; let index = index">
-          <div class="container">
-          <div class="row ">
-
-              <div class="cardmain mb-4">
-                <div class="card-img-wrapper">
-                  <div *ngIf="item.picture !=null">
-                    <img src="{{(item.picture)}}" class="card-img-top">
-                 </div>
-                 <div *ngIf="item.picture ==null || item.picture ==''">
-                   <img src="assets/img/user.png" class="card-img-top">
-                 </div>
-                  <ul class="list-inline member-icons animate text-center">
-                    <li class="list-inline-item"><button class="btn btn-danger"><i class="fa fa-user"></i></button></li>
-                    <li class="list-inline-item"><button class="btn btn-danger" (click)="like(item,item._id,index)" ><i class="fa fa-heart"></i></button></li>
-                    <li class="list-inline-item"><button class="btn btn-danger" (click)="unlike(item,index)" ><i class="fa fa-times"></i></button></li>
-                  </ul>
-                </div>
-              <div class="card-body p-1">
-              <h6  class="card-title text-center mb-1"><i class="fa fa-user" formControlName="firstname">name</i></h6>
-              <p class="card-text text-muted text-center" formControlName="province">province</p>
-            </div>
           </div>
 
 
-          <div class="cardmain mb-4">
-            <div class="card-img-wrapper">
-              <img src="assets/img/user.png" class="card-img-top">
-              <ul class="list-inline member-icons animate text-center">
-                <li class="list-inline-item"><button class="btn btn-danger" ><i class="fa fa-user" ></i></button></li>
-                <li class="list-inline-item"><button class="btn btn-danger"><i class="fa fa-heart"></i></button></li>
-                <li class="list-inline-item"><button class="btn btn-danger"><i class="fa fa-times"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body p-1">
-              <h6 text="text" class="card-title text-center mb-1"><i class="fa fa-user">Name</i>{{item.nickname}}</h6>
-              <p class="card-text text-muted text-center"><b>Province :  </b>{{item.province}} </p>
-              <p class="card-text text-muted text-center"><b>Age : </b>{{item.age}} {{item.picture}} </p>
-            </div>
-          </div>
-          </div>
+
+
         </div>
-        </div>
+
+      <div class="pagi">
+              <mat-paginator
+                            [length]="this.listpic"
+                            [pageSize]="size"
+                            [pageIndex]="page"
+                            (page)="getData($event)">
+              </mat-paginator>
+              </div>
           <br><br>
-          <div class="iconchat">
-            <li class="list-inline-item"><button class="btn btn-outline-danger" (click)="openDialogchat()"><i class="fa fa-comments fa-2x"></i></button></li>
-            <br><br>
-            <li class="list-inline-item"><button class=" btn btn-outline-danger" (click)="openDialoglike()"><i class="fa fa-thumbs-up fa-2x"></i></button></li>
-            </div>
-      </div> -->
 
-
+     

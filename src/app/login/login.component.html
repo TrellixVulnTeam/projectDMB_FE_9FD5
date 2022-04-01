@@ -13,7 +13,7 @@
             <input type="password" id="password" formControlName="password" class="form-control label-in" placeholder="password"required ><br>
             <label *ngIf="msgErr" class="validation-error">{{msgErr}}</label>
         </div>
-            <button class="btn btn-lg  btn-in btn-block btn-in" id="submit" type="submit" (click)="onclickLogin()">เข้าสู่ระบบ</button><br>
+            <button class="btn btn-lg  btn-in btn-block" id="submit" type="submit" (click)="onclickLogin()">Log in</button><br>
             <a [routerLink]="['/create-account']" class="f-w-400">Create Account</a>
             <p class="Forgot-password">Forgot password?
               <a [routerLink]="['/forgot']" class="f-w-400">Click</a>

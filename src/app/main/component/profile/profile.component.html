@@ -1,0 +1,292 @@
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+<!-------------------------------------navigator bar--------------------------->
+
+<div class="container-fluid flex-wrap flex-md-nowrap margin-nav">
+  <img src ="assets/img/Logo.png" width="210px" height="190px">
+
+
+  <div class="pull-right">
+    <ul style="margin-top: 1.5cm;">
+      <section>
+        <div class="example-button-row">
+
+          <div class="example-flex-container">
+            <div class="example-button-container">
+              <button mat-fab class="color1"   (click)="openDialoglike()" aria-label="Example icon button with a delete icon">
+                <mat-icon>thumb_up </mat-icon>
+              </button>
+            </div>
+            <div class="example-button-container">
+              <button mat-fab class="color2" (click)="openDialogchat()" aria-label="Example icon button with a delete icon">
+                <mat-icon>question_answer </mat-icon>
+              </button>
+            </div>
+            <div class="example-button-container">
+              <button mat-fab class="color1"   [routerLink]="['/main']" aria-label="Example icon button with a delete icon">
+                <mat-icon>home </mat-icon>
+              </button>
+            </div>
+            <div class="example-button-container">
+              <button mat-fab  class="color4"  [matMenuTriggerFor]="menu" aria-hidden="true" aria-label="Example icon button with a bookmark icon">
+                <mat-icon>person</mat-icon>
+                <mat-menu style="padding-bottom: 0px;" #menu="matMenu">
+                  <button mat-menu-item  [routerLink]="['/profile']">
+                    <mat-icon><span class="material-icons-outlined">manage_accounts</span></mat-icon> Profile
+                  </button>
+                  <button mat-menu-item  [routerLink]="['/editpassword']">
+                    <mat-icon><span class="material-icons-outlined">lock_open
+                    </span></mat-icon>Change password
+                  </button>
+                  <button mat-menu-item >
+                    <mat-icon> <span class="material-icons-outlined">
+                      person_remove
+                      </span></mat-icon>Delete account
+                  </button>
+                  <button mat-menu-item *ngIf="roleAccount"[routerLink]="['/list-account']">
+                    <mat-icon> <span class="material-icons-outlined">
+                      people_outline
+                      </span></mat-icon>Manage user accounts
+                  </button>
+                  <button mat-menu-item  (click)="logout()">
+                    <mat-icon> <span class="material-icons-outlined">
+                      logout
+                      </span></mat-icon>Logout
+                  </button>
+                </mat-menu>
+              </button>
+            </div>
+            <!-- <div class="example-button-container">
+              <button mat-fab class="color3" [matMenuTriggerFor]="animals" aria-label="Example icon button with a home icon">
+                <mat-icon>logout</mat-icon>
+                <mat-menu #animals="matMenu">
+                  <button mat-menu-item (click)="logout()">
+                    Log out</button>
+                </mat-menu>
+              </button>
+            </div> -->
+          </div>
+        </div>
+      </section>
+   </ul>
+ </div>
+ </div>
+
+    <!-- ---------------------------------------Grid------------------------------- -->
+    <div id="grid">
+      <div id="areaA">
+        <div class="center">
+        </div>
+      </div>
+      <div id="areaB">
+        <form [formGroup]="account" autocomplete="on"class="form-signin">
+          <div class="card card-signin">
+            <div class="card-body">
+              <p class="font-top">
+
+                Profile</p><br><br><br>
+              <div class="row">
+                <br><div class="col-md-6">
+                <div class="form-label-group">
+                    <mat-form-field appearance="legacy">
+                      <input matInput placeholder="Prefix*" formControlName="prefix" >
+                    </mat-form-field>
+                </div></div>
+
+                <div class="col-md-6">
+                <div class="form-label-group">
+                    <mat-form-field appearance="legacy">
+                      <input matInput placeholder="Nickname*" formControlName="nickname" >
+                    </mat-form-field>
+                </div>
+                </div>
+              </div>
+
+              <br><div class="row">
+                <div class="col-md-6">
+                <div class="form-label-group">
+                    <mat-form-field appearance="legacy">
+                      <input matInput placeholder="Firstname*" formControlName="firstname" >
+                    </mat-form-field>
+                </div></div>
+
+                <br><div class="col-md-6">
+                <div class="form-label-group">
+                  <mat-form-field appearance="legacy">
+                    <input matInput placeholder="Lastname*" formControlName="lastname" >
+                  </mat-form-field>
+                </div>
+                </div>
+              </div>
+
+              <br><div class="row">
+                <br><div class="col-md-6">
+                <div class="form-label-group">
+                  <mat-form-field appearance="legacy">
+                    <input matInput  type="number" placeholder="Age*" formControlName="age" >
+                  </mat-form-field>
+                </div></div>
+                <br><div class="col-md-6">
+                <div class="form-label-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Select gender*</mat-label>
+                    <mat-select disableRipple  formControlName="gender">
+                      <mat-option value="female">female</mat-option>
+                      <mat-option value="male">male</mat-option>
+                      <mat-option value="transgender">transgender</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                </div>
+              </div>
+
+              <br><div class="row">
+                <br><div class="col-md-6">
+                <div class="form-label-group">
+                  <mat-form-field appearance="legacy">
+                    <input matInput  type="email" placeholder="Username*" formControlName="username" >
+                  </mat-form-field>
+                </div></div>
+                <br><div class="col-md-6">
+                  <div class="form-label-group">
+                    <mat-form-field appearance="legacy">
+                      <input matInput  type="text" placeholder="School / Office*" formControlName="office" >
+                    </mat-form-field>
+                  </div>
+                <!-- <div class="form-label-group">
+                  <mat-form-field appearance="legacy">
+                    <input matInput  type="password" placeholder="Password*" formControlName="password" >
+                  </mat-form-field>
+                </div> -->
+                </div>
+              </div>
+
+              <br><div class="row">
+                <br><div class="col-md-6">
+                <div class="form-label-group">
+                  <mat-form-field appearance="legacy">
+                    <input matInput  type="number" placeholder="Height*" formControlName="height" >
+                  </mat-form-field>
+                </div></div>
+                <br><div class="col-md-6">
+                <div class="form-label-group">
+                    <mat-form-field appearance="legacy">
+                    <input matInput  type="number" placeholder="Weight*" formControlName="weight" >
+                  </mat-form-field>
+                </div>
+                </div>
+              </div>
+
+              <br><div class="row">
+                <br><div class="col-md-6">
+                  <div class="form-label-group">
+                    <mat-form-field appearance="outline">
+                      <input matInput  type="text" placeholder="Description" formControlName="description" >
+                    </mat-form-field>
+                  </div>
+                <!-- <div class="form-label-group">
+                  <mat-form-field appearance="legacy">
+                    <input matInput  type="text" placeholder="School / Office*" formControlName="office" >
+                  </mat-form-field>
+                </div> -->
+              </div>
+                <br><div class="col-md-6">
+                <!-- <div class="form-label-group">
+                  <mat-form-field appearance="outline">
+                    <input matInput  type="text" placeholder="Description" formControlName="description" >
+                  </mat-form-field>
+                </div> -->
+                </div>
+              </div>
+
+              <div class="validation-error" *ngIf="checkNext == false" >This account already has a user.</div> <br>
+        </div>
+        </div><br><br>
+
+
+      <div class="card card-signin">
+        <div class="card-body">
+               <!-- todo UPLOAD IMAGE -->
+               <div class="p-col">
+                <label class="hoverable" for="fileInput">
+
+                    <img class="circle"
+                        [src]="imagesProfile ? imagesProfile : 'https://i.pinimg.com/originals/04/7d/fc/047dfc2552d91ae45f5c5362e71f4e43.gif'">
+                    <!-- <div *ngIf="!!imagesProfile" class="hover-text show">Click to choose file</div> -->
+                    <div *ngIf="!!imagesProfile" class="background show"></div>
+                    <!-- <div class="hover-text">Click to choose file</div> -->
+                    <div class="background"></div>
+                </label>
+                <br />
+                <input #myInputImg id="fileInput" type="file"
+                keyup="changeListenerFileImages($event)"
+                (change)="changeListenerFileImages($event)">
+              </div><br><br><br><br>
+
+              <div class="row">
+                <br><div class="col-md-6">
+                <div class="form-label-group">
+                    <mat-form-field appearance="outline" style="width: 6.8cm;">
+                      <mat-select disableRipple style="height: 0.2cm;" placeholder="type*"  formControlName="type" >
+                      <mat-option value="Friend"> Friend </mat-option>
+                      <mat-option value="Go on the date">Go on the date </mat-option>
+                      <mat-option value="Hangout"> Hangout </mat-option>
+                    </mat-select>
+              </mat-form-field>
+              </div></div>
+
+                <div class="col-md-6">
+                <div class="form-label-group">
+                  <mat-form-field appearance="outline" style="width: 6.8cm;">
+                    <mat-select disableRipple style="height: 0.2cm "  placeholder="province*"  formControlName="province" >
+                      <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                </div>
+              </div><br>
+
+          <div class="row">
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <mat-form-field appearance="legacy">
+              <input matInput  type="text" placeholder="Facebook" formControlName="facebook" >
+              </mat-form-field>
+            </div></div>
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <mat-form-field appearance="legacy">
+                <input matInput  type="text" placeholder="Line" formControlName="line" >
+              </mat-form-field>
+            </div>
+            </div>
+          </div>
+
+         <br><div class="row">
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <mat-form-field appearance="legacy">
+                <input matInput  type="text" placeholder="Instagram" formControlName="ig" >
+              </mat-form-field>
+            </div></div>
+            <br><div class="col-md-6">
+            <div class="form-label-group">
+              <mat-form-field appearance="legacy">
+                <input matInput  type="number" placeholder="Phone" formControlName="phone" >
+              </mat-form-field>
+            </div>
+            </div>
+          </div>
+          <br><br>
+
+          <div class="validation-error" *ngIf="submitted == false">This account already has a user.</div>
+           <br><br>
+
+           <button class="false"type="submit"(click)="onclickCancel()">Cancal</button> &nbsp;&nbsp;
+           <button class="btn-add"type="submit"(click)="onclickNext()">Submit</button>
+
+        </div>
+      </div>
+    </form>
+      </div>
+

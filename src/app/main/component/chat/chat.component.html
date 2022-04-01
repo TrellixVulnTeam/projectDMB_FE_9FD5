@@ -1,1 +1,316 @@
-<p>chat works!</p>
+      <!-----------------------------------------Grid-------------------------------  -->
+
+      <div class="container-fluid h-50" >
+
+        <div class="row justify-content-center h-100">
+          <div class="col-md-3 col-xl-3 ">
+            <div class="card mb-sm-3 mb-md-0 contacts_card">
+            <div class="card-header">
+              <div class="input-group">
+
+                <input type="text" class="form-control search" (keyup)="search($event.target.value)" >
+                <div class="input-group-prepend">
+                  <span class="input-group-text search_btn">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body contacts_body">
+              <ul class="contacts">
+              <li>
+                {{this.msg}}
+                <div *ngFor="let item of listChat; let index = index">
+                <div class="d-flex bd-highlight" (click)="openChat(item)">
+                  <div class="img_cont">
+                    <div *ngIf="item.picture !=null">
+                      <img src="{{(item.picture)}}" class="card-img-top">
+                   </div>
+                   <div *ngIf="item.picture ==null || item.picture ==''">
+                     <img src="assets/img/user.png" class="card-img-top">
+                   </div>
+                    <!-- <span class="online_icon"></span> -->
+                  </div>
+                  <div class="user_info">
+                    <span>{{item.nickname}}</span>
+                    <!-- <p>Kalid is online</p> -->
+                  </div>
+                </div><br><br>
+                </div>
+              </li>
+            </ul>
+            </div>
+
+
+
+            <div class="card-footer"></div>
+          </div></div>
+          <div class="col-md-8 col-xl-6 chat">
+            <div class="card">
+              <div class="card-header msg_head">
+                <div class="d-flex bd-highlight">
+                  <div class="img_cont">
+                    <img src="{{this.img}}" class="rounded-circle user_img">
+                    <span class="online_icon"></span>
+                  </div>
+                  <div class="user_info">
+                    <span>{{this.name}}</span>
+                    <!-- <p>1767 Messages</p> -->
+                  </div>
+                  <div class="video_cam">
+                    <!-- <span><mat-icon aria-hidden="false" aria-label="Example home icon">phone</mat-icon></span>
+                    <span><mat-icon aria-hidden="false" aria-label="Example home icon">videocam</mat-icon></span> -->
+                  </div>
+                </div>
+
+                <span id="action_menu_btn2" >
+                  <button class="btn bnt_icon" (click)="close()" >
+                  <mat-icon class="close" aria-hidden="false" aria-label="Example home icon">close
+                  </mat-icon>
+                </button>
+              </span>
+                <!-- <span id="action_menu_btn" [matMenuTriggerFor]="menu">
+                  <mat-icon aria-hidden="false" aria-label="Example home icon">drag_indicator
+                  </mat-icon>
+                </span>
+                  <div class="action_menu">
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                      <mat-icon>assignment_ind</mat-icon>
+                      <span>View Profile</span>
+                    </button>
+                    <button mat-menu-item>
+                      <mat-icon>star</mat-icon>
+                      <span>Add to close friends</span>
+                    </button>
+                    <button mat-menu-item disabled>
+                      <mat-icon>block</mat-icon>
+                      <span>Block</span>
+                    </button>
+                  </mat-menu>
+                </div> -->
+                </div>
+
+
+
+
+
+              <div class="card-body msg_card_body">
+                <div *ngFor="let item of msgChat; let index = index">
+                <div *ngIf="item.id_receivet != this.id_User">
+                  <div class="d-flex justify-content-end mb-4">
+                    <div class="msg_cotainer_send"*ngIf="this.id_message==item.id_message">
+                      <span *ngIf="this.ThaiTranslation=='emoji_heart'">
+                        <angular-emojis [name]="'heart'" size="20"> </angular-emojis>
+                      </span>
+                      <span *ngIf="this.ThaiTranslation !='emoji_heart'">
+                        {{this.ThaiTranslation}}
+                     </span>
+                    </div>
+
+                    <div class="msg_cotainer_send ">
+                      <span *ngIf="item.message=='emoji_heart'">
+                        <angular-emojis [name]="'heart'" size="20"> </angular-emojis>
+                      </span>
+                      <span *ngIf="item.message !='emoji_heart'">
+                        {{item.message}}
+                     </span>
+                      <span class="msg_time_send">
+                        <div class="card-img-wrapper">
+                        <ul class="list-inline member-icons animate text-center">
+                          <li class="list-inline-item"><button class="btn bnt_icon"  (click)="sendEng(item.message,item.id_message)">
+                            <mat-icon  matTooltip="EN-TH" matTooltipPosition="above"style=" font-size: 18px;height: 18px ;width: 18px;"  aria-hidden="false" aria-label="Example home icon">g_translate
+                            </mat-icon></button></li>
+                          <li class="list-inline-item"><button class="btn bnt_icon"  (click)="sendThai(item.message,item.id_message)">
+                            <mat-icon  matTooltip="TH-EN" matTooltipPosition="above"style=" font-size: 18px;height: 18px ;width: 18px;"  aria-hidden="false" aria-label="Example home icon">g_translate
+                            </mat-icon></button></li>
+                          <!-- <li class="list-inline-item"><button class="btn bnt_icon" (click)="Deletemsg(item.id_message)">
+                            <mat-icon style=" font-size: 18px;height: 18px ;width: 18px;" aria-hidden="false" aria-label="Example home icon">delete_forever</mat-icon></button></li> -->
+
+                          </ul>
+                      </div>
+                      </span>
+
+                      <!-- <p class="msg_time_send tran" (click)="Deletemsg(item.id_message)">Delete</p><br> -->
+                      <span class="msg_time_send">{{item.updateDt | date:'h:mm a'}}</span>
+                    </div>
+                  </div>
+                  <div *ngIf="item.id_sender != this.id_User">
+                    <div class="d-flex justify-content-end mb-4">
+                      <div class="msg_cotainer_send"*ngIf="this.id_message==item.id_message">
+                        <span *ngIf="this.ThaiTranslation=='emoji_heart'">
+                          <angular-emojis [name]="'heart'" size="20"> </angular-emojis>
+                        </span>
+                        <span *ngIf="this.ThaiTranslation !='emoji_heart'">
+                          {{this.ThaiTranslation}}
+                       </span>
+                      </div>
+                      <!-- <span class="tran-send" (click)="translate(item.message,item.id_message)" ><u>translate</u></span> -->
+
+                      <div class="msg_cotainer_send">
+                        <span *ngIf="item.message=='emoji_heart'">
+                          <angular-emojis [name]="'heart'"> </angular-emojis>
+                        </span>
+                        <span *ngIf="item.message !='emoji_heart'">
+                          {{item.message}}
+                       </span>
+                        <span class="msg_time_send">
+                          <div class="card-img-wrapper">
+                          <ul class="list-inline member-icons animate text-center">
+                            <li class="list-inline-item"><button class="btn bnt_icon"  (click)="sendEng(item.message,item.id_message)">
+                              <mat-icon  matTooltip="EN-TH" matTooltipPosition="above"style=" font-size: 18px;height: 18px ;width: 18px;"  aria-hidden="false" aria-label="Example home icon">g_translate
+                              </mat-icon></button></li>
+                            <li class="list-inline-item"><button class="btn bnt_icon"  (click)="sendThai(item.message,item.id_message)">
+                              <mat-icon  matTooltip="TH-EN" matTooltipPosition="above"style=" font-size: 18px;height: 18px ;width: 18px;"  aria-hidden="false" aria-label="Example home icon">g_translate
+                              </mat-icon></button></li>
+                            <!-- <li class="list-inline-item"><button class="btn bnt_icon"  (click)="translate(item.message,item.id_message)">
+                              <mat-icon style=" font-size: 18px;height: 18px ;width: 18px;"  aria-hidden="false" aria-label="Example home icon">g_translate</mat-icon></button></li>
+                            <li class="list-inline-item"><button class="btn bnt_icon" (click)="Deletemsg(item.id_message)">
+                              <mat-icon style=" font-size: 18px;height: 18px ;width: 18px;" aria-hidden="false" aria-label="Example home icon">delete_forever</mat-icon></button></li> -->
+                          </ul>
+                        </div>
+                        </span>
+                        <!-- <span class="msg_time_send tran" (click)="Deletemsg(item.id_message)">Delete</span><br> -->
+                        <span class="msg_time_send">{{item.updateDt | date:'h:mm a'}}</span>
+                      </div>
+
+                    </div>
+                    </div>
+                </div>
+
+                <div *ngIf="item.id_receivet == this.id_User ">
+                 <div class="d-flex justify-content-start mb-4">
+                    <div class="img_cont_msg">
+                      <img src="{{this.img}}" class="rounded-circle user_img_msg">
+                    </div>
+                    <div class="msg_cotainer">
+                      <span *ngIf="item.message=='emoji_heart'">
+                        <angular-emojis [name]="'heart'"> </angular-emojis>
+                      </span>
+                      <span *ngIf="item.message !='emoji_heart'">
+                        {{item.message}}
+                     </span>
+                      <!-- <angular-emojis [name]="'heart'"> </angular-emojis> -->
+
+
+                     <span class="msg_time_send">
+                      <div class="card-img-wrapper2">
+                      <ul class="list-inline member-icons animate text-center">
+                        <li class="list-inline-item">
+                          <li class="list-inline-item"><button class="btn bnt_icon"  (click)="sendEng(item.message,item.id_message)">
+                            <mat-icon  matTooltip="EN-TH" matTooltipPosition="above"style=" font-size: 18px;height: 18px ;width: 18px;"  aria-hidden="false" aria-label="Example home icon">g_translate
+                            </mat-icon></button></li>
+                          <li class="list-inline-item"><button class="btn bnt_icon"  (click)="sendThai(item.message,item.id_message)">
+                            <mat-icon  matTooltip="TH-EN" matTooltipPosition="above"style=" font-size: 18px;height: 18px ;width: 18px;"  aria-hidden="false" aria-label="Example home icon">g_translate
+                            </mat-icon></button></li>
+                          <!-- <button class="btn bnt_icon"  (click)="translate(item.message,item.id_message)">
+                          <mat-icon style=" font-size: 18px;height: 18px ;width: 18px;"  aria-hidden="false" aria-label="Example home icon">g_translate</mat-icon></button></li> -->
+                      </ul>
+                    </div>
+                    </span>
+                     <span class="msg_time_send">{{item.updateDt | date:'h:mm a'}}</span>
+                    </div>
+
+                        <div class="msg_cotainer"*ngIf="this.id_message==item.id_message">
+                          <span *ngIf="this.ThaiTranslation=='emoji_heart'">
+                            <angular-emojis [name]="'heart'" size="20"> </angular-emojis>
+                          </span>
+                          <span *ngIf="this.ThaiTranslation !='emoji_heart'">
+                            {{this.ThaiTranslation}}
+                         </span>
+                        </div>
+                    </div>
+
+                  <div *ngIf="item.id_sender == this.id_User" >
+                    <div class="d-flex justify-content-start mb-4">
+                      <div class="img_cont_msg">
+                        <img src="{{this.img}}" class="rounded-circle user_img_msg">
+                      </div>
+                      <div class="msg_cotainer">
+                        <span *ngIf="item.message=='emoji_heart'">
+                          <angular-emojis [name]="'heart'"> </angular-emojis>
+                        </span>
+                        <span *ngIf="item.message !='emoji_heart'">
+                          {{item.message}}
+                       </span>
+                       <span class="msg_time_send ">
+                        <div class="card-img-wrapper2">
+                        <ul class="list-inline member-icons animate text-center">
+                          <li class="list-inline-item">
+                            <li class="list-inline-item"><button class="btn bnt_icon"  (click)="sendEng(item.message,item.id_message)">
+                              <mat-icon  matTooltip="EN-TH" matTooltipPosition="above"style=" font-size: 18px;height: 18px ;width: 18px;"  aria-hidden="false" aria-label="Example home icon">g_translate
+                              </mat-icon></button></li>
+                            <li class="list-inline-item"><button class="btn bnt_icon"  (click)="sendThai(item.message,item.id_message)">
+                              <mat-icon  matTooltip="TH-EN" matTooltipPosition="above"style=" font-size: 18px;height: 18px ;width: 18px;"  aria-hidden="false" aria-label="Example home icon">g_translate
+                              </mat-icon></button></li>
+                            <!-- <button class="btn bnt_icon"  (click)="translate(item.message,item.id_message)">
+                            <mat-icon style=" font-size: 18px;height: 18px ;width: 18px;"  aria-hidden="false" aria-label="Example home icon">g_translate</mat-icon></button></li> -->
+                        </ul>
+                      </div>
+                      </span>
+                      <span class="msg_time_send">{{item.updateDt | date:'h:mm a'}}</span>
+                      </div>
+
+                      <div class="msg_cotainer"*ngIf="this.id_message==item.id_message">
+                        <span *ngIf="this.ThaiTranslation=='emoji_heart'">
+                          <angular-emojis [name]="'heart'" size="20"> </angular-emojis>
+                        </span>
+                        <span *ngIf="this.ThaiTranslation !='emoji_heart'">
+                          {{this.ThaiTranslation}}
+                       </span>
+                      </div>
+                      </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+              <form [formGroup]="Sentmessage" autocomplete="on"class="form-signin">
+              <div class="card-footer">
+
+                <div class="input-group">
+                  <div class="input-group-append">
+                    <span class="input-group-text attach_btn">
+                      <mat-icon  aria-hidden="false" aria-label="Example home icon" (click)="sendheart()" >favorite_border</mat-icon>
+                      <!-- <angular-emojis [name]="'heart'"> </angular-emojis> -->
+                        <!-- <mat-icon [matMenuTriggerFor]="menufile" aria-hidden="false" aria-label="Example home icon">attach_file</mat-icon>
+                        <div class="action_menu">
+                            <mat-menu #menufile="matMenu">
+                              <button mat-menu-item>
+                                <mat-icon>drive_folder_upload</mat-icon>
+                                <span>Uploads File</span>
+                              </button>
+                              <button mat-menu-item>
+                                <mat-icon>perm_media</mat-icon>
+                                <span>Choose File</span>
+                              </button>
+                              <button mat-menu-item>
+                                <mat-icon>add_a_photo</mat-icon>
+                                <span>Text Photo</span>
+                              </button>
+                            </mat-menu>
+                          </div> -->
+                    </span>
+                  </div>
+
+
+                       <textarea name="message" formControlName="message" class="form-control type_msg"></textarea>
+
+
+                  <div class="input-group-append">
+                    <!-- <button class="btn-add"type="submit" (click)="Send()"  *ngIf="loading==false"  >Send
+                    </button>
+                    <button mat-raised-button class="btn-add"type="submit" *ngIf="loading"  [class.spinner]="loading" [disabled]="loading"></button> -->
+                    <span class="input-group-text send_btn"(click)="Sentmsg()" >
+                    <mat-icon aria-hidden="false"  *ngIf="loading"  [class.spinner]="loading" [disabled]="loading" aria-label="Example home icon"></mat-icon>
+                    <mat-icon aria-hidden="false"  *ngIf="loading==false" aria-label="Example home icon">near_me</mat-icon>
+                  </span>
+                  </div>
+
+                </div>
+
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>

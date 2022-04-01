@@ -1,11 +1,12 @@
 .mar{
-  margin-left: 4cm;
+  margin-left: 5cm;
   margin-top: 1cm;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 .arearight{
   float: right;
   margin-right: 2cm;
-  margin-top: 3cm;
+  margin-top: 1.5cm;
 }
 mat-cell:first-of-type{
   padding-left: 24px;
@@ -16,7 +17,7 @@ mat-cell:first-of-type{
   font-size: 100%;
   color: red;
 }
-mat-icon{
+/* mat-icon{
   color: #686868;
   margin-top: 0.3cm;
   margin-bottom: -1cm;
@@ -42,7 +43,7 @@ mat-icon:hover{
 .mat-menu-item:hover{
   background-color:rgb(236, 234, 234);
  color: black;
-}
+} */
 ::ng-deep .mat-menu-content{
   padding:0px !important;
 }
@@ -51,4 +52,101 @@ mat-icon:hover{
   padding:0px !important;
   min-height: 0px !important;
   border-radius: 0.8rem;
+}
+.font-top{
+    font-size: 0.8cm;
+   font-family: 'Roboto Condensed', sans-serif;
+   text-align: center;
+
+}
+.container {
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center
+}
+.card-signin {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 #cecece;
+  height: 85vh;
+}
+.center{
+  margin-left: 3cm;
+  text-align: center;
+  background-position: center center;
+  padding-top: 13px;
+}
+.card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+.card-signin .card-body {
+  padding: 2rem;
+  text-align: center;
+
+}
+section {
+  display: table;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 200px;
+}
+
+.example-button-row .mat-button-base {
+  margin: 6px 6px 6px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  /* justify-content: space-between; */
+  /* flex-wrap: wrap; */
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  /* width: 120px; */
+}
+.mat-icon{
+  font-size: 28px;
+  text-align: center;
+}
+.color1{
+  background-color: #E0BBE4;
+}
+.color2{
+  background-color: #ca9dbb;
+}
+.color3{
+  background-color: #957DAD;
+}
+.color4{
+  background-color: #7b678f;
+}
+.cdk-overlay-dark-backdrop {
+  background: rgb(0 0 0 / 92%);
+}
+
+.mat-icon:hover
+{
+  color: rgb(99, 69, 110);
+}
+.my-spinner.mat-spinner circle {
+  stroke: rgba(0, 0, 0, 0.87);
 }
