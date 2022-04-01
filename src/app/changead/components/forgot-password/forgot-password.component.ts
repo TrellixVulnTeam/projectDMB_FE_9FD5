@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserAccountService } from 'src/app/service/userAccount.service';
+import { UiService } from 'src/app/ui.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,6 +19,7 @@ export class ForgotPasswordComponent implements OnInit {
   submitted:boolean
   submitOtp:boolean=false
   constructor(
+    private ui: UiService,
     private router: Router,
     private formBuilder: FormBuilder,
     private userAccountService: UserAccountService,
@@ -36,6 +38,7 @@ export class ForgotPasswordComponent implements OnInit {
     });
   }
   onclickchange() {
+      this.ui.show()
       this.userAccountService.whereUserforgotpass(this.whereUser.value).then(result => {
       this.user = result
         console.log(this.user);
@@ -53,17 +56,22 @@ export class ForgotPasswordComponent implements OnInit {
             otp:otp
           })
           this.userAccountService.checkOtp(this.checkOtp.value)
+          this.ui.hide()
         }
       })
+
       }
 
 onclickOtp(){
+  this.ui.show()
            if(this.checkOtp.value.otp == this.otp.value.otp){
+            this.ui.hide()
             this.router.navigate(['changead', {data :JSON.stringify(this.user) }])
            }
            else {
             this.submitted =false
             this.submitOtp = false
+            this.ui.hide()
            }
 }
 }

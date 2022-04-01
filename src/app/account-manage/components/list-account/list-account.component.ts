@@ -42,18 +42,32 @@ export class ListAccountComponent implements OnInit {
   ) { }
 
   ngOnInit(){
+    this.ui.show()
     const profile = localStorage.getItem('Profile')
     this.newProfile = JSON.parse(profile)
     this.id_User = this.newProfile._id
     if(this.newProfile.role == 'ADMIN'){
       this.roleAccount = true
     }
+
+
     this.userAccountService.getUserAccount().then(result => {
       this.dataAccount = result.responseData.data;
-      this.dataSource = new MatTableDataSource(this.dataAccount);
+      this.http.getData('/services/webasset/api/listHistory').then(result => {
+      const a = result.responseData.data
+      const ArrData = new Array()
+      a.forEach(element => {
+        ArrData.push(element)
+      });
+      this.dataAccount.forEach(element => {
+        ArrData.push(element)
+      });
+      this.dataSource = new MatTableDataSource(ArrData);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.ui.hide()
+    })
+
   })
   this.search = this.formBuilder.group({
     searchText: new FormControl({ value:'', disabled: false }),
@@ -74,7 +88,8 @@ export class ListAccountComponent implements OnInit {
     });
   }
   clickdelete(data) {
-    debugger
+    if(data.status == true){
+       data._id = null
     data.status = false
     console.log(data);
 
@@ -87,7 +102,7 @@ export class ListAccountComponent implements OnInit {
         cancelButtonColor: '#696969',
       }).then((result) => {
         if (result.isConfirmed) {
-           this.http.postData('/services/webasset/api/createHistory',data)
+          this.http.postData('/services/webasset/api/createHistory',data)
           this.userAccountService.deleteAccount(data).then(() => {
             this.refresh();
           });
@@ -98,6 +113,8 @@ export class ListAccountComponent implements OnInit {
           )
         }
       })
+
+    }
 
     // Swal.fire({
     //   title: 'Delete Account',
@@ -156,9 +173,20 @@ export class ListAccountComponent implements OnInit {
     this.ui.show()
     this.userAccountService.getUserAccount().then(result => {
       this.dataAccount = result.responseData.data;
-      this.dataSource = new MatTableDataSource(this.dataAccount);
+      this.http.getData('/services/webasset/api/listHistory').then(result => {
+      const a = result.responseData.data
+      const ArrData = new Array()
+      a.forEach(element => {
+        ArrData.push(element)
+      });
+      this.dataAccount.forEach(element => {
+        ArrData.push(element)
+      });
+      this.dataSource = new MatTableDataSource(ArrData);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.ui.hide()
+    })
       this.ui.hide()
   })
   }

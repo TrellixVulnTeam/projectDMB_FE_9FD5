@@ -7,6 +7,7 @@ import { HttpServices } from 'src/app/service/http.service';
 import { LikeUserService } from 'src/app/service/likeUser.service';
 import { UserAccountService } from 'src/app/service/userAccount.service';
 import { UiService } from 'src/app/ui.service';
+import Swal from 'sweetalert2';
 import { ChatComponent } from '../chat/chat.component';
 import { LikeComponent } from '../like/like.component';
 import { SearchComponent } from '../search/search.component';
@@ -63,7 +64,7 @@ export class MainComponent implements OnInit {
       chat_status :new FormControl({ value: false, disabled: false })
     });
     this.getData({pageIndex: this.page, pageSize: this.size, length: this.listpic});
-
+    this.ui.hide()
     // this.userAccountService.getUserAccount().then(result => {
     //   this.dataProfile = result.responseData.data
 
@@ -193,13 +194,23 @@ export class MainComponent implements OnInit {
     });
   }
   Deleteaccount(){
-    // app.post('/api/createHistory', userAccountCtrl.createHistory);
-    // const obj = {
-    //   _id:this.dataView._id ,
-    //   status: false
-    // }
-    // this.userAccountService.editeAccount(obj)
-    // }
+     Swal.fire({
+       title: 'Delete Account',
+       text: "Are you sure you want to delete this Account?",
+       icon: 'question',
+       showCancelButton: true,
+       confirmButtonColor: 'rgb(70, 0, 0)',
+       cancelButtonColor: '#696969',
+     }).then((result) => {
+       if (result.isConfirmed) {
+        //  this.http.postData('/services/webasset/api/createHistory',data)
+        console.log(this.newProfile);
+         this.userAccountService.deleteAccount(this.newProfile).then(() => {
+          this.router.navigate(['login', {}]);
+         });
+     
+       }
+     })
 
 }
 getData(item) {
