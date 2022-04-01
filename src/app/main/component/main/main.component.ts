@@ -193,6 +193,7 @@ export class MainComponent implements OnInit {
     });
   }
   Deleteaccount(){
+    // app.post('/api/createHistory', userAccountCtrl.createHistory);
     // const obj = {
     //   _id:this.dataView._id ,
     //   status: false
@@ -203,6 +204,7 @@ export class MainComponent implements OnInit {
 }
 getData(item) {
   debugger
+  this.ui.show()
 
   // this.userAccountService.getUserAccount().then(result => {
   //   this.dataProfile = result.responseData.data
@@ -240,6 +242,7 @@ getData(item) {
         index++;
         return ( index > startingIndex && index <= endingIndex ) ? true : false;
       });
+      this.ui.hide()
     });
 
     }

@@ -74,35 +74,56 @@ export class ListAccountComponent implements OnInit {
     });
   }
   clickdelete(data) {
-    Swal.fire({
-      title: 'Delete Account',
-      text: "Are you sure you want to delete this Account?",
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonColor: 'rgb(70, 0, 0)',
-      cancelButtonColor: '#696969',
-    }).then((result) => {
-      this.ui.show()
-      if (result.isConfirmed) {
-        const obj = {
-          _id:data._id ,
-          status: false
-        }
-        this.userAccountService.editeAccount(obj).then(() => {
-          this.refresh();
-        });
+    debugger
+    data.status = false
+    console.log(data);
 
-        // this.userAccountService.deleteAccount(data).then(() => {
-        //   this.refresh();
-        // });
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        )
-        this.ui.hide()
-      }
-    })
+      Swal.fire({
+        title: 'Delete Account',
+        text: "Are you sure you want to delete this Account?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: 'rgb(70, 0, 0)',
+        cancelButtonColor: '#696969',
+      }).then((result) => {
+        if (result.isConfirmed) {
+           this.http.postData('/services/webasset/api/createHistory',data)
+          this.userAccountService.deleteAccount(data).then(() => {
+            this.refresh();
+          });
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+        }
+      })
+
+    // Swal.fire({
+    //   title: 'Delete Account',
+    //   text: "Are you sure you want to delete this Account?",
+    //   icon: 'question',
+    //   showCancelButton: true,
+    //   confirmButtonColor: 'rgb(70, 0, 0)',
+    //   cancelButtonColor: '#696969',
+    // }).then((result) => {
+    //   this.ui.show()
+    //   if (result.isConfirmed) {
+    //     const obj = {
+    //       _id:data._id ,
+    //       status: false
+    //     }
+    //     this.userAccountService.editeAccount(obj).then(() => {
+    //       this.refresh();
+    //     });
+    //     Swal.fire(
+    //       'Deleted!',
+    //       'Your file has been deleted.',
+    //       'success'
+    //     )
+    //     this.ui.hide()
+    //   }
+    // })
   }
   public doFilter = (value: string) => {
     // this.ui.show()
