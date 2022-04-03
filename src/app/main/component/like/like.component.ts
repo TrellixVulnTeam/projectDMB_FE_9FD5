@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import { HttpServices } from 'src/app/service/http.service';
 import { LikeUserService } from 'src/app/service/likeUser.service';
@@ -21,6 +22,8 @@ export class LikeComponent implements OnInit {
   public newProfile: any;
   public roleAccount:boolean;
   listMatch:any
+  pollComponent: any;
+  surveyComponent: any;
 
   constructor(
     private ui: UiService,
@@ -146,5 +149,26 @@ export class LikeComponent implements OnInit {
 }
   openDialogsearch(): void {
 
+  }
+
+  onTabChanged(event: MatTabChangeEvent) 
+  {
+    this.ui.show()
+    debugger
+    if(event.tab.textLabel== "See Who Like You")
+    {
+      this.http.postData('/services/webasset/api/whereListlike',{user2:this.id_User}).then(result =>{
+        this.listlike = result
+        this.ui.hide()
+      });
+    }
+    else
+    {
+      this.http.postData('/services/webasset/api/whereMatch',{user2:this.id_User}).then(result =>{
+        this.listMatch = result
+        console.log(this.listMatch);
+        this.ui.hide()
+      });
+    }
   }
 }

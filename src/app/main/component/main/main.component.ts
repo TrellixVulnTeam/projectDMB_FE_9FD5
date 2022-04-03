@@ -63,23 +63,25 @@ export class MainComponent implements OnInit {
       status: new FormControl({ value: false, disabled: false }),
       chat_status :new FormControl({ value: false, disabled: false })
     });
-    this.getData({pageIndex: this.page, pageSize: this.size, length: this.listpic});
-    this.ui.hide()
-    // this.userAccountService.getUserAccount().then(result => {
-    //   this.dataProfile = result.responseData.data
+    // this.getData({pageIndex: this.page, pageSize: this.size, length: this.listpic});
+    // this.ui.hide()
 
-    //   for(let i=0 ;i<this.dataProfile.length;i++){
-    //     if (this.dataProfile[i]._id == this.id_User){
-    //       this.dataProfile.splice(i, 1);
-    //     }
-    //     if (this.dataProfile[i].role == 'ADMIN'){
-    //       this.dataProfile.splice(i, 1);
-    //     }
-    //   }
+    this.userAccountService.getUserAccount().then(result => {
+      this.dataProfile = result.responseData.data
 
-    //   const  a = this.dataProfile.slice(1)
-    //   this.ui.hide()
-    // });
+      for(let i=0 ;i<this.dataProfile.length;i++){
+        if (this.dataProfile[i]._id == this.id_User){
+          this.dataProfile.splice(i, 1);
+        }
+        if (this.dataProfile[i].role == 'ADMIN'){
+          this.dataProfile.splice(i, 1);
+          
+        }
+      }
+
+      // const  a = this.dataProfile.slice(1)
+      this.ui.hide()
+    });
 
 
   }
@@ -199,7 +201,7 @@ export class MainComponent implements OnInit {
        text: "Are you sure you want to delete this Account?",
        icon: 'question',
        showCancelButton: true,
-       confirmButtonColor: 'rgb(70, 0, 0)',
+       confirmButtonColor: '#ca9dbb',
        cancelButtonColor: '#696969',
      }).then((result) => {
        if (result.isConfirmed) {
@@ -208,7 +210,7 @@ export class MainComponent implements OnInit {
          this.userAccountService.deleteAccount(this.newProfile).then(() => {
           this.router.navigate(['login', {}]);
          });
-     
+
        }
      })
 

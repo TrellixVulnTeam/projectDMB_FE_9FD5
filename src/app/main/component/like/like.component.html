@@ -78,8 +78,8 @@
 
 
 <div id="areaB">
-    <mat-tab-group mat-align-tabs="center">
-      <mat-tab label="Match">
+    <mat-tab-group mat-align-tabs="center" (selectedTabChange)="onTabChanged($event)" >
+      <mat-tab label="Match" >
         <div *ngFor="let item of listMatch; let index = index">
           <div class="card mb-4">
             <div *ngIf="item._id != this.id_User">
@@ -97,7 +97,8 @@
                             </ul>
                           </div>
                             <div class="card-body p-1">
-                              <h6 text="text" class="card-title text-center mb-1"><i class="fa fa-user">Name</i>{{item.nickname}}</h6>
+                              <!-- <h6 text="text" class="card-title text-center mb-1"><i class="fa fa-user">Name</i>{{item.nickname}}</h6> -->
+                              <p class="card-text text-muted text-center"><b><i class="fa fa-user"></i>&nbsp; Name :  </b>{{item.nickname}} </p>
                               <p class="card-text text-muted text-center"><b>Province :  </b>{{item.province}} </p>
                               <p class="card-text text-muted text-center"><b>Age : </b>{{item.age}} </p>
                               <div *ngIf="item.chat_status == true">
@@ -128,7 +129,8 @@
               </ul>
             </div>
               <div class="card-body p-1">
-                <h6 text="text" class="card-title text-center mb-1"><i class="fa fa-user">Name</i>{{item.nickname}}</h6>
+                <p class="card-text text-muted text-center"><b><i class="fa fa-user"></i>&nbsp; Name :  </b>{{item.nickname}} </p>
+                <!-- <h6 text="text" class="card-title text-center mb-1"><i class="fa fa-user">Name</i>{{item.nickname}}</h6> -->
                 <p class="card-text text-muted text-center"><b>Province :  </b>{{item.province}} </p>
                 <p class="card-text text-muted text-center"><b>Age : </b>{{item.age}} </p>
               </div>

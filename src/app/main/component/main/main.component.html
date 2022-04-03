@@ -93,7 +93,8 @@
               </ul>
             </div>
               <div class="card-body p-1">
-                <h6 text="text" class="card-title text-center mb-1"><i class="fa fa-user">Name</i>{{item.nickname}}</h6>
+                <p class="card-text text-muted text-center"><b><i class="fa fa-user"></i>&nbsp; Name :  </b>{{item.nickname}} </p>
+                <!-- <h6 text="text" class="card-title text-center mb-1"><i class="fa fa-user">Name</i>{{item.nickname}}</h6> -->
                 <p class="card-text text-muted text-center"><b>Province :  </b>{{item.province}} </p>
                 <p class="card-text text-muted text-center"><b>Age : </b>{{item.age}} </p>
               </div>
@@ -106,13 +107,13 @@
 
         </div>
 
-      <div class="pagi">
+      <!-- <div class="pagi">
               <mat-paginator
                             [length]="this.listpic"
                             [pageSize]="size"
                             [pageIndex]="page"
                             (page)="getData($event)">
               </mat-paginator>
-              </div>
+              </div> -->
           <br><br>
 

@@ -55,6 +55,7 @@ export class ForgotPasswordComponent implements OnInit {
             username:this.whereUser.value.username,
             otp:otp
           })
+          console.log(this.checkOtp.value.otp)
           this.userAccountService.checkOtp(this.checkOtp.value)
           this.ui.hide()
         }

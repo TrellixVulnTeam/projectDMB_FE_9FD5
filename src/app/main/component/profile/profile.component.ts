@@ -215,8 +215,16 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['main',{}])
   }
   async onclickNext(){
+    this.ui.show()
+
     this.userAccountService.editeAccount(this.account.value).then(result =>{
       console.log(result);
+      Swal.fire(
+        'Save data successfully!',
+        '',
+        'success'
+      )
+      this.ui.hide()
     })
 
     // if(this.account.invalid){
