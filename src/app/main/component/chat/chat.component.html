@@ -1,4 +1,7 @@
-      <!-----------------------------------------Grid-------------------------------  -->
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+  <!-----------------------------------------Grid-------------------------------  -->
 
       <div class="container-fluid h-50" >
 
@@ -6,13 +9,18 @@
           <div class="col-md-3 col-xl-3 ">
             <div class="card mb-sm-3 mb-md-0 contacts_card">
             <div class="card-header">
-              <div class="input-group">
+              <div class="input-group" style="margin-left: 1.2cm;">
 
-                <input type="text" class="form-control search" (keyup)="search($event.target.value)" >
-                <div class="input-group-prepend">
+
+                <span>
+                  <img src="{{(this.ProfilePic)}}" class="card-img-top circle1">&nbsp;&nbsp;
+                  <b class="chat">{{this.ProfileMe}}</b>
+                </span>
+                <!-- <input type="text" class="form-control search" (keyup)="search($event.target.value)" > -->
+                <!-- <div class="input-group-prepend">
                   <span class="input-group-text search_btn">
                     <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon></span>
-                </div>
+                </div> -->
               </div>
             </div>
 
@@ -21,21 +29,21 @@
               <li>
                 {{this.msg}}
                 <div *ngFor="let item of listChat; let index = index">
-                <div class="d-flex bd-highlight" (click)="openChat(item)">
+                <div class="d-flex bd-highlight" style=" border: 1.5px solid #b1958b;" (click)="openChat(item)">
                   <div class="img_cont">
                     <div *ngIf="item.picture !=null">
-                      <img src="{{(item.picture)}}" class="card-img-top">
+                      <img src="{{(item.picture)}}" class="card-img-top circle2">
                    </div>
                    <div *ngIf="item.picture ==null || item.picture ==''">
-                     <img src="assets/img/user.png" class="card-img-top">
+                     <img src="assets/img/user.png" class="card-img-top circle2">
                    </div>
                     <!-- <span class="online_icon"></span> -->
                   </div>
                   <div class="user_info">
-                    <span>{{item.nickname}}</span>
+                    <span style="font-size: 0.4cm;">{{item.nickname}}</span>
                     <!-- <p>Kalid is online</p> -->
                   </div>
-                </div><br><br>
+                </div>
                 </div>
               </li>
             </ul>

@@ -15,8 +15,8 @@
 .card-img-wrapper{
   overflow:hidden;
   position:flex;
-  width: 200px;
-  height: 200px;
+  width: 230px;
+  height: 230px;
 }
 
 .member-icons {
@@ -182,4 +182,20 @@ section {
   /* margin-left: 2cm; */
   right: 0;
   margin-top: 2cm;
+}
+.mb-4{
+  width: 230px;
+  height: 320px;
+  margin-right: 5cm;
+}
+
+
+.row[_ngcontent-xjq-c240] {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.row {
+   margin-left: 1cm;
 }

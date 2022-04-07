@@ -8,13 +8,13 @@
             <!-- <div>hover over me</div> -->
               <div class="example-button-row">
               <div class="example-flex-container">
-                <div class="example-button-container">
-                  <button mat-fab class="color1"   (click)="openDialoglike()" aria-label="Example icon button with a delete icon">
-                    <mat-icon>thumb_up </mat-icon>
+                <div class="example-button-container"[hidden]="roleAccount"   >
+                  <button mat-fab class="color1"   (click)="openDialoglike()" aria-label="Example icon button with a delete icon" >
+                    <mat-icon >thumb_up </mat-icon>
                   </button>
                 </div>
-                <div class="example-button-container">
-                  <button mat-fab class="color2" (click)="openDialogchat()" aria-label="Example icon button with a delete icon">
+                <div class="example-button-container"  [hidden]="roleAccount"  >
+                  <button  mat-fab class="color2" (click)="openDialogchat()" aria-label="Example icon button with a delete icon">
                     <mat-icon>question_answer </mat-icon>
                   </button>
                 </div>
@@ -29,7 +29,7 @@
                     <mat-icon>person</mat-icon>
                     <mat-menu style="padding-bottom: 0px;" #menu="matMenu">
                       <button mat-menu-item  [routerLink]="['/profile']">
-                        <mat-icon><span class="material-icons-outlined">manage_accounts</span></mat-icon> Profile
+                        <mat-icon><span class="material-icons-outlined">manage_accounts </span></mat-icon> Profile
                       </button>
                       <button mat-menu-item  [routerLink]="['/editpassword']">
                         <mat-icon><span class="material-icons-outlined">lock_open
@@ -97,6 +97,7 @@
                 <!-- <h6 text="text" class="card-title text-center mb-1"><i class="fa fa-user">Name</i>{{item.nickname}}</h6> -->
                 <p class="card-text text-muted text-center"><b>Province :  </b>{{item.province}} </p>
                 <p class="card-text text-muted text-center"><b>Age : </b>{{item.age}} </p>
+                <p class="card-text text-muted text-center"><i class="fa fa-heart"> </i>&nbsp;{{item.type}}
               </div>
             </div>
 

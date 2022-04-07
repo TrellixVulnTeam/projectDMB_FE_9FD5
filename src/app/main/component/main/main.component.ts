@@ -55,7 +55,10 @@ export class MainComponent implements OnInit {
     this.id_User = this.newProfile._id
     if(this.newProfile.role == 'ADMIN'){
       this.roleAccount = true
+    }else{
+      this.roleAccount = false
     }
+
     this.likeUser  = this.formBuilder.group({
       user1: new FormControl({ value: '', disabled: false }),
       user2: new FormControl({ value: '', disabled: false }),
@@ -65,23 +68,25 @@ export class MainComponent implements OnInit {
     });
     // this.getData({pageIndex: this.page, pageSize: this.size, length: this.listpic});
     // this.ui.hide()
+    // this.ui.show()
+    this.resetfilter()
+     // this.ui.hide()
+    // this.userAccountService.getUserAccount().then(result => {
+    //   debugger
+    //   this.ui.show()
+    //   this.dataProfile = result.responseData.data
 
-    this.userAccountService.getUserAccount().then(result => {
-      this.dataProfile = result.responseData.data
+    //   for(let i=0 ;i<this.dataProfile.length;i++){
+    //     if (this.dataProfile[i]._id == this.id_User){
+    //       this.dataProfile.splice(i, 1);
+    //     }
+    //     if (this.dataProfile[i].role == 'ADMIN'){
+    //       this.dataProfile.splice(i, 1);
 
-      for(let i=0 ;i<this.dataProfile.length;i++){
-        if (this.dataProfile[i]._id == this.id_User){
-          this.dataProfile.splice(i, 1);
-        }
-        if (this.dataProfile[i].role == 'ADMIN'){
-          this.dataProfile.splice(i, 1);
-          
-        }
-      }
-
-      // const  a = this.dataProfile.slice(1)
-      this.ui.hide()
-    });
+    //     }
+    //   }
+    //   this.ui.hide()
+    // });
 
 
   }
@@ -181,17 +186,17 @@ export class MainComponent implements OnInit {
 
   }
   resetfilter(){
-    this.ui.show()
     this.userAccountService.getUserAccount().then(result => {
       this.dataProfile = result.responseData.data
       for(let i=0 ;i<this.dataProfile.length;i++){
         if (this.dataProfile[i]._id == this.id_User){
           this.dataProfile.splice(i, 1);
         }
+        if (this.dataProfile[i].role == 'ADMIN'){
+          this.dataProfile.splice(i, 1);
+
+        }
       }
-      // debugger
-      const  a = this.dataProfile.slice(1)
-      console.log(a);
       this.ui.hide()
     });
   }
@@ -205,9 +210,13 @@ export class MainComponent implements OnInit {
        cancelButtonColor: '#696969',
      }).then((result) => {
        if (result.isConfirmed) {
-        //  this.http.postData('/services/webasset/api/createHistory',data)
-        console.log(this.newProfile);
+        this.http.postData('/services/webasset/api/createHistory',this.newProfile)
          this.userAccountService.deleteAccount(this.newProfile).then(() => {
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
           this.router.navigate(['login', {}]);
          });
 
@@ -216,25 +225,7 @@ export class MainComponent implements OnInit {
 
 }
 getData(item) {
-  debugger
   this.ui.show()
-
-  // this.userAccountService.getUserAccount().then(result => {
-  //   this.dataProfile = result.responseData.data
-
-  //   for(let i=0 ;i<this.dataProfile.length;i++){
-  //     if (this.dataProfile[i]._id == this.id_User){
-  //       this.dataProfile.splice(i, 1);
-  //     }
-  //     if (this.dataProfile[i].role == 'ADMIN'){
-  //       this.dataProfile.splice(i, 1);
-  //     }
-  //   }
-
-  //   const  a = this.dataProfile.slice(1)
-  //   this.ui.hide()
-  // });
-
   this.userAccountService.getUserAccount().then(result => {
     this.dataProfile = result.responseData.data;
     this.listpic = this.dataProfile.length;

@@ -30,6 +30,8 @@ export class ChatComponent implements OnInit {
   idmsg:any
   msg:any
   loading = false;
+  ProfileMe:any
+  ProfilePic:any
   constructor(
     private ui: UiService,
     public http: HttpServices,
@@ -57,11 +59,19 @@ export class ChatComponent implements OnInit {
     const profile = localStorage.getItem('Profile')
     this.newProfile = JSON.parse(profile)
     this.id_User = this.newProfile._id
+    this.http.postData('/services/webasset/api/viewAccouct',{_id: this.id_User}).then(result =>{
+      this.ProfileMe = result[0].nickname
+      this.ProfilePic = result[0].picture
+      debugger
+
+    });
+
     if(this.newProfile.role == 'ADMIN'){
       this.roleAccount = true
     }
     this.http.postData('/services/webasset/api/whereCListChat',{user2: this.id_User,user1: this.id_User,_id:this.id_User}).then(result =>{
       this.listChat =result
+      debugger
       console.log("result");
       this.openChat(result[0])
       console.log(result);
@@ -234,7 +244,7 @@ search(data){
       this.msg =''
       this.http.postData('/services/webasset/api/whereCListChat',{user2: this.id_User,user1: this.id_User,_id:this.id_User}).then(result =>{
         this.listChat =result
-        console.log("result");
+        console.log("result")
         this.openChat(result[0])
       });
     }

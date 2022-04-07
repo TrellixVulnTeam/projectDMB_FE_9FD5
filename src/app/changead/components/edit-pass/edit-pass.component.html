@@ -11,12 +11,12 @@
         <div class="example-button-row">
 
           <div class="example-flex-container">
-            <div class="example-button-container">
+            <div class="example-button-container" [hidden]="roleAccount" >
               <button mat-fab class="color1"   (click)="openDialoglike()" aria-label="Example icon button with a delete icon">
                 <mat-icon>thumb_up </mat-icon>
               </button>
             </div>
-            <div class="example-button-container">
+            <div class="example-button-container" [hidden]="roleAccount"  >
               <button mat-fab class="color2" (click)="openDialogchat()" aria-label="Example icon button with a delete icon">
                 <mat-icon>question_answer </mat-icon>
               </button>
@@ -37,7 +37,7 @@
                     <mat-icon><span class="material-icons-outlined">lock_open
                     </span></mat-icon>Change password
                   </button>
-                  <button mat-menu-item >
+                  <button mat-menu-item  (click)="Deleteaccount()" >
                     <mat-icon> <span class="material-icons-outlined">
                       person_remove
                       </span></mat-icon>Delete account

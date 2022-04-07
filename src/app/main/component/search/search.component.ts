@@ -19,83 +19,75 @@ export class SearchComponent implements OnInit {
   // searchUser: FormGroup;
   public findpeople : FormGroup;
   states: string[] = [
-    'Nakhon Ratchasima',
-    'Chiang Mai',
-    'Kanchanaburi',
-    'Tak',
-    'Ubon Ratchathani',
-    'Surat Thani',
-    'Chaiyaphum',
-    'Mae Hong Son',
-    'Phetchabun',
-    'Lampang',
-    'Udon Thani',
     'Chiang Rai',
-    'Nan',
-    'Loei',
-    'Khon Kaen',
-    'Phitsanulok',
-    'Buri Ram',
-    'Nakhon Si Thammarat',
-    'Sakon Nakhon',
-    'Nakhon Sawan',
-    'Sisaket',
-    'Kamphaeng Phet',
-    'Roi Et',
-    'Surin',
-    'Uttaradit',
-    'Songkhla',
-    'Sa Kaeo',
-    'Kalasin',
-    'Uthai Thani',
-    'Phrae',
-    'Prachuap Khiri Khan',
-    'Chanthaburi',
+    'Chiang Mai',
+    'nan',
     'Phayao',
-    'Phetchaburi',
-    'Lop Buri',
-    'Chumphon',
-    'Nakhon Phanom',
-    'Suphan Buri',
-    'Chachoengsao',
-    'Maha Sarakham',
-    'Ratchaburi',
-    'Trang',
-    'Prachinburi',
-    'Krabi',
-    'Phichit',
-    'Yala',
+    'Phrae ',
+    'Mae Hong Son',
+    'Lampang',
     'Lamphun',
-    'Chon Buri',
-    'Narathiwat',
-    'Mukdahan',
+    'Uttaradit',
+    'Kalasin',
+    'Khon Kaen',
+    'Chaiyaphum',
+    'Nakhon Phanom',
+    'Nakhon Ratchasima',
     'Bueng Kan',
-    'Phang Nga',
-    'Yasothon',
-    'Nong Bua Lamphu',
-    'Saraburi',
-    'Rayong',
-    'Phatthalung',
-    'Ranong',
-    'Amnat Charoen',
+    'Buriram',
+    'Maha Sarakham',
+    'Mukdahan',
+    'Yasothon ',
+    'Roi Et',
+    'Loei',
+    'Sakon Nakhon',
+    'Surin ',
+    'Sisaket ',
     'Nong Khai',
-    'Trat',
-    'Ayutthaya',
-    'Satun',
-    'Chainat',
-    'Nakhon Pathom',
-    'Nakhon Nayok',
-    'Pattani',
+    'Nong Bua Lamphu',
+    'Udon Thani',
+    'Ubon Ratchathani',
+    'Amnat Charoen',
     'Bangkok',
-    'Pathum Thani',
-    'Samut Prakan',
-    'Ang Thong',
-    'Samut Sakhon',
-    'Sing Buri',
+    'Kamphaeng Phet ',
+    'Nakhon Nayok',
+    'Nakhon Sawan',
     'Nonthaburi',
-    'Phuket',
+    'Pathum Thani',
+    'Phra Nakhon Si Ayutthaya',
+    'Phichit',
+    'Phitsanulok',
+    'Phetchabun',
+    'Lopburi',
+    'Samut Prakan',
     'Samut Songkhram',
+    'Samut Sakhon',
+    'Singburi',
     'Sukhothai',
+    'Suphanburi ',
+    'Saraburi',
+    'Angthong',
+    'Uthai Thani',
+    'Chanthaburi ',
+    'Chachoengsao',
+    'Chonburi',
+    'Trat',
+    'Prachinburi',
+    'Rayong ',
+    'Sa Kaeo',
+    'Kanchanaburi',
+    'Tak ',
+    'Prachuap Khiri Khan ',
+    'Phetchaburi',
+    'Ratchaburi ',
+    'Krabi',
+    'Chumphon',
+    'Trang ',
+    'Nakhon Si Thammarat',
+    'Narathiwat',
+    'Pattani',
+    'Phang Nga',
+    'Phatthalung',
   ];
 
   slideage(value: number) {
@@ -113,7 +105,8 @@ export class SearchComponent implements OnInit {
 
     return value;
   }
-
+  newProfile:any
+  id_User:any
   constructor(
     private ui: UiService,
     public http: HttpServices,
@@ -124,41 +117,355 @@ export class SearchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const profile = localStorage.getItem('Profile')
+    this.newProfile = JSON.parse(profile)
+    console.log( this.newProfile);
+    this.id_User = this.newProfile._id
+
+
     this.findpeople  = this.formBuilder.group({
       type: new FormControl({ value: null, disabled: false }),
       gender: new FormControl({ value: null, disabled: false }),
       province: new FormControl({ value: null, disabled: false }),
       age: new FormControl({ value: null, disabled: false }),
       height: new FormControl({ value: null, disabled: false }),
+      _id: new FormControl({ value: null, disabled: false }),
+
     });
   }
-
-  onSubmit(){
-
-  }
-
   onCancel(){
     this.dialogRef.close();
   }
-
   logout(){
     localStorage.removeItem('Authorization');
     this.router.navigate(['login', {}])
   }
   search(){
     this.ui.show()
-    this.findpeople.value
-    this.http.postData('/services/webasset/api/search',{
+    if(this.findpeople.value.type != null &&
+      this.findpeople.value.gender == null&&
+      this.findpeople.value.province == null&&
+      this.findpeople.value.age == null &&
+      this.findpeople.value.height == null ){
+      this.http.postData('/services/webasset/api/searchType',{
+        type: this.findpeople.value.type,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type == null &&
+      this.findpeople.value.gender != null&&
+      this.findpeople.value.province == null&&
+      this.findpeople.value.age == null &&
+      this.findpeople.value.height == null ){
+      this.http.postData('/services/webasset/api/searchGender',{
+        gender: this.findpeople.value.gender,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type == null &&
+      this.findpeople.value.gender == null&&
+      this.findpeople.value.province != null&&
+      this.findpeople.value.age == null &&
+      this.findpeople.value.height == null ){
+      this.http.postData('/services/webasset/api/searchProvince',{
+        province: this.findpeople.value.province,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type == null &&
+      this.findpeople.value.gender == null&&
+      this.findpeople.value.province == null&&
+      this.findpeople.value.age != null &&
+      this.findpeople.value.height == null ){
+      this.http.postData('/services/webasset/api/searchAge',{
+        age: this.findpeople.value.age,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type == null &&
+      this.findpeople.value.gender == null&&
+      this.findpeople.value.province == null&&
+      this.findpeople.value.age == null &&
+      this.findpeople.value.height != null ){
+      this.http.postData('/services/webasset/api/searchHeight',{
+        height: this.findpeople.value.height,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type != null &&
+      this.findpeople.value.gender != null &&
+      this.findpeople.value.province != null &&
+      this.findpeople.value.age != null &&
+      this.findpeople.value.height != null ){
+      this.http.postData('/services/webasset/api/searchAll',{
       type: this.findpeople.value.type,
       gender:this.findpeople.value.gender,
       province:this.findpeople.value.province,
       age:this.findpeople.value.age,
       height:this.findpeople.value.height,
-    }).then(result =>{
-     this.ui.hide()
-      this.dialogRef.close(result);
-      // this.listlike = result
-    });
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type != null &&
+      this.findpeople.value.gender != null &&
+      this.findpeople.value.province == null &&
+      this.findpeople.value.age == null &&
+      this.findpeople.value.height == null ){
+      this.http.postData('/services/webasset/api/searchTypeGender',{
+      type: this.findpeople.value.type,
+      gender:this.findpeople.value.gender,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type != null &&
+      this.findpeople.value.gender == null &&
+      this.findpeople.value.province != null &&
+      this.findpeople.value.age == null &&
+      this.findpeople.value.height == null ){
+      this.http.postData('/services/webasset/api/searchTypeProvince',{
+      type: this.findpeople.value.type,
+      province:this.findpeople.value.province,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type != null &&
+      this.findpeople.value.gender == null &&
+      this.findpeople.value.province == null &&
+      this.findpeople.value.age != null &&
+      this.findpeople.value.height == null ){
+      this.http.postData('/services/webasset/api/searchTypeAge',{
+      type: this.findpeople.value.type,
+      age:this.findpeople.value.age,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type != null &&
+      this.findpeople.value.gender == null &&
+      this.findpeople.value.province == null &&
+      this.findpeople.value.age == null &&
+      this.findpeople.value.height != null ){
+      this.http.postData('/services/webasset/api/searchTypeHeight',{
+      type: this.findpeople.value.type,
+      height:this.findpeople.value.height,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type == null &&
+      this.findpeople.value.gender != null &&
+      this.findpeople.value.province != null &&
+      this.findpeople.value.age == null &&
+      this.findpeople.value.height == null ){
+      this.http.postData('/services/webasset/api/searchGenderProvince',{
+        gender: this.findpeople.value.gender,
+        province:this.findpeople.value.province,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type == null &&
+      this.findpeople.value.gender != null &&
+      this.findpeople.value.province == null &&
+      this.findpeople.value.age != null &&
+      this.findpeople.value.height == null ){
+      this.http.postData('/services/webasset/api/searchGenderAge',{
+        gender: this.findpeople.value.gender,
+        age:this.findpeople.value.age,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type == null &&
+      this.findpeople.value.gender != null &&
+      this.findpeople.value.province == null &&
+      this.findpeople.value.age == null &&
+      this.findpeople.value.height != null ){
+      this.http.postData('/services/webasset/api/searchGenderHeight',{
+        gender: this.findpeople.value.gender,
+        height:this.findpeople.value.height,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type == null &&
+      this.findpeople.value.gender == null &&
+      this.findpeople.value.province != null &&
+      this.findpeople.value.age != null &&
+      this.findpeople.value.height == null ){
+      this.http.postData('/services/webasset/api/searchProvinceAge',{
+        province: this.findpeople.value.province,
+        age:this.findpeople.value.age,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type == null &&
+      this.findpeople.value.gender == null &&
+      this.findpeople.value.province != null &&
+      this.findpeople.value.age == null &&
+      this.findpeople.value.height != null ){
+      this.http.postData('/services/webasset/api/searchProvinceHeight',{
+        province: this.findpeople.value.province,
+        height:this.findpeople.value.height,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type == null &&
+      this.findpeople.value.gender == null &&
+      this.findpeople.value.province == null &&
+      this.findpeople.value.age != null &&
+      this.findpeople.value.height != null ){
+      this.http.postData('/services/webasset/api/searchAgeHeight',{
+        age: this.findpeople.value.age,
+        height:this.findpeople.value.height,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type != null &&
+      this.findpeople.value.gender != null &&
+      this.findpeople.value.province != null &&
+      this.findpeople.value.age == null &&
+      this.findpeople.value.height == null ){
+      this.http.postData('/services/webasset/api/searchTGP',{
+        type: this.findpeople.value.type,
+        gender: this.findpeople.value.gender,
+        province:this.findpeople.value.province,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type != null &&
+      this.findpeople.value.gender != null &&
+      this.findpeople.value.province == null &&
+      this.findpeople.value.age != null &&
+      this.findpeople.value.height == null ){
+      this.http.postData('/services/webasset/api/searchTGA',{
+        type: this.findpeople.value.type,
+        gender: this.findpeople.value.gender,
+        age:this.findpeople.value.age,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type != null &&
+      this.findpeople.value.gender != null &&
+      this.findpeople.value.province == null &&
+      this.findpeople.value.age == null &&
+      this.findpeople.value.height != null ){
+      this.http.postData('/services/webasset/api/searchTGH',{
+        type: this.findpeople.value.type,
+        gender: this.findpeople.value.gender,
+        height:this.findpeople.value.height,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type == null &&
+      this.findpeople.value.gender != null &&
+      this.findpeople.value.province != null &&
+      this.findpeople.value.age != null &&
+      this.findpeople.value.height == null ){
+      this.http.postData('/services/webasset/api/searchGPA',{
+        gender: this.findpeople.value.gender,
+        province: this.findpeople.value.province,
+        age:this.findpeople.value.age,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type == null &&
+      this.findpeople.value.gender != null &&
+      this.findpeople.value.province != null &&
+      this.findpeople.value.age == null &&
+      this.findpeople.value.height != null ){
+      this.http.postData('/services/webasset/api/searchGPH',{
+        gender: this.findpeople.value.gender,
+        province: this.findpeople.value.province,
+        height:this.findpeople.value.height,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+    if(this.findpeople.value.type == null &&
+      this.findpeople.value.gender == null &&
+      this.findpeople.value.province != null &&
+      this.findpeople.value.age != null &&
+      this.findpeople.value.height != null ){
+      this.http.postData('/services/webasset/api/searchPAH',{
+        province: this.findpeople.value.province,
+        age: this.findpeople.value.age,
+        height:this.findpeople.value.height,
+        _id: this.id_User
+      }).then(result =>{
+       this.ui.hide()
+        this.dialogRef.close(result);
+      });
+    }
+
+
+    // this.http.postData('/services/webasset/api/search',{
+    //   type: this.findpeople.value.type,
+    //   gender:this.findpeople.value.gender,
+    //   province:this.findpeople.value.province,
+    //   age:this.findpeople.value.age,
+    //   height:this.findpeople.value.height,
+    // }).then(result =>{
+    //  this.ui.hide()
+    //   this.dialogRef.close(result);
+    // });
 
 
   }

@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ChatComponent } from 'src/app/main/component/chat/chat.component';
+import { HttpServices } from 'src/app/service/http.service';
 import { UserAccountService } from 'src/app/service/userAccount.service';
 import { UiService } from 'src/app/ui.service';
 import Swal from 'sweetalert2';
@@ -27,6 +28,7 @@ export class EditPassComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private ui: UiService,
+    public http: HttpServices,
     private router: Router,
     private formBuilder: FormBuilder,
     private userAccountService: UserAccountService,
@@ -40,6 +42,8 @@ export class EditPassComponent implements OnInit {
     this.newProfile = JSON.parse(profile)
     if(this.newProfile.role == 'ADMIN'){
       this.roleAccount = true
+    }else{
+      this.roleAccount = false
     }
     this.oldpassword = this.formBuilder.group({
       password: new FormControl({ value: '', disabled: false },[Validators.required,Validators.minLength(6),Validators.maxLength(20)]),
@@ -167,6 +171,31 @@ openDialogchat(): void {
   dialogRef.afterClosed().subscribe(result => {
     console.log('The dialog was closed');
   });
+}
+
+Deleteaccount(){
+  Swal.fire({
+    title: 'Delete Account',
+    text: "Are you sure you want to delete this Account?",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#ca9dbb',
+    cancelButtonColor: '#696969',
+  }).then((result) => {
+    if (result.isConfirmed) {
+     this.http.postData('/services/webasset/api/createHistory',this.newProfile)
+      this.userAccountService.deleteAccount(this.newProfile).then(() => {
+       Swal.fire(
+         'Deleted!',
+         'Your file has been deleted.',
+         'success'
+       )
+       this.router.navigate(['login', {}]);
+      });
+
+    }
+  })
+
 }
 
 openDialoglike(): void {

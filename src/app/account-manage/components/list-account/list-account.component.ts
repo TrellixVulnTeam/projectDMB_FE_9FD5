@@ -48,6 +48,8 @@ export class ListAccountComponent implements OnInit {
     this.id_User = this.newProfile._id
     if(this.newProfile.role == 'ADMIN'){
       this.roleAccount = true
+    }else{
+      this.roleAccount = false
     }
 
 
@@ -87,6 +89,7 @@ export class ListAccountComponent implements OnInit {
       this.refresh();
     });
   }
+ 
   clickdelete(data) {
     if(data.status == true){
        data._id = null
@@ -245,4 +248,28 @@ export class ListAccountComponent implements OnInit {
     });
   }
 
+  Deleteaccount(){
+    Swal.fire({
+      title: 'Delete Account',
+      text: "Are you sure you want to delete this Account?",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#ca9dbb',
+      cancelButtonColor: '#696969',
+    }).then((result) => {
+      if (result.isConfirmed) {
+       this.http.postData('/services/webasset/api/createHistory',this.newProfile)
+        this.userAccountService.deleteAccount(this.newProfile).then(() => {
+         Swal.fire(
+           'Deleted!',
+           'Your file has been deleted.',
+           'success'
+         )
+         this.router.navigate(['login', {}]);
+        });
+
+      }
+    })
+
+  }
 }

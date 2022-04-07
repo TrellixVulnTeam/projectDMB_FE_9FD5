@@ -128,6 +128,8 @@ export class ProfileComponent implements OnInit {
     this.newProfile = JSON.parse(profile)
     if(this.newProfile.role == 'ADMIN'){
       this.roleAccount = true
+    }else{
+      this.roleAccount = false
     }
 
     this.id_viewUser = this.newProfile._id
@@ -288,6 +290,31 @@ export class ProfileComponent implements OnInit {
     this.ui.show()
     this.router.navigate(['like', {}]);
   }
+
+  Deleteaccount(){
+    Swal.fire({
+      title: 'Delete Account',
+      text: "Are you sure you want to delete this Account?",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#ca9dbb',
+      cancelButtonColor: '#696969',
+    }).then((result) => {
+      if (result.isConfirmed) {
+       this.http.postData('/services/webasset/api/createHistory',this.newProfile)
+        this.userAccountService.deleteAccount(this.newProfile).then(() => {
+         Swal.fire(
+           'Deleted!',
+           'Your file has been deleted.',
+           'success'
+         )
+         this.router.navigate(['login', {}]);
+        });
+
+      }
+    })
+
+}
   }
   function readBase64(file): Promise<any> {
     const reader = new FileReader();

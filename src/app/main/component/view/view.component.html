@@ -12,7 +12,16 @@
           </span>
       </mat-icon> -->
 
-        Profile</p><br><br><br>
+        Profile</p>
+        <div class="p-col">
+          <label class="hoverable" for="fileInput">
+              <img class="circle"
+                  [src]="imagesProfile ? imagesProfile : 'https://i.pinimg.com/originals/04/7d/fc/047dfc2552d91ae45f5c5362e71f4e43.gif'">
+              <div *ngIf="!!imagesProfile" class="background show"></div>
+              <div class="background"></div>
+          </label>
+          <br />
+        </div><br><br><br><br>
       <div class="row">
         <br><div class="col-md-6">
         <div class="form-label-group">

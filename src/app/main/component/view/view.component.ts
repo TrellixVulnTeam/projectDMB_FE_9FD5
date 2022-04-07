@@ -12,6 +12,7 @@ export class ViewComponent implements OnInit {
 dataView:any;
 profile:FormGroup
 admin:boolean
+imagesProfile:any
   constructor(
     public http: HttpServices,
     private formBuilder: FormBuilder,
@@ -55,7 +56,7 @@ admin:boolean
       ig:this.dataView.ig,
       type:this.dataView.type,
     })
-   
+    this.imagesProfile = this.dataView.picture
     if(this.dataView.phone == null || this.dataView.phone == ''){
       debugger
       this.profile.patchValue({
