@@ -46,6 +46,7 @@ export class ForgotPasswordComponent implements OnInit {
           console.log('free')
           this.submitted =false
           this.submitOtp = false
+          this.ui.hide()
         }
         else{
           this.submitted =true

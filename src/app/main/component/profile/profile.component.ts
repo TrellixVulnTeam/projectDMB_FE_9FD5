@@ -29,6 +29,7 @@ export class ProfileComponent implements OnInit {
   imagesProfile: any;
   msg:any;
   data:any;
+  picMe:any
   uploadFileImages: any = [];
   data_page1:any;
   public otherPrefix: boolean;
@@ -165,6 +166,7 @@ export class ProfileComponent implements OnInit {
 
     this.http.postData('/services/webasset/api/viewAccouct',{_id: this.id_viewUser}).then(result =>{
       this.dataUser = result[0]
+      this.picMe =result[0].picture
       console.log(this.dataUser);
       this.account.patchValue({
         _id:this.dataUser._id,
@@ -301,7 +303,7 @@ export class ProfileComponent implements OnInit {
       cancelButtonColor: '#696969',
     }).then((result) => {
       if (result.isConfirmed) {
-       this.http.postData('/services/webasset/api/createHistory',this.newProfile)
+       this.http.postData('/services/webasset/api/createHistory',this.dataUser)
         this.userAccountService.deleteAccount(this.newProfile).then(() => {
          Swal.fire(
            'Deleted!',

@@ -5,7 +5,9 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import { HttpServices } from 'src/app/service/http.service';
 import { LikeUserService } from 'src/app/service/likeUser.service';
+import { UserAccountService } from 'src/app/service/userAccount.service';
 import { UiService } from 'src/app/ui.service';
+import Swal from 'sweetalert2';
 import { ChatComponent } from '../chat/chat.component';
 import { ComponentSentComponent } from '../component-sent/component-sent.component';
 
@@ -24,8 +26,11 @@ export class LikeComponent implements OnInit {
   listMatch:any
   pollComponent: any;
   surveyComponent: any;
+  dataUser:any
+  picMe:any
 
   constructor(
+    public userAccountService: UserAccountService,
     private ui: UiService,
     private router: Router,
     public dialog: MatDialog,
@@ -35,6 +40,7 @@ export class LikeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.ui.show()
     this.likeUser  = this.formBuilder.group({
       id_likeuser: new FormControl({ value: '', disabled: false }),
       user1: new FormControl({ value: '', disabled: false }),
@@ -62,6 +68,11 @@ export class LikeComponent implements OnInit {
       console.log(this.listMatch);
       this.ui.hide()
     });
+    this.http.postData('/services/webasset/api/viewAccouct',{_id: this.id_User}).then(result =>{
+      this.dataUser = result[0]
+      this.picMe =result[0].picture
+      this.ui.hide()
+    });
   }
   openDialogchat(): void {
     const dialogRef = this.dialog.open(ChatComponent, {
@@ -73,7 +84,30 @@ export class LikeComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
+  Deleteaccount(){
+    Swal.fire({
+      title: 'Delete Account',
+      text: "Are you sure you want to delete this Account?",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#ca9dbb',
+      cancelButtonColor: '#696969',
+    }).then((result) => {
+      if (result.isConfirmed) {
+       this.http.postData('/services/webasset/api/createHistory',this.dataUser)
+        this.userAccountService.deleteAccount(this.newProfile).then(() => {
+         Swal.fire(
+           'Deleted!',
+           'Your file has been deleted.',
+           'success'
+         )
+         this.router.navigate(['login', {}]);
+        });
 
+      }
+    })
+
+}
   openDialoglike(): void {
     this.ui.show()
     this.router.navigate(['like', {}]);
@@ -151,7 +185,7 @@ export class LikeComponent implements OnInit {
 
   }
 
-  onTabChanged(event: MatTabChangeEvent) 
+  onTabChanged(event: MatTabChangeEvent)
   {
     this.ui.show()
     debugger

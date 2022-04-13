@@ -58,13 +58,17 @@
               <div class="card-header msg_head">
                 <div class="d-flex bd-highlight">
                   <div class="img_cont">
-                    <img src="{{this.img}}" class="rounded-circle user_img">
+                    <img *ngIf="picDefault===false" src="{{this.img}}" class="rounded-circle user_img">
+                    <img *ngIf="picDefault===true" src="assets/img/user.png" class="rounded-circle user_img">
+
                     <span class="online_icon"></span>
                   </div>
                   <div class="user_info">
-                    <span>{{this.name}}</span>
+                    <span *ngIf="picDefault===false" >{{this.name}}</span>
+                    <span *ngIf="picDefault===true" >{{this.msg_no}}</span>
                     <!-- <p>1767 Messages</p> -->
                   </div>
+
                   <div class="video_cam">
                     <!-- <span><mat-icon aria-hidden="false" aria-label="Example home icon">phone</mat-icon></span>
                     <span><mat-icon aria-hidden="false" aria-label="Example home icon">videocam</mat-icon></span> -->

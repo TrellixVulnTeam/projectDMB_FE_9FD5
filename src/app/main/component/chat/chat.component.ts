@@ -14,6 +14,8 @@ import { SearchComponent } from '../search/search.component';
 export class ChatComponent implements OnInit {
 
   listlike:any;
+  picDefault:any
+  msg_no = "No message"
   id_User:number
   likeUser: FormGroup;
   public newProfile: any;
@@ -41,6 +43,7 @@ export class ChatComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.picDefault = false
     this.ui.show()
     this.likeUser  = this.formBuilder.group({
       user1: new FormControl({ value: '', disabled: false }),
@@ -59,9 +62,11 @@ export class ChatComponent implements OnInit {
     const profile = localStorage.getItem('Profile')
     this.newProfile = JSON.parse(profile)
     this.id_User = this.newProfile._id
+    this.ui.show()
     this.http.postData('/services/webasset/api/viewAccouct',{_id: this.id_User}).then(result =>{
       this.ProfileMe = result[0].nickname
       this.ProfilePic = result[0].picture
+      this.ui.hide()
       debugger
 
     });
@@ -73,15 +78,24 @@ export class ChatComponent implements OnInit {
       this.listChat =result
       debugger
       console.log("result");
-      this.openChat(result[0])
-      console.log(result);
-      this.ui.hide()
+      if(result.length==0){
+        this.picDefault = true
+        debugger
+        this.ui.hide()
+
+        // this.ui.hide()
+      }else{
+        this.picDefault = false
+         this.openChat(result[0])
+         this.ui.hide()
+      }
 
     });
 
   }
 
   openChat(item:any){
+    debugger
     this.Sentmessage.patchValue({
       id_receivet:null,
       id_sender:null,

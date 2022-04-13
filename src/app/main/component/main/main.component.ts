@@ -35,6 +35,8 @@ export class MainComponent implements OnInit {
   page = 0;
   size = 4;
   listpic: any;
+  historyUser:any
+  picMe:any
 
   constructor(
     private ui: UiService,
@@ -49,6 +51,7 @@ export class MainComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.ui.show()
     const profile = localStorage.getItem('Profile')
     this.newProfile = JSON.parse(profile)
     console.log( this.newProfile);
@@ -59,6 +62,10 @@ export class MainComponent implements OnInit {
       this.roleAccount = false
     }
 
+    this.http.postData('/services/webasset/api/viewAccouct',{_id: this.id_User}).then(result =>{
+      this.historyUser =result[0]
+      this.picMe =result[0].picture
+    })
     this.likeUser  = this.formBuilder.group({
       user1: new FormControl({ value: '', disabled: false }),
       user2: new FormControl({ value: '', disabled: false }),
@@ -66,27 +73,23 @@ export class MainComponent implements OnInit {
       status: new FormControl({ value: false, disabled: false }),
       chat_status :new FormControl({ value: false, disabled: false })
     });
-    // this.getData({pageIndex: this.page, pageSize: this.size, length: this.listpic});
-    // this.ui.hide()
-    // this.ui.show()
-    this.resetfilter()
-     // this.ui.hide()
-    // this.userAccountService.getUserAccount().then(result => {
-    //   debugger
-    //   this.ui.show()
-    //   this.dataProfile = result.responseData.data
 
-    //   for(let i=0 ;i<this.dataProfile.length;i++){
-    //     if (this.dataProfile[i]._id == this.id_User){
-    //       this.dataProfile.splice(i, 1);
-    //     }
-    //     if (this.dataProfile[i].role == 'ADMIN'){
-    //       this.dataProfile.splice(i, 1);
+    this.userAccountService.getUserAccount().then(result => {
+      debugger
+      this.ui.show()
+      this.dataProfile = result.responseData.data
+      for(let i=0 ;i<this.dataProfile.length;i++){
+        if (this.dataProfile[i]._id == this.id_User){
+          this.dataProfile.splice(i, 1);
+        }
+        if (this.dataProfile[i].role == 'ADMIN'){
+          this.dataProfile.splice(i, 1);
 
-    //     }
-    //   }
-    //   this.ui.hide()
-    // });
+        }
+        this.ui.hide()
+      }
+      // this.ui.hide()
+    });
 
 
   }
@@ -186,6 +189,7 @@ export class MainComponent implements OnInit {
 
   }
   resetfilter(){
+    this.ui.show()
     this.userAccountService.getUserAccount().then(result => {
       this.dataProfile = result.responseData.data
       for(let i=0 ;i<this.dataProfile.length;i++){
@@ -199,6 +203,7 @@ export class MainComponent implements OnInit {
       }
       this.ui.hide()
     });
+
   }
   Deleteaccount(){
      Swal.fire({
@@ -210,7 +215,7 @@ export class MainComponent implements OnInit {
        cancelButtonColor: '#696969',
      }).then((result) => {
        if (result.isConfirmed) {
-        this.http.postData('/services/webasset/api/createHistory',this.newProfile)
+        this.http.postData('/services/webasset/api/createHistory', this.historyUser)
          this.userAccountService.deleteAccount(this.newProfile).then(() => {
           Swal.fire(
             'Deleted!',

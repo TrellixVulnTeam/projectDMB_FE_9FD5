@@ -89,7 +89,7 @@ export class ListAccountComponent implements OnInit {
       this.refresh();
     });
   }
- 
+
   clickdelete(data) {
     if(data.status == true){
        data._id = null
@@ -208,8 +208,16 @@ export class ListAccountComponent implements OnInit {
     this.ui.show()
     const id = item._id
     this.http.postData('/services/webasset/api/viewAccouct',{_id: id}).then(result =>{
-      this.dataProfile = result[0]
-      this.openPopupView(this.dataProfile)
+      if(result.length==0){
+         this.http.postData('/services/webasset/api/viewAccouctHistory',{_id: id}).then(result1 =>{
+         this.dataProfile = result1[0]
+         this.openPopupView(this.dataProfile)
+      });
+      }else{
+       this.dataProfile = result[0]
+       this.openPopupView(this.dataProfile)
+      }
+
     });
 
   }

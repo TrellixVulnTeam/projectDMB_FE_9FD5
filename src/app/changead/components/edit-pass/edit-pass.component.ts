@@ -25,6 +25,9 @@ export class EditPassComponent implements OnInit {
   value = 50;
   displayProgressSpinner = false;
   spinnerWithoutBackdrop = false;
+  id_viewUser:any
+  dataUser:any
+  picMe:any
   constructor(
     public dialog: MatDialog,
     private ui: UiService,
@@ -45,6 +48,7 @@ export class EditPassComponent implements OnInit {
     }else{
       this.roleAccount = false
     }
+    this.id_viewUser = this.newProfile._id
     this.oldpassword = this.formBuilder.group({
       password: new FormControl({ value: '', disabled: false },[Validators.required,Validators.minLength(6),Validators.maxLength(20)]),
     });
@@ -55,6 +59,10 @@ export class EditPassComponent implements OnInit {
     this.confirmpassword = this.formBuilder.group({
       password: new FormControl({ value: '', disabled: false }, [Validators.required,Validators.minLength(6),Validators.maxLength(20)]),
     });
+    this.http.postData('/services/webasset/api/viewAccouct',{_id: this.id_viewUser}).then(result =>{
+      this.dataUser = result[0]
+      this.picMe =result[0].picture
+    })
     // setTimeout(
     //   () => this.ui.show(), 2000
     // )

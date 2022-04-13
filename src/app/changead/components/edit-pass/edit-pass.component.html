@@ -11,25 +11,28 @@
         <div class="example-button-row">
 
           <div class="example-flex-container">
-            <div class="example-button-container" [hidden]="roleAccount" >
+            <div class="example-button-container" [hidden]="roleAccount"  >
               <button mat-fab class="color1"   (click)="openDialoglike()" aria-label="Example icon button with a delete icon">
-                <mat-icon>thumb_up </mat-icon>
+                <mat-icon matTooltip="Like">thumb_up </mat-icon>
               </button>
             </div>
             <div class="example-button-container" [hidden]="roleAccount"  >
               <button mat-fab class="color2" (click)="openDialogchat()" aria-label="Example icon button with a delete icon">
-                <mat-icon>question_answer </mat-icon>
+                <mat-icon matTooltip="Chat">question_answer </mat-icon>
               </button>
             </div>
             <div class="example-button-container">
               <button mat-fab class="color1"   [routerLink]="['/main']" aria-label="Example icon button with a delete icon">
-                <mat-icon>home </mat-icon>
+                <mat-icon matTooltip="Home">home </mat-icon>
               </button>
             </div>
             <div class="example-button-container">
               <button mat-fab  class="color4"  [matMenuTriggerFor]="menu" aria-hidden="true" aria-label="Example icon button with a bookmark icon">
-                <mat-icon>person</mat-icon>
+                <mat-icon matTooltip="Manage Accounts">person</mat-icon>
                 <mat-menu style="padding-bottom: 0px;" #menu="matMenu">
+                  <button mat-menu-item disabled >
+                    <img src={{this.picMe}} class="circle1">
+                  </button>
                   <button mat-menu-item  [routerLink]="['/profile']">
                     <mat-icon><span class="material-icons-outlined">manage_accounts</span></mat-icon> Profile
                   </button>
@@ -37,12 +40,12 @@
                     <mat-icon><span class="material-icons-outlined">lock_open
                     </span></mat-icon>Change password
                   </button>
-                  <button mat-menu-item  (click)="Deleteaccount()" >
+                  <button mat-menu-item  (click)="Deleteaccount()">
                     <mat-icon> <span class="material-icons-outlined">
                       person_remove
                       </span></mat-icon>Delete account
                   </button>
-                  <button mat-menu-item *ngIf="roleAccount"[routerLink]="['/list-account']">
+                  <button mat-menu-item *ngIf="roleAccount" [routerLink]="['/list-account']">
                     <mat-icon> <span class="material-icons-outlined">
                       people_outline
                       </span></mat-icon>Manage user accounts
