@@ -61,7 +61,6 @@ export class MainComponent implements OnInit {
     }else{
       this.roleAccount = false
     }
-
     this.http.postData('/services/webasset/api/viewAccouct',{_id: this.id_User}).then(result =>{
       this.historyUser =result[0]
       this.picMe =result[0].picture
@@ -75,20 +74,15 @@ export class MainComponent implements OnInit {
     });
 
     this.userAccountService.getUserAccount().then(result => {
-      debugger
       this.ui.show()
-      this.dataProfile = result.responseData.data
+      this.dataProfile = result
       for(let i=0 ;i<this.dataProfile.length;i++){
         if (this.dataProfile[i]._id == this.id_User){
           this.dataProfile.splice(i, 1);
         }
-        if (this.dataProfile[i].role == 'ADMIN'){
-          this.dataProfile.splice(i, 1);
-
-        }
         this.ui.hide()
       }
-      // this.ui.hide()
+
     });
 
 
@@ -191,15 +185,15 @@ export class MainComponent implements OnInit {
   resetfilter(){
     this.ui.show()
     this.userAccountService.getUserAccount().then(result => {
-      this.dataProfile = result.responseData.data
+      this.dataProfile = result
       for(let i=0 ;i<this.dataProfile.length;i++){
         if (this.dataProfile[i]._id == this.id_User){
           this.dataProfile.splice(i, 1);
         }
-        if (this.dataProfile[i].role == 'ADMIN'){
-          this.dataProfile.splice(i, 1);
+        // if (this.dataProfile[i].role == 'ADMIN'){
+        //   this.dataProfile.splice(i, 1);
 
-        }
+        // }
       }
       this.ui.hide()
     });
@@ -238,9 +232,9 @@ getData(item) {
       if (this.dataProfile[i]._id == this.id_User){
         this.dataProfile.splice(i, 1);
       }
-      if (this.dataProfile[i].role == 'ADMIN'){
-        this.dataProfile.splice(i, 1);
-      }
+      // if (this.dataProfile[i].role == 'ADMIN'){
+      //   this.dataProfile.splice(i, 1);
+      // }
     }
       debugger
       let index = 0,

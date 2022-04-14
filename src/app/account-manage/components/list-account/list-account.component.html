@@ -29,6 +29,9 @@
                   <button mat-fab  class="color4"  [matMenuTriggerFor]="menu" aria-hidden="true" aria-label="Example icon button with a bookmark icon">
                     <mat-icon>person</mat-icon>
                     <mat-menu style="padding-bottom: 0px;" #menu="matMenu">
+                      <button mat-menu-item disabled >
+                        <img src={{this.picMe}} class="circle1">
+                      </button>
                       <button mat-menu-item  [routerLink]="['/profile']">
                         <mat-icon><span class="material-icons-outlined">manage_accounts</span></mat-icon> Profile
                       </button>

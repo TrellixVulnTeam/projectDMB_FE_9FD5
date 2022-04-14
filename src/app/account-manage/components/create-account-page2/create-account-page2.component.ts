@@ -173,36 +173,10 @@ export class CreateAccountPage2Component implements OnInit {
       gender:this.data_page1.gender,
       description:this.data_page1.description,
     })
-
-
-    // this.userAccountService.createAccount(this.account.value).then(result => {
-    //   debugger
-    //     this.alertSucc()
-    //     this.router.navigate(['create-account-page2',{id: result.responseData.data._id}]);
-
-    //     })
-    // this.img = this.formBuilder.group({
-    //   file_id: new FormControl({ value: '', disabled: false }, [Validators.required]),
-    //   userAccount_id: new FormControl({ value: '', disabled: false }, [Validators.required]),
-    //   file_name: new FormControl({ value: '', disabled: false }, [Validators.required]),
-    //   file_path: new FormControl({ value: '', disabled: false }, [Validators.required]),
-    //   file_type: new FormControl({ value: '', disabled: false }, [Validators.required]),
-    //   file_size: new FormControl({ value: '', disabled: false }, [Validators.required]),
-    // });
-
-    //  let param = "2bda0467252685d62032ce444fffb9b5.jpg"
-    // this.imagesProfile2 = this.downloadImages(param);
-    // console.log( this.imagesProfile2);
-    // debugger
-
-    // this.userAccountService.getUserAccount().then(result => {
-    //   this.formLogin.patchValue({
-    //     picture:result.responseData.data[0].picture
-    //   })
-    // });
   }
 
   onSubmit(){
+    debugger
     this.ui.show()
     this.checkuser.patchValue({
       username: this.account2.value.username
@@ -210,26 +184,35 @@ export class CreateAccountPage2Component implements OnInit {
     this.userAccountService.checkCreateUser(this.checkuser.value).then(result => {
       this.user = result
         if(this.user.length==0 ){
-          this.submitted =true
-          this.userAccountService.createAccount(this.account2.value).then(result => {
+          if(this.account2.value.picture != ""){
+              this.submitted =true
+                        this.userAccountService.createAccount(this.account2.value).then(result => {
+                          this.ui.hide()
+                          const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top',
+                            showConfirmButton: false,
+                            timer: 1500,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                              toast.addEventListener('mouseenter', Swal.stopTimer)
+                              toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                          })
+                          Toast.fire({
+                            icon: 'success',
+                            title: 'Save data successfully '
+                          })
+                          this.router.navigate(['login', {}])
+                        })
+          }else{
             this.ui.hide()
-            const Toast = Swal.mixin({
-               toast: true,
-               position: 'top',
-               showConfirmButton: false,
-               timer: 1500,
-               timerProgressBar: true,
-               didOpen: (toast) => {
-                 toast.addEventListener('mouseenter', Swal.stopTimer)
-                 toast.addEventListener('mouseleave', Swal.resumeTimer)
-               }
-             })
-             Toast.fire({
-               icon: 'success',
-               title: 'Save data successfully '
-             })
-             this.router.navigate(['login', {}])
-           })
+            Swal.fire({
+              icon: 'error',
+              text: 'Please fill out the information completely.!',
+            })
+          }
+
 
           }
         else{
@@ -238,11 +221,6 @@ export class CreateAccountPage2Component implements OnInit {
           this.submitted =false
           }
         })
-
-
-
-
-
   }
 
   onCancel(){

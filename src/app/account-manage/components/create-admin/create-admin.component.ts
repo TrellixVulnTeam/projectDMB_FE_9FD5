@@ -129,11 +129,12 @@ export class CreateAdminComponent implements OnInit {
     this.userAccountService.checkCreateUser(this.checkuser.value).then(result => {
       this.user = result
         if(this.user.length==0 ){
-          this.submitted =true
+          if(this.account.value.picture != ""){
+            this.submitted =true
           this.email.patchValue({
             username: this.account.value.username
           })
-          this.userAccountService.createAccount(this.account.value).then(result => {
+          this.userAccountService.createAccountAdmin(this.account.value).then(result => {
             this.userAccountService.sentEmail(this.email.value)
             this.ui.hide()
             const Toast = Swal.mixin({
@@ -153,7 +154,14 @@ export class CreateAdminComponent implements OnInit {
              })
              this.router.navigate(['list-account',{}])
            })
-
+          }
+          else{
+            this.ui.hide()
+            Swal.fire({
+              icon: 'error',
+              text: 'Please fill out the information completely.!',
+            })
+          }
           }
         else{
           this.ui.hide()

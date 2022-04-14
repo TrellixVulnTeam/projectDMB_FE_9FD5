@@ -32,6 +32,8 @@ export class ListAccountComponent implements OnInit {
   id_User:any;
   roleAccount:boolean
   dataProfile:any
+  historyUser:any
+  picMe:any
   constructor(
     private ui: UiService,
     public http: HttpServices,
@@ -51,12 +53,16 @@ export class ListAccountComponent implements OnInit {
     }else{
       this.roleAccount = false
     }
-
-
-    this.userAccountService.getUserAccount().then(result => {
+    this.http.postData('/services/webasset/api/viewAccouct',{_id: this.id_User}).then(result =>{
+      this.historyUser =result[0]
+      this.picMe =result[0].picture
+    })
+    this.http.getData('/services/webasset/api/listAll').then(result => {
       this.dataAccount = result.responseData.data;
-      this.http.getData('/services/webasset/api/listHistory').then(result => {
-      const a = result.responseData.data
+      debugger
+      this.http.getData('/services/webasset/api/listHistory').then(result2 => {
+        debugger
+      const a = result2.responseData.data
       const ArrData = new Array()
       a.forEach(element => {
         ArrData.push(element)
@@ -74,7 +80,6 @@ export class ListAccountComponent implements OnInit {
   this.search = this.formBuilder.group({
     searchText: new FormControl({ value:'', disabled: false }),
   });
-  // this.ui.hide()
   }
   openDialogEdit(data: any) {
     const dialogConfig = new MatDialogConfig();
@@ -118,39 +123,10 @@ export class ListAccountComponent implements OnInit {
       })
 
     }
-
-    // Swal.fire({
-    //   title: 'Delete Account',
-    //   text: "Are you sure you want to delete this Account?",
-    //   icon: 'question',
-    //   showCancelButton: true,
-    //   confirmButtonColor: 'rgb(70, 0, 0)',
-    //   cancelButtonColor: '#696969',
-    // }).then((result) => {
-    //   this.ui.show()
-    //   if (result.isConfirmed) {
-    //     const obj = {
-    //       _id:data._id ,
-    //       status: false
-    //     }
-    //     this.userAccountService.editeAccount(obj).then(() => {
-    //       this.refresh();
-    //     });
-    //     Swal.fire(
-    //       'Deleted!',
-    //       'Your file has been deleted.',
-    //       'success'
-    //     )
-    //     this.ui.hide()
-    //   }
-    // })
   }
   public doFilter = (value: string) => {
-    // this.ui.show()
     this.dataSource.filter = value.trim().toLocaleLowerCase();
-    // this.ui.hide()
   }
-
   onclickcreateaccount(){
     this.router.navigate(['create-admin', {}])
   }
@@ -174,10 +150,11 @@ export class ListAccountComponent implements OnInit {
   }
   refresh(){
     this.ui.show()
-    this.userAccountService.getUserAccount().then(result => {
+    this.http.getData('/services/webasset/api/listAll').then(result => {
+      debugger
       this.dataAccount = result.responseData.data;
-      this.http.getData('/services/webasset/api/listHistory').then(result => {
-      const a = result.responseData.data
+      this.http.getData('/services/webasset/api/listHistory').then(result2 => {
+      const a = result2.responseData.data
       const ArrData = new Array()
       a.forEach(element => {
         ArrData.push(element)
@@ -190,7 +167,6 @@ export class ListAccountComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.ui.hide()
     })
-      this.ui.hide()
   })
   }
   logout() {
