@@ -220,7 +220,6 @@ export class ProfileComponent implements OnInit {
   }
   async onclickNext(){
     this.ui.show()
-
     this.userAccountService.editeAccount(this.account.value).then(result =>{
       console.log(result);
       Swal.fire(
@@ -249,7 +248,7 @@ export class ProfileComponent implements OnInit {
         this.imagesProfile = res[0]
         debugger
         this.uploadFileImages.push(this.imageFile)
-        this.account2.patchValue({
+        this.account.patchValue({
           picture:this.imageFile,
         })
 

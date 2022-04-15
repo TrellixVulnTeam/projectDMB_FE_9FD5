@@ -80,16 +80,12 @@ export class ChatComponent implements OnInit {
       console.log("result");
       if(result.length==0){
         this.picDefault = true
-        debugger
         this.ui.hide()
-
-        // this.ui.hide()
       }else{
         this.picDefault = false
          this.openChat(result[0])
          this.ui.hide()
       }
-
     });
 
   }
